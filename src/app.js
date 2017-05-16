@@ -521,7 +521,7 @@ app.post('/webhook/', (req, res) => {
         if (data.result) {
 
             if (data.result.action === 'arrivapi.default.submit') {
-                mongo.addCommute();
+                mongo.addCommute(commuteContext);
             }
         }
 
