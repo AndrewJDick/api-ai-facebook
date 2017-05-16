@@ -529,10 +529,14 @@ app.post('/webhook/', (req, res) => {
                   destination: commuteContext.parameters.destination,
                   arrival: commuteContext.parameters.time,
                   mode: commuteContext.parameters.travel_mode,
-                  preference: commuteContext.parameters.transit_preference
+                  preference: commuteContext.parameters.transit_mode
                 };
 
-                console.log(userCommute);
+                mongodb.MongoClient.connect(uri, function(err, db) {
+                    db.collection('commutes').insert(userCommute, function(err, result) {
+                        if(err) throw err;
+                    });
+                }
             }
         }
 
