@@ -10,7 +10,7 @@ const async = require('async');
 
 // const axios = require('axios');
 // const nodeGeocoder = require('node-geocoder');
-// const mongodb = require('./mongoDb');
+const mongodb = require('./mongoDb');
 
 // TODO: Replace apiKey with env variable
 // const geocoderOptions = {
@@ -516,15 +516,8 @@ app.get('/webhook/', (req, res) => {
 app.post('/webhook/', (req, res) => {
 
     try {
-        console.log('try started');
         let data = JSONbig.parse(req.body);
-
-        console.log(data);
-
         let contexts = data.result.contexts; 
-        console.log('contexts');
-        console.log(contexts);
-
         var commuteContext = {};
         var speech = '';
 
@@ -535,22 +528,14 @@ app.post('/webhook/', (req, res) => {
             }
         }
 
-        console.log('commute context');
-        console.log(commuteContext);
-
         if (data.result) {
 
-            console.log('result started!')
-
-            // Convert the origin and destination street address || postcodes to lat/lng coords
             if (data.result.action === 'arrivapi.default.submit') {
 
-                console.log(`Andrew, you're a fucking superstar!`);
-                console.log(`===================================`);
+                // This has everything I need
                 console.log(commuteContext);
-                console.log(`===================================`);
-                console.log(data.originalRequest.data.sender);
 
+                // Store commute context fields in the heroku mongodb commute collection
             }
         }
 
@@ -606,7 +591,6 @@ app.post('/webhook/', (req, res) => {
             error: err
         });
     }
-
 });
 
 app.listen(REST_PORT, () => {
