@@ -487,6 +487,10 @@ const app = express();
 
 app.use(bodyParser.text({type: 'application/json'}));
 
+app.get('/', (req, res) => {
+    window.alert('working!!');
+});
+
 app.get('/webhook/', (req, res) => {
     if (req.query['hub.verify_token'] === FB_VERIFY_TOKEN) {
         res.send(req.query['hub.challenge']);
