@@ -524,24 +524,11 @@ app.post('/webhook/', (req, res) => {
 
                 console.log(commuteContext);
 
-                // Store commute context fields in the heroku mongodb commute collection
-                let userCommute = function(db, callback) {
-                    db.collection('commutes').insertOne({
-                        psid: commuteContext.parameters.facebook_sender_id,
-                        origin: commuteContext.parameters.origin,
-                        destination: commuteContext.parameters.destination,
-                        arrival: commuteContext.parameters.time,
-                        mode: commuteContext.parameters.travel_mode,
-                        preference: commuteContext.parameters.transit_mode
-                    }, function(err, result) {
-                        assert.equal(err, null);
-                        console.log("Inserted a document into the restaurants collection.");
-                        callback();
-                    });
-                };
+                console.log(uri);
 
                 mongodb.connect(uri, function(err, db) {
                     assert.equal(null, err);
+                    
                     userCommute(db, function() {
                         db.close();
                     })

@@ -14,7 +14,7 @@ var uri = 'mongodb://admin:root@ds137441.mlab.com:37441/heroku_sxrcs6jm';
 
 
 // Dummy data
-let seedDb = function(db, callback) {
+const seedDb = function(db, callback) {
     db.collection('commutes').insert([{
         psid: '9999999999999999',
         origin: '51.6564890,-0.3903200',
@@ -46,7 +46,7 @@ let seedDb = function(db, callback) {
 };
 
 // Store commute context fields in the heroku mongodb commute collection
-let userCommute = function(db, callback) {
+const userCommute = function(db, callback) {
     db.collection('commutes').insertOne({
         psid: commuteContext.parameters.facebook_sender_id,
         origin: commuteContext.parameters.origin,
@@ -56,7 +56,7 @@ let userCommute = function(db, callback) {
         preference: commuteContext.parameters.transit_mode
     }, function(err, result) {
         assert.equal(err, null);
-        console.log("Inserted a document into the commutes collection.");
+        console.log("Inserted a user's default commute into the commutes collection.");
         callback();
     });
 };
