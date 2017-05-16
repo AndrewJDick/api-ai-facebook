@@ -504,6 +504,7 @@ app.get('/webhook/', (req, res) => {
     }
 });
 
+
 app.post('/webhook/', (req, res) => {
 
     
@@ -512,10 +513,7 @@ app.post('/webhook/', (req, res) => {
         const data = JSONbig.parse(req.body);
 
             console.log('===================================================');
-            console.log(data.originalRequest.data.sender);
-            console.log(data.originalRequest.data.recipient);
-            console.log(data.originalRequest.data.message);
-            console.log(data.originalRequest.data.timestamp);
+            console.log(data);
 
         if (data.entry) {
 
