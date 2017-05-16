@@ -82,3 +82,8 @@ mongodb.connect(uri, function(err, db) {
         });
     });
 });
+
+
+// Exports 
+exports.uri = uri;
+exports.userCommute = userCommute;
