@@ -32,6 +32,8 @@ const latLng = function(commuteContext) {
 	for (waypoint in waypoints) {
 		geocoder.geocode(waypoints[waypoint]).then((response) => {
 	        
+			console.log(response);
+			
 			waypoints[waypoint] = `${response[0].latitude},${response[0].longitude}`;
 		    
 		})
