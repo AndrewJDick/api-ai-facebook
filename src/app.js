@@ -28,7 +28,15 @@ class FacebookBot {
 
     doDataResponse(sender, facebookResponseData) {
         if (!Array.isArray(facebookResponseData)) {
-            console.log('Response as formatted message');
+            let apiaiRequest = apiAiService.textRequest(text, {
+                sessionId: sessionIds.get(sender),
+                contexts: [{
+                    name: "generic",
+                    parameters: {
+                        facebook_user: userName
+                    }
+                }]
+            });
             this.sendFBMessage(sender, facebookResponseData)
                 .catch(err => console.error(err));
         } else {
@@ -512,8 +520,8 @@ app.post('/webhook/', (req, res) => {
     try {
         const data = JSONbig.parse(req.body);
 
-            console.log('===================================================');
-            console.log(data);
+        console.log('foo');
+        console.log(#generic.facebook_user);
 
         if (data.entry) {
 
