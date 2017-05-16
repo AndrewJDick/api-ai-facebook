@@ -487,7 +487,7 @@ const app = express();
 
 app.use(bodyParser.text({type: 'application/json'}));
 
-app.get('/', (req, res) => {
+app.get('/foo/', (req, res) => {
     console.log('working!');
 });
 
