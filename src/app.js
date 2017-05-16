@@ -509,25 +509,13 @@ app.post('/webhook/', (req, res) => {
     
 
     try {
-        const data = JSONbig.parse(req.body);
+        let data = JSONbig.parse(req.body);
 
             console.log('===================================================');
             console.log(data.originalRequest.data.sender);
             console.log(data.originalRequest.data.recipient);
             console.log(data.originalRequest.data.sender);
             console.log(data.originalRequest.data.sender);
-
-            let apiaiRequest = this.apiAiService.textRequest(text, {
-                sessionId: sessionIds.get(sender),
-                contexts: [{
-                    name: "generic",
-                    parameters: {
-                        facebook_user: userName
-                    }
-                }]
-            });
-
-            console.log(apiaiRequest);
 
         if (data.entry) {
 
