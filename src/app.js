@@ -536,7 +536,7 @@ app.post('/webhook/', (req, res) => {
                     db.collection('commutes').insert(userCommute, function(err, result) {
                         if(err) throw err;
                     });
-                }
+                });
             }
         }
 
