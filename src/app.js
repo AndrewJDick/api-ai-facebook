@@ -488,7 +488,7 @@ const app = express();
 app.use(bodyParser.text({type: 'application/json'}));
 
 app.get('/', (req, res) => {
-    window.alert('working!!');
+    console.log('working!');
 });
 
 app.get('/webhook/', (req, res) => {
