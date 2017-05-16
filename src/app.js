@@ -492,6 +492,9 @@ app.get('/foo/', (req, res) => {
 });
 
 app.get('/webhook/', (req, res) => {
+
+    console.log('gimme some of that sweet sweet gummy');
+    
     if (req.query['hub.verify_token'] === FB_VERIFY_TOKEN) {
         res.send(req.query['hub.challenge']);
 
