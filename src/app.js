@@ -432,7 +432,7 @@ class FacebookBot {
                 if (error) {
                     console.error('Error while subscription: ', error);
                 } else {
-                    console.log('Subscription result: ', response.body);
+                    console.log('Subscription result this is a test: ', response.body);
                 }
             });
     }
