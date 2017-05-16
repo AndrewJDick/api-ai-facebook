@@ -486,7 +486,7 @@ class FacebookBot {
 
 }
 
-let facebookBot = new fb.FacebookBot();
+let facebookBot = new FacebookBot();
 
 const app = express();
 
