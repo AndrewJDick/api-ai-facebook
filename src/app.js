@@ -8,7 +8,7 @@ const request = require('request');
 const JSONbig = require('json-bigint');
 const async = require('async');
 
-const mongodb = require('./app/mongoDb');
+const mongo = require('./app/mongoDb');
 // const nodeGeocoder = require('node-geocoder');
 // const axios = require('axios');
 
@@ -534,11 +534,9 @@ app.post('/webhook/', (req, res) => {
 
                 mongodb.MongoClient.connect(uri, function(err, db) {
                     console.log(uri);
-                    db.collection('commutesabc').insert(userCommute, function(err, result) {
+                    db.collection('commutes').insert(userCommute, function(err, result) {
                         if(err) throw err;
                     });
-
-                    console.log(db);
                 });
 
 

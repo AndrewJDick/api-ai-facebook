@@ -7,8 +7,6 @@
  * A Node script connecting to a MongoDB database given a MongoDB Connection URI.
 */
 
-console.log('accessed mongodb');
-
 var mongodb = require('mongodb');
 var uri = 'mongodb://admin:root@ds137441.mlab.com:37441/heroku_sxrcs6jm';
 
