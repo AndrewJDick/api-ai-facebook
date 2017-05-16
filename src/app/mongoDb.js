@@ -15,7 +15,7 @@ var uri = 'mongodb://admin:root@ds137441.mlab.com:37441/heroku_sxrcs6jm';
 // Dummy data
 var seedData = [
   {
-    psid: '9999785059048814',
+    psid: '9999999999999999',
     origin: '51.6564890, -0.3903200',
     destination: '51.5238910,-0.0968820',
     arrival: '09:00:00',
@@ -23,7 +23,7 @@ var seedData = [
     preference: 'rail'
   },
   {
-    psid: '1709785059048999',
+    psid: '5555555555555555',
     origin: '51.475579, -0.064370',
     destination: '51.5238910,-0.0968820',
     arrival: '11:00:00',
@@ -31,7 +31,7 @@ var seedData = [
     preference: ''
   },
   {
-    psid: '9999995059048814',
+    psid: '4444444444444444',
     origin: '51.059771, -1.310142',
     destination: '51.5238910,-0.0968820',
     arrival: '17:03:40',

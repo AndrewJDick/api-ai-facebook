@@ -8,19 +8,9 @@ const request = require('request');
 const JSONbig = require('json-bigint');
 const async = require('async');
 
-// const axios = require('axios');
+const mongodb = require('./app/mongoDb');
 // const nodeGeocoder = require('node-geocoder');
-const mongodb = require('./mongoDb');
-
-// TODO: Replace apiKey with env variable
-// const geocoderOptions = {
-//   provider: 'google',
- 
-//   // Optional depending on the providers 
-//   httpAdapter: 'https',
-//   apiKey: 'AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE',
-//   formatter: null
-// };
+// const axios = require('axios');
 
 const REST_PORT = (process.env.PORT || 5000);
 const APIAI_ACCESS_TOKEN = process.env.APIAI_ACCESS_TOKEN;
@@ -532,10 +522,17 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'arrivapi.default.submit') {
 
-                // This has everything I need
-                console.log(commuteContext);
-
                 // Store commute context fields in the heroku mongodb commute collection
+                const userCommute = {
+                  psid: commuteContext.parameters.facebook_sender_id,
+                  origin: commuteContext.parameters.origin,
+                  destination: commuteContext.parameters.destination,
+                  arrival: commuteContext.parameters.time,
+                  mode: commuteContext.parameters.travel_mode,
+                  preference: commuteContext.parameters.transit_preference
+                };
+
+                console.log(userCommute);
             }
         }
 
