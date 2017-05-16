@@ -523,20 +523,24 @@ app.post('/webhook/', (req, res) => {
             if (data.result.action === 'arrivapi.default.submit') {
 
                 // Store commute context fields in the heroku mongodb commute collection
-                const userCommute = {
+                const userCommute = [{
                   psid: commuteContext.parameters.facebook_sender_id,
                   origin: commuteContext.parameters.origin,
                   destination: commuteContext.parameters.destination,
                   arrival: commuteContext.parameters.time,
                   mode: commuteContext.parameters.travel_mode,
                   preference: commuteContext.parameters.transit_mode
-                };
+                }];
 
                 mongodb.MongoClient.connect(uri, function(err, db) {
-                    db.collection('commutes').insert([userCommute], function(err, result) {
+                    db.collection('commutes').insert(userCommute, function(err, result) {
                         if(err) throw err;
                     });
+
+                    console.log(db);
                 });
+
+
             }
         }
 
