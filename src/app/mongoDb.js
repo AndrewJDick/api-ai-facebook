@@ -66,9 +66,9 @@ const userCommute = function(db, callback) {
 // Add a default commute to the db
 const addCommute = function() {
     mongodb.connect(uri, function(err, db) {
-        mongo.assert.equal(null, err);
+        assert.equal(null, err);
         
-        mongo.userCommute(db, function() {
+        userCommute(db, function() {
             db.close();
         })
     });
