@@ -530,7 +530,7 @@ app.post('/webhook/', (req, res) => {
 
         // Store the Default Commute object built from the API.ai bot.
         for (let context of contexts) {
-            if (context.name === "default-commute") {
+            if (context.name === 'generic') {
                 commuteContext = context;
             }
         }
@@ -543,7 +543,7 @@ app.post('/webhook/', (req, res) => {
             console.log('result started!')
 
             // Convert the origin and destination street address || postcodes to lat/lng coords
-            if (req.body.result.action === 'arrivapi.default.submit') {
+            if (data.result.action === 'arrivapi.default.submit') {
 
                 console.log(`Andrew, you're a fucking superstar!`);
                 console.log(`===================================`);
