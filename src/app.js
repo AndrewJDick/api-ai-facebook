@@ -522,6 +522,8 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'arrivapi.default.submit') {
 
+                console.log(commuteContext);
+
                 // Store commute context fields in the heroku mongodb commute collection
                 let userCommute = function(db, callback) {
                     db.collection('commutes').insertOne({
@@ -544,8 +546,6 @@ app.post('/webhook/', (req, res) => {
                         db.close();
                     })
                 });
-
-
             }
         }
 
