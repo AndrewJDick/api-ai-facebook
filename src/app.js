@@ -511,11 +511,14 @@ app.post('/webhook/', (req, res) => {
     try {
         const data = JSONbig.parse(req.body);
 
-           console.log('===================================================');
-            console.log(data);
+            console.log('===================================================');
+            console.log(data.originalRequest.data.sender);
+            console.log(data.originalRequest.data.recipient);
+            console.log(data.originalRequest.data.message);
+            console.log(data.originalRequest.data.timestamp);
 
         if (data.entry) {
-            
+
             let entries = data.entry;
             entries.forEach((entry) => {
                 let messaging_events = entry.messaging;
