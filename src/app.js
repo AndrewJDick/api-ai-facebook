@@ -8,19 +8,19 @@ const request = require('request');
 const JSONbig = require('json-bigint');
 const async = require('async');
 
-const axios = require('axios');
-const nodeGeocoder = require('node-geocoder');
-const mongodb = require('./mongoDb');
+// const axios = require('axios');
+// const nodeGeocoder = require('node-geocoder');
+// const mongodb = require('./mongoDb');
 
 // TODO: Replace apiKey with env variable
-const geocoderOptions = {
-  provider: 'google',
+// const geocoderOptions = {
+//   provider: 'google',
  
-  // Optional depending on the providers 
-  httpAdapter: 'https',
-  apiKey: 'AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE',
-  formatter: null
-};
+//   // Optional depending on the providers 
+//   httpAdapter: 'https',
+//   apiKey: 'AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE',
+//   formatter: null
+// };
 
 const REST_PORT = (process.env.PORT || 5000);
 const APIAI_ACCESS_TOKEN = process.env.APIAI_ACCESS_TOKEN;
@@ -494,7 +494,6 @@ class FacebookBot {
 
 }
 
-
 let facebookBot = new FacebookBot();
 
 const app = express();
@@ -520,7 +519,7 @@ app.post('/webhook/', (req, res) => {
         let data = JSONbig.parse(req.body);
 
         if (req.body) {
-            const contexts = req.body.result.contexts; 
+            let contexts = req.body.result.contexts; 
 
             var commuteContext = {};
             var speech = '';
