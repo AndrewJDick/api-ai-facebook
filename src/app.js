@@ -533,7 +533,7 @@ app.post('/webhook/', (req, res) => {
                 };
 
                 mongodb.MongoClient.connect(uri, function(err, db) {
-                    db.collection('commutes').insert(userCommute, function(err, result) {
+                    db.collection('commutes').insert([userCommute], function(err, result) {
                         if(err) throw err;
                     });
                 });
