@@ -1,7 +1,19 @@
+/*
+Sample Google Directions Query
+==============================
+https://maps.googleapis.com/maps/api/directions/json
+?origin=51.6564890,-0.3903200
+&destination=51.5238910,-0.0968820
+&key=AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE
+&mode=transit
+&units=imperial
+&arrival_time=1494579600
+&alternatives=true
+*/
+
+
 // Packages
 const nodeGeocoder = require('node-geocoder');
-
-// TODO: Replace apiKey with env variable
 const geocoderOptions = {
   provider: 'google',
  
@@ -14,8 +26,6 @@ const geocoderOptions = {
 const geocoder = nodeGeocoder(geocoderOptions);
 
 const latLng = function(commuteContext) {
-
-	console.log('at least were here');
 	
 	const waypoints = [commuteContext.parameters.origin, commuteContext.parameters.destination];
 
@@ -29,6 +39,8 @@ const latLng = function(commuteContext) {
 		    console.log(err);
 		});
 	}
+
+	console.log(commuteContext);
 };
 
 exports.latLng = latLng;
