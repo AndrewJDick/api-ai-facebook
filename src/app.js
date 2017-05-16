@@ -516,36 +516,43 @@ app.get('/webhook/', (req, res) => {
 app.post('/webhook/', (req, res) => {
 
     try {
+        console.log('try started');
         let data = JSONbig.parse(req.body);
 
-        if (req.body) {
-            let contexts = req.body.result.contexts; 
+        console.log(data);
 
-            var commuteContext = {};
-            var speech = '';
+        let contexts = data.result.contexts; 
+        console.log('contexts');
+        console.log(contexts);
 
-            // Store the Default Commute object built from the API.ai bot.
-            for (let context of contexts) {
-                if (context.name === 'default-commute') {
-                    commuteContext = context;
-                }
-            }
+        var commuteContext = {};
+        var speech = '';
 
-            if (req.body.result) {
-
-                // Convert the origin and destination street address || postcodes to lat/lng coords
-                if (req.body.result.action === 'arrivapi.default.submit') {
-
-                    console.log(`Andrew, you're a fucking superstar!`);
-                    console.log(`===================================`);
-                    console.log(commuteContext);
-                    console.log(`===================================`);
-                    console.log(data.originalRequest.data.sender);
-
-                }
+        // Store the Default Commute object built from the API.ai bot.
+        for (let context of contexts) {
+            if (context.name === "default-commute") {
+                commuteContext = context;
             }
         }
 
+        console.log('commute context');
+        console.log(commuteContext);
+
+        if (data.result) {
+
+            console.log('result started!')
+
+            // Convert the origin and destination street address || postcodes to lat/lng coords
+            if (req.body.result.action === 'arrivapi.default.submit') {
+
+                console.log(`Andrew, you're a fucking superstar!`);
+                console.log(`===================================`);
+                console.log(commuteContext);
+                console.log(`===================================`);
+                console.log(data.originalRequest.data.sender);
+
+            }
+        }
 
         if (data.entry) {
 
