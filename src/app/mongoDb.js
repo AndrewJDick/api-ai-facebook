@@ -7,14 +7,16 @@
  * A Node script connecting to a MongoDB database given a MongoDB Connection URI.
 */
 
-var mongodb = require('mongodb');
+var mongodb = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectID;
+var assert = require('assert');
 var uri = 'mongodb://admin:root@ds137441.mlab.com:37441/heroku_sxrcs6jm';
 
 // Dummy data
 var seedData = [
   {
     psid: '9999999999999999',
-    origin: '51.6564890, -0.3903200',
+    origin: '51.6564890,-0.3903200',
     destination: '51.5238910,-0.0968820',
     arrival: '09:00:00',
     mode: 'transit',
@@ -22,7 +24,7 @@ var seedData = [
   },
   {
     psid: '5555555555555555',
-    origin: '51.475579, -0.064370',
+    origin: '51.475579,-0.064370',
     destination: '51.5238910,-0.0968820',
     arrival: '11:00:00',
     mode: 'driving',
@@ -30,7 +32,7 @@ var seedData = [
   },
   {
     psid: '4444444444444444',
-    origin: '51.059771, -1.310142',
+    origin: '51.059771,-1.310142',
     destination: '51.5238910,-0.0968820',
     arrival: '17:03:40',
     mode: 'transit',
@@ -39,7 +41,7 @@ var seedData = [
 ];
 
 // DB Logic
-mongodb.MongoClient.connect(uri, function(err, db) {
+mongodb.connect(uri, function(err, db) {
   
   if(err) throw err;
 
@@ -61,6 +63,7 @@ mongodb.MongoClient.connect(uri, function(err, db) {
 
     db.collection('commutes').insert(seedData, function(err, result) {
       if(err) throw err;
+      db.close();
     });
   }
 });
