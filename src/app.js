@@ -524,7 +524,7 @@ app.post('/webhook/', (req, res) => {
             if (data.result.action === 'arrivapi.default.submit') {
                 
                 // Convert address coords to Lat,Lng
-                google.latLng(commuteContext);
+                // google.latLng(commuteContext);
 
                 // Add user to db
                 mongo.addCommute(userCommute);
