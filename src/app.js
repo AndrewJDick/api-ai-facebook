@@ -522,14 +522,10 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'arrivapi.default.submit') {
 
-                console.log(commuteContext);
-
-                console.log(mongo.uri);
-
-                mongodb.connect(uri, function(err, db) {
-                    assert.equal(null, err);
+                mongo.mongodb.connect(mongodb.uri, function(err, db) {
+                    mongo.assert.equal(null, err);
                     
-                    userCommute(db, function() {
+                    mongo.userCommute(db, function() {
                         db.close();
                     })
                 });

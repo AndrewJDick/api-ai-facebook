@@ -87,3 +87,5 @@ mongodb.connect(uri, function(err, db) {
 // Exports 
 exports.uri = uri;
 exports.userCommute = userCommute;
+exports.mongodb = mongodb;
+exports.assert = assert;
