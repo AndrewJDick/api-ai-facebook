@@ -45,6 +45,7 @@ const seedDb = function(db, callback) {
     });
 };
 
+
 // Store commute context fields in the heroku mongodb commute collection
 const userCommute = function(db, callback) {
     db.collection('commutes').insertOne({
@@ -62,30 +63,45 @@ const userCommute = function(db, callback) {
 };
 
 
-// DB Seed
-mongodb.connect(uri, function(err, db) {
-  
-    assert.equal(err, null);
-
-    db.listCollections().toArray(function(err, collections) {
-        var seeded = false;
-
-        for (collection in collections) {
-            if (collections[collection].name === 'commutes') {
-                seeded = true;
-                break;
-            }
-        }
-
-        if (!seeded) seedDb(db, function() {
+// Add a default commute to the db
+const addCommute = function() {
+    mongodb.connect(uri, function(err, db) {
+        mongo.assert.equal(null, err);
+        
+        mongo.userCommute(db, function() {
             db.close();
+        })
+    });
+};
+
+
+// DB Seed
+const seed = function() {
+    mongodb.connect(uri, function(err, db) {
+  
+        assert.equal(err, null);
+
+        db.listCollections().toArray(function(err, collections) {
+            var seeded = false;
+
+            for (collection in collections) {
+                if (collections[collection].name === 'commutes') {
+                    seeded = true;
+                    break;
+                }
+            }
+
+            if (!seeded) seedDb(db, function() {
+                db.close();
+            });
         });
     });
-});
+};
+
+seed();
 
 
 // Exports 
-exports.uri = uri;
+exports.addCommute = addCommute;
 exports.userCommute = userCommute;
-exports.mongodb = mongodb;
 exports.assert = assert;
