@@ -10,11 +10,12 @@ module.exports = () => {
   */
 
   var mongodb = require('mongodb');
-  var uri = 'mongodb://admin:root@ds137121.mlab.com:37121/heroku_sj72vg2g';
+  var uri = 'mongodb://admin:root@ds137441.mlab.com:37441/heroku_sxrcs6jm';
 
   // Dummy data
   var seedData = [
     {
+      psid: '',
       forename: 'Jimmy',
       surname: 'Plant',
       origin: [51.6564890, -0.3903200],
@@ -24,6 +25,7 @@ module.exports = () => {
       preference: 'rail'
     },
     {
+      psid: '',
       forename: 'John Paul',
       surname: 'Bonham',
       origin: [51.475579, -0.064370],
@@ -33,6 +35,7 @@ module.exports = () => {
       preference: ''
     },
     {
+      psid: '',
       forename: 'Steven',
       surname: 'Perry',
       origin: [51.059771, -1.310142],
