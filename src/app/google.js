@@ -14,6 +14,8 @@ const geocoderOptions = {
 const geocoder = nodeGeocoder(geocoderOptions);
 
 const latLng = function(commuteContext) {
+
+	console.log('at least were here');
 	
 	const waypoints = [commuteContext.parameters.origin, commuteContext.parameters.destination];
 
