@@ -432,7 +432,7 @@ class FacebookBot {
                 if (error) {
                     console.error('Error while subscription: ', error);
                 } else {
-                    console.log('Subscription result this is a test: ', response.body);
+                    console.log('Subscription result: ', response.body);
                 }
             });
     }
@@ -455,7 +455,7 @@ class FacebookBot {
                 if (error) {
                     console.error('Error while subscription', error);
                 } else {
-                    console.log('Subscription result this is a test', response.body);
+                    console.log('Subscription result', response.body);
                 }
             });
     }
@@ -487,7 +487,7 @@ const app = express();
 
 app.use(bodyParser.text({type: 'application/json'}));
 
-app.get('/webhook', (req, res) => {
+app.get('/webhook/', (req, res) => {
     if (req.query['hub.verify_token'] === FB_VERIFY_TOKEN) {
         res.send(req.query['hub.challenge']);
 
@@ -495,16 +495,12 @@ app.get('/webhook', (req, res) => {
             facebookBot.doSubscribeRequest();
         }, 3000);
     } else {
-        res.send('Error, wrong validation token, ya know!?');
+        res.send('Error, wrong validation token');
     }
 });
 
-app.post('/webhook', (req, res) => {
+app.post('/webhook/', (req, res) => {
     try {
-        console.log('working');
-        console.log('==================================================');
-
-
         const data = JSONbig.parse(req.body);
 
         if (data.entry) {
