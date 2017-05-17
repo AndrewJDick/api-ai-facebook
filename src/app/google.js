@@ -32,7 +32,7 @@ const latLng = (commuteContext) => {
 
 	const waypoints = ['origin', 'destination'];
 	
-	for (let waypoint in waypoints) {
+	for (let waypoint of waypoints) {
 
 		console.log(waypoints[waypoint]);
 
