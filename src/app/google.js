@@ -13,38 +13,41 @@ https://maps.googleapis.com/maps/api/directions/json
 
 
 // Packages
-// const nodeGeocoder = require('node-geocoder');
-// const geocoder = nodeGeocoder({
-//   provider: 'google',
+const nodeGeocoder = require('node-geocoder');
+const geocoder = nodeGeocoder({
+  provider: 'google',
  
-//   // Optional depending on the providers 
-//   httpAdapter: 'https',
-//   apiKey: 'AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE',
-//   formatter: null
-// });
+  // Optional depending on the providers 
+  httpAdapter: 'https',
+  apiKey: 'AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE', // TODO: Create env var
+  formatter: null
+});
 
 
-// // Logic
-// const latLng = function(commuteContext) {
+// Logic
+const latLng = (commuteContext) => {
 	
-// 	const waypoints = [commuteContext.parameters.origin, commuteContext.parameters.destination];
+	const waypoints = [commuteContext.origin, commuteContext.destination];
 
-// 	for (waypoint in waypoints) {
-// 		geocoder.geocode(waypoints[waypoint]).then((response) => {
+	for (waypoint in waypoints) {
+		geocoder.geocode(waypoints[waypoint]).then((response) => {
 	        
-// 			let address = waypoints[waypoint].split('.').pop();
+			let address = waypoints[waypoint].split('.').pop();
+			console.log(`Address = ${address}`);
 
-// 			Object.defineProperty(commuteContext, address, {
-// 				value: `${response[0].latitude},${response[0].longitude}`
-// 			})
-		    
-// 		})
-// 		.catch((err) => {
-// 		    console.log(err);
-// 		});
-// 	}
+			// Convert street address to Lat / Lng coordinates
+			Object.defineProperty(commuteContext, `${address}`, {
+				value: `${response[0].latitude},${response[0].longitude}`
+			})
 
-// 	console.log(commuteContext);
-// };
+			console.log(commuteContext);
+		})
+		.catch((err) => {
+		    console.log(err);
+		});
+	}
 
-// exports.latLng = latLng;
+	console.log(commuteContext);
+};
+
+exports.latLng = latLng;
