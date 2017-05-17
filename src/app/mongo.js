@@ -76,10 +76,14 @@ const isSeeded = (() => {
 
 // Store commute context fields in the heroku mongodb commute collection
 const addUserCommute = (db, commuteContext, closeDb) => {
+    
+    let originLatLng = google.latLng(commuteContext.parameters.origin);
+    let destinationLatLng = google.latLng(commuteContext.parameters.destination)
+
     db.collection('commutes').insertOne({
         psid: commuteContext.parameters.facebook_sender_id,
-        origin: google.latLng(commuteContext.parameters.origin),
-        destination: google.latLng(commuteContext.parameters.destination),
+        origin: originLatLng,
+        destination: destinationLatLng,
         arrival: commuteContext.parameters.time,
         mode: commuteContext.parameters.travel_mode,
         preference: commuteContext.parameters.transit_mode
