@@ -33,7 +33,7 @@ const latLng = (commuteContext) => {
 		// console.log(`1: ${prop}`); // field
 		// console.log(`2: ${props[prop]}`); // value
 
-	if (prop === 'origin' || 'destination') {
+	if (prop === 'origin' || prop === 'destination') {
 		console.log(props[prop]);
 	}
 
