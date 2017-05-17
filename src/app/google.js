@@ -27,7 +27,7 @@ const geocoder = nodeGeocoder({
 const latLng = (waypoint) => {
 	geocoder.geocode(waypoint).then((response) => {
 		console.log(response);
-		// return `${response[0].latitude},${response[0].longitude}`;
+		return `${response[0].latitude},${response[0].longitude}`;
 	})
 	.catch((err) => {
 	    console.log(err);
