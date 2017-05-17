@@ -1,31 +1,28 @@
 'use strict';
 
 // Packages
+const apiai = require('apiai');
 const express = require('express');
 const bodyParser = require('body-parser');
-const JSONbig = require('json-bigint');
-const app = express();
-
-const apiai = require('apiai');
 const uuid = require('uuid');
 const request = require('request');
+const JSONbig = require('json-bigint');
 const async = require('async');
 
 // App
 const mongo = require('./app/mongo');
 const google = require('./app/google');
-const facebook = require('./app/facebook');
 
 // Environment Variables
 const REST_PORT = (process.env.PORT || 5000);
+const APIAI_ACCESS_TOKEN = process.env.APIAI_ACCESS_TOKEN;
+const APIAI_LANG = process.env.APIAI_LANG || 'en';
 const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
-
+const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
 const FB_TEXT_LIMIT = 640;
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
 const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
-const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
-const APIAI_ACCESS_TOKEN = process.env.APIAI_ACCESS_TOKEN;
-const APIAI_LANG = process.env.APIAI_LANG || 'en';
+
 
 class FacebookBot {
     constructor() {
@@ -489,9 +486,8 @@ class FacebookBot {
 
 }
 
-
-// Logic
 let facebookBot = new FacebookBot();
+const app = express();
 
 app.use(bodyParser.text({type: 'application/json'}));
 
@@ -514,22 +510,25 @@ app.post('/webhook/', (req, res) => {
         let data = JSONbig.parse(req.body);
         let contexts = data.result.contexts; 
         var commuteContext = {};
-        let speech = '';
+        var speech = '';
 
-        // Store the Default Commute object built §§from the API.ai bot.
+        // Store the Default Commute object built from the API.ai bot.
         for (let context of contexts) {
             if (context.name === 'generic') {
                 commuteContext = context;
             }
         }
 
-        if (data.result.action === 'arrivapi.default.submit') {
+        if (data.result) {
+
+            if (data.result.action === 'arrivapi.default.submit') {
                 
                 // Convert address coords to Lat,Lng
                 // google.latLng(commuteContext);
 
                 // Add user to db
                 mongo.addCommute(userCommute);
+            }
         }
 
         if (data.entry) {

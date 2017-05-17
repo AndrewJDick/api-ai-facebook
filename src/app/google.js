@@ -13,38 +13,38 @@ https://maps.googleapis.com/maps/api/directions/json
 
 
 // Packages
-const nodeGeocoder = require('node-geocoder');
-const geocoder = nodeGeocoder({
-  provider: 'google',
+// const nodeGeocoder = require('node-geocoder');
+// const geocoder = nodeGeocoder({
+//   provider: 'google',
  
-  // Optional depending on the providers 
-  httpAdapter: 'https',
-  apiKey: 'AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE',
-  formatter: null
-});
+//   // Optional depending on the providers 
+//   httpAdapter: 'https',
+//   apiKey: 'AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE',
+//   formatter: null
+// });
 
 
-// Logic
-const latLng = function(commuteContext) {
+// // Logic
+// const latLng = function(commuteContext) {
 	
-	const waypoints = [commuteContext.parameters.origin, commuteContext.parameters.destination];
+// 	const waypoints = [commuteContext.parameters.origin, commuteContext.parameters.destination];
 
-	for (waypoint in waypoints) {
-		geocoder.geocode(waypoints[waypoint]).then((response) => {
+// 	for (waypoint in waypoints) {
+// 		geocoder.geocode(waypoints[waypoint]).then((response) => {
 	        
-			let address = waypoints[waypoint].split('.').pop();
+// 			let address = waypoints[waypoint].split('.').pop();
 
-			Object.defineProperty(commuteContext, address, {
-				value: `${response[0].latitude},${response[0].longitude}`
-			})
+// 			Object.defineProperty(commuteContext, address, {
+// 				value: `${response[0].latitude},${response[0].longitude}`
+// 			})
 		    
-		})
-		.catch((err) => {
-		    console.log(err);
-		});
-	}
+// 		})
+// 		.catch((err) => {
+// 		    console.log(err);
+// 		});
+// 	}
 
-	console.log(commuteContext);
-};
+// 	console.log(commuteContext);
+// };
 
-exports.latLng = latLng;
+// exports.latLng = latLng;
