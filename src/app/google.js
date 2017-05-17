@@ -30,9 +30,9 @@ const latLng = (commuteContext) => {
 	let properties = commuteContext.parameters;
 
 	for (property in properties) {
-
-	if (property === 'origin' || 'destination') {
-		convertWaypoint(properties, property);
+		if (property === 'origin' || 'destination') {
+			convertWaypoint(properties, property);
+		}
 	}
 };
 
