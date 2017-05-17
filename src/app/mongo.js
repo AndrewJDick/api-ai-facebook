@@ -7,14 +7,17 @@
  * A Node script connecting to a MongoDB database given a MongoDB Connection URI.
 */
 
-var mongodb = require('mongodb').MongoClient;
-var ObjectId = require('mongodb').ObjectID;
-var assert = require('assert');
-var uri = 'mongodb://admin:root@ds137441.mlab.com:37441/heroku_sxrcs6jm';
+// Packages
+const mongodb = require('mongodb').MongoClient;
+const ObjectId = require('mongodb').ObjectID;
+const assert = require('assert');
+
+
+const uri = 'mongodb://admin:root@ds137441.mlab.com:37441/heroku_sxrcs6jm';
 
 
 // Dummy data
-const seedDb = function(db, callback) {
+const seedDb = (db, closeDb) => {
     db.collection('commutes').insert([{
         psid: '9999999999999999',
         origin: '51.6564890,-0.3903200',
@@ -38,50 +41,21 @@ const seedDb = function(db, callback) {
         arrival: '17:03:40',
         mode: 'transit',
         preference: 'bus'
-    }], function(err, result) {
+    }], (err, result) => {
         assert.equal(err, null);
         console.log("Inserted seed data into the commutes collection.");
-        callback();
-    });
-};
-
-
-// Store commute context fields in the heroku mongodb commute collection
-const userCommute = function(db, commuteContext, callback) {
-    db.collection('commutes').insertOne({
-        psid: commuteContext.parameters.facebook_sender_id,
-        origin: commuteContext.parameters.origin,
-        destination: commuteContext.parameters.destination,
-        arrival: commuteContext.parameters.time,
-        mode: commuteContext.parameters.travel_mode,
-        preference: commuteContext.parameters.transit_mode
-    }, function(err, result) {
-        assert.equal(err, null);
-        console.log("Inserted a user's default commute into the commutes collection.");
-        callback();
-    });
-};
-
-
-// Add a default commute to the db
-const addCommute = function(commuteContext) {
-    mongodb.connect(uri, function(err, db) {
-        assert.equal(null, err);
-        
-        userCommute(db, commuteContext, function() {
-            db.close();
-        })
+        closeDb();
     });
 };
 
 
 // DB Seed
-const seed = function() {
-    mongodb.connect(uri, function(err, db) {
+const isSeeded = () => {
+    mongodb.connect(uri, (err, db) => {
   
         assert.equal(err, null);
 
-        db.listCollections().toArray(function(err, collections) {
+        db.listCollections().toArray((err, collections) => {
             var seeded = false;
 
             for (collection in collections) {
@@ -91,16 +65,42 @@ const seed = function() {
                 }
             }
 
-            if (!seeded) seedDb(db, function() {
+            if (!seeded) seedDb(db, () => {
                 db.close();
             });
         });
     });
+}();
+
+
+// Store commute context fields in the heroku mongodb commute collection
+const addUserCommute = (db, commuteContext, closeDb) => {
+    db.collection('commutes').insertOne({
+        psid: commuteContext.parameters.facebook_sender_id,
+        origin: commuteContext.parameters.origin,
+        destination: commuteContext.parameters.destination,
+        arrival: commuteContext.parameters.time,
+        mode: commuteContext.parameters.travel_mode,
+        preference: commuteContext.parameters.transit_mode
+    }, (err, result) => {
+        assert.equal(err, null);
+        console.log('Inserted a users default commute into the commutes collection.');
+        closeDb();
+    });
 };
 
-seed();
+
+// Add a default commute to the db
+const addCommute = (commuteContext) => {
+    mongodb.connect(uri, (err, db) => {
+        assert.equal(null, err);
+        
+        addUserCommute(db, commuteContext, () => {
+            db.close();
+        })
+    });
+};
+
 
 // Exports 
 exports.addCommute = addCommute;
-exports.userCommute = userCommute;
-exports.assert = assert;

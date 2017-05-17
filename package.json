@@ -8,6 +8,9 @@
     "test": "mocha",
     "coverage": "istanbul cover _mocha"
   },
+  "engines": {
+    "node": "6.1.0"
+  },
   "author": "Danil Skachkov <danil.skachkov@speaktoit.com> (https://api.ai)",
   "license": "ISC",
   "dependencies": {
