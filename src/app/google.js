@@ -25,7 +25,7 @@ const geocoder = nodeGeocoder({
 
 
 // Logic
-const latLng = (commuteContext) => {
+const latLng = (commuteContext, callback) => {
 	
 	let props = commuteContext.parameters;
 
@@ -45,6 +45,8 @@ const latLng = (commuteContext) => {
 			});
 		} 
 	}
+
+	callback();
 };
 
 exports.latLng = latLng;
