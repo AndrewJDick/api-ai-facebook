@@ -38,7 +38,7 @@ const convertWaypoint = (commuteContext, waypoint) => {
 	
 	geocoder.geocode(commuteContext.parameters[waypoint]).then((response) => {
 
-		Convert street address to Lat / Lng coordinates
+		//Convert street address to Lat / Lng coordinates
 		Object.defineProperty(commuteContext.parameters, waypoint, {
 			value: `${response[0].latitude},${response[0].longitude}`
 		})
