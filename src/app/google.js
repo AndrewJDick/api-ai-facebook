@@ -30,7 +30,7 @@ const latLng = (commuteContext) => {
 	console.log('at least were here');
 	console.log(commuteContext);
 
-	for (let property in properties) {
+	for (let property in commuteContext.parameters) {
 		console.log(property);
 		if (property === 'origin' || 'destination') convertWaypoint(property); 
 	}
