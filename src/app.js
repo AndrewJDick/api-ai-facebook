@@ -9,7 +9,7 @@ const app = express();
 // App
 const mongo = require('./app/mongo');
 const google = require('./app/google');
-const Facebook = require('./app/facebook');
+const facebook = require('./app/facebook');
 let facebookBot = new facebook.FacebookBot();
 
 // Environment Variables
