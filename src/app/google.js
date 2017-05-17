@@ -30,25 +30,32 @@ const latLng = (commuteContext) => {
 	console.log('at least were here');
 	console.log(commuteContext);
 
-	const waypoints = ['origin', 'destination'];
-	
-	for (let waypoint of waypoints) {
-
-		console.log(waypoints[waypoint]);
-
-		geocoder.geocode(`commuteContext.parameters.${waypoints[waypoint]}`).then((response) => {
-
-			console.log(response);
-
-			// // Convert street address to Lat / Lng coordinates
-			// Object.defineProperty(commuteContext.parameters, waypoint, {
-			// 	value: `${response[0].latitude},${response[0].longitude}`
-			// })
-		})
-		.catch((err) => {
-		    console.log(err);
-		});
+	for (let property in properties) {
+		console.log(property);
+		if (property === 'origin' || 'destination') convertWaypoint(property); 
 	}
+	
+	// for (let waypoint of waypoints) {
+
+	// 	console.log(waypoint);
+
+	// 	geocoder.geocode(`commuteContext.parameters.${waypoints[waypoint]}`).then((response) => {
+
+	// 		console.log(response);
+
+	// 		// // Convert street address to Lat / Lng coordinates
+	// 		// Object.defineProperty(commuteContext.parameters, waypoint, {
+	// 		// 	value: `${response[0].latitude},${response[0].longitude}`
+	// 		// })
+	// 	})
+	// 	.catch((err) => {
+	// 	    console.log(err);
+	// 	});
+	// }
 };
+
+const converyWaypoint = (property) {
+	console.log(`${property} evaluated`);
+}
 
 exports.latLng = latLng;
