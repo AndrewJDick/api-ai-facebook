@@ -51,7 +51,7 @@ app.post('/webhook/', (req, res) => {
             if (data.result.action === 'arrivapi.default.submit') {
 
                 // ToDo: Convert street address to Lat Lng cords
-                let foo = google.latLng(commuteContext);
+                // google.latLng(commuteContext);
                   
                 // Add the user's commute to the db
                 mongo.addCommute(commuteContext);

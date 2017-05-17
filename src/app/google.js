@@ -44,7 +44,6 @@ const latLng = (commuteContext) => {
 					}
 				});
 
-				foo = props;
 			})
 			.catch((err) => {
 			    console.log(err);
