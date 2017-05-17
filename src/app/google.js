@@ -42,6 +42,8 @@ const latLng = (commuteContext) => {
 					}
 				});
 
+				return commuteContext;
+
 			})
 			.catch((err) => {
 			    console.log(err);
