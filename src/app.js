@@ -41,7 +41,7 @@ app.post('/webhook/', (req, res) => {
         let data = JSONbig.parse(req.body);
         let contexts = data.result.contexts; 
         var commuteContext = {};
-        var speech = '';
+        let speech = '';
 
         // Store the Default Commute object built §§from the API.ai bot.
         for (let context of contexts) {
