@@ -32,13 +32,14 @@ const latLng = (commuteContext) => {
 	for (property in properties) {
 		if (property === 'origin' || 'destination') {
 			convertWaypoint(properties, property);
+			console.log(property);
 		}
 	}
 };
 
 const convertWaypoint = (properties, waypoint) => {
 
-	let address = properties.waypoint;
+	let address = propertieswaypoint}];
 
 	geocoder.geocode(address).then((response) => {
 
