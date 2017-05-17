@@ -48,8 +48,6 @@ const latLng = (commuteContext) => {
 			});
 		} 
 	}
-
-	console.log(commuteContext);
 };
 
 exports.latLng = latLng;

@@ -36,8 +36,8 @@ app.post('/webhook/', (req, res) => {
     try {
         let data = JSONbig.parse(req.body);
         let contexts = data.result.contexts; 
-        var commuteContext = {};
-        var speech = '';
+        let commuteContext = {};
+        let speech = '';
 
         // Store the Default Commute object built from the API.ai bot.
         for (let context of contexts) {
@@ -50,15 +50,11 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'arrivapi.default.submit') {
 
-                // Add user to db
-                google.latLng(commuteContext)
-                    .then((response) => {
-                        console.log('adding commute to db');
-                        mongo.addCommute(response);
-                    })
-                    .catch((err) => {
-                        console.log(err);
-                    });
+                // Convert street address to Lat Lng cords
+                // google.latLng(commuteContext)
+                  
+                // Add the user's commute to the db
+                mongo.addCommute(response);
             }
         }
 
