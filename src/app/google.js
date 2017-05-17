@@ -26,28 +26,24 @@ const geocoder = nodeGeocoder({
 
 // Logic
 const latLng = (commuteContext) => {
-	
-	const waypoints = [commuteContext.origin, commuteContext.destination];
 
-	for (waypoint in waypoints) {
-		geocoder.geocode(waypoints[waypoint]).then((response) => {
-	        
-			let address = waypoints[waypoint].split('.').pop();
-			console.log(`Address = ${address}`);
+		const waypoints = ['origin', 'destination'];
+		
+		for (waypoint in waypoints) {
+			geocoder.geocode(commuteContext.waypoints[waypoint]).then((response) => {
 
-			// Convert street address to Lat / Lng coordinates
-			Object.defineProperty(commuteContext, `${address}`, {
-				value: `${response[0].latitude},${response[0].longitude}`
+				// Convert street address to Lat / Lng coordinates
+				Object.defineProperty(commuteContext, waypoint, {
+					value: `${response[0].latitude},${response[0].longitude}`
+				})
+
+				console.log(commuteContext);
 			})
-
-			console.log(commuteContext);
-		})
-		.catch((err) => {
-		    console.log(err);
-		});
+			.catch((err) => {
+			    console.log(err);
+			});
+		}
 	}
-
-	console.log(commuteContext);
 };
 
 exports.latLng = latLng;
