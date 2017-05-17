@@ -11,6 +11,7 @@ https://maps.googleapis.com/maps/api/directions/json
 &alternatives=true
 */
 
+
 // Packages
 const nodeGeocoder = require('node-geocoder');
 const geocoder = nodeGeocoder({
@@ -24,13 +25,27 @@ const geocoder = nodeGeocoder({
 
 
 // Logic
-const latLng = (waypoint) => {
-	geocoder.geocode(waypoint).then((response) => {
-		console.log(`${response[0].latitude},${response[0].longitude}`);
-	})
-	.catch((err) => {
-	    console.log(err);
-	});
+const latLng = (commuteContext) => {
+	
+	let props = commuteContext.parameters;
+
+	let foo = () => {
+
+	for (let prop in props) {
+		// console.log(`1: ${prop}`); // field
+		// console.log(`2: ${props[prop]}`); // value
+
+		if (prop === 'origin' || prop === 'destination') {
+			geocoder.geocode(props[prop]).then((response) => {
+				
+				console.log(`${response[0].latitude},${response[0].longitude}`);
+
+			})
+			.catch((err) => {
+			    console.log(err);
+			});
+		} 
+	}
 };
 
 exports.latLng = latLng;

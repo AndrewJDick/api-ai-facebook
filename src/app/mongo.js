@@ -12,8 +12,7 @@ const mongodb = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 const assert = require('assert');
 
-// App 
-const google = require('./google');
+
 const uri = 'mongodb://admin:root@ds137441.mlab.com:37441/heroku_sxrcs6jm';
 
 
@@ -76,14 +75,10 @@ const isSeeded = (() => {
 
 // Store commute context fields in the heroku mongodb commute collection
 const addUserCommute = (db, commuteContext, closeDb) => {
-    
-    let originLatLng = google.latLng(commuteContext.parameters.origin);
-    let destinationLatLng = google.latLng(commuteContext.parameters.destination)
-
     db.collection('commutes').insertOne({
         psid: commuteContext.parameters.facebook_sender_id,
-        origin: originLatLng,
-        destination: destinationLatLng,
+        origin: commuteContext.parameters.origin,
+        destination: commuteContext.parameters.destination,
         arrival: commuteContext.parameters.time,
         mode: commuteContext.parameters.travel_mode,
         preference: commuteContext.parameters.transit_mode
