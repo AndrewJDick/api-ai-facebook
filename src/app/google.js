@@ -35,12 +35,12 @@ const latLng = (commuteContext) => {
 
 		geocoder.geocode(commuteContext.parameters[waypoint]).then((response) => {
 
-			// Convert street address to Lat / Lng coordinates
-			Object.defineProperty(commuteContext.parameters, waypoint, {
-				value: `${response[0].latitude},${response[0].longitude}`
-			})
+			console.log(response);
 
-			console.log(commuteContext);
+			// // Convert street address to Lat / Lng coordinates
+			// Object.defineProperty(commuteContext.parameters, waypoint, {
+			// 	value: `${response[0].latitude},${response[0].longitude}`
+			// })
 		})
 		.catch((err) => {
 		    console.log(err);
