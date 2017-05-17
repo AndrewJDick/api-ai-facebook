@@ -29,14 +29,16 @@ const latLng = (commuteContext) => {
 	for (let property in commuteContext.parameters) {
 
 		if (property === 'origin' || 'destination') {
-			convertWaypoint(commuteContext, property);
+			console.log(property);
+			//convertWaypoint(commuteContext, property);
 		} 
 	}
 };
 
 const convertWaypoint = (commuteContext, waypoint) => {
-	
-	geocoder.geocode(commuteContext.parameters[waypoint]).then((response) => {
+
+
+	geocoder.geocode(`${commuteContext}.parameters.${waypoint}`).then((response) => {
 
 		//Convert street address to Lat / Lng coordinates
 		Object.defineProperty(commuteContext.parameters, waypoint, {
