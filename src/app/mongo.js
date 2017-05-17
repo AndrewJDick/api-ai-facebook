@@ -8,10 +8,11 @@
 */
 
 // Packages
-const mongodb = require('mongodb').MongoClient;
-const ObjectId = require('mongodb').ObjectID;
-const assert = require('assert');
+import mongo from 'mongodb';
+import assert from 'assert';
 
+const mongodb = mongo.MongoClient;
+const ObjectID = mongo.ObjectID;
 
 const uri = 'mongodb://admin:root@ds137441.mlab.com:37441/heroku_sxrcs6jm';
 
@@ -67,6 +68,7 @@ const isSeeded = (() => {
 
             if (!seeded) seedDb(db, () => {
                 db.close();
+                return true;
             });
         });
     });
