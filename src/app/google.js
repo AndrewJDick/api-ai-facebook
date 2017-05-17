@@ -14,17 +14,17 @@ https://maps.googleapis.com/maps/api/directions/json
 
 // Packages
 const nodeGeocoder = require('node-geocoder');
-const geocoderOptions = {
+const geocoder = nodeGeocoder({
   provider: 'google',
  
   // Optional depending on the providers 
   httpAdapter: 'https',
   apiKey: 'AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE',
   formatter: null
-};
+});
 
-const geocoder = nodeGeocoder(geocoderOptions);
 
+// Logic
 const latLng = function(commuteContext) {
 	
 	const waypoints = [commuteContext.parameters.origin, commuteContext.parameters.destination];
