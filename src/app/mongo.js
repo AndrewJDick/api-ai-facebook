@@ -13,7 +13,7 @@ const ObjectId = require('mongodb').ObjectID;
 const assert = require('assert');
 
 // App 
-const google = require('./app/google');
+const google = require('./google');
 const uri = 'mongodb://admin:root@ds137441.mlab.com:37441/heroku_sxrcs6jm';
 
 
