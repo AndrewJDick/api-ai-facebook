@@ -29,8 +29,6 @@ const latLng = (commuteContext) => {
 	
 	let props = commuteContext.parameters;
 
-	let foo = () => {
-
 	for (let prop in props) {
 		// console.log(`1: ${prop}`); // field
 		// console.log(`2: ${props[prop]}`); // value
