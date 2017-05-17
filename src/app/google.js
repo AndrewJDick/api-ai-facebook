@@ -29,7 +29,7 @@ const latLng = (commuteContext) => {
 	console.log(commuteContext);
 
 	for (property in commuteContext.parameters) {
-
+ 
 		console.log(property); 
 
 		if (property === 'origin' || 'destination') {
