@@ -26,17 +26,18 @@ const geocoder = nodeGeocoder({
 
 // Logic
 const latLng = (commuteContext) => {
-	console.log(commuteContext.parameters);
+	
+	let properties = commuteContext.parameters;
 
-	// for (property in commuteContext.parameters) {
+	for (property in properties) {
  
-	// 	console.log(property); 
+		console.log(property); 
 
 	// 	if (property === 'origin' || 'destination') {
 	// 		console.log(foobar);
 	// 		//convertWaypoint(commuteContext, property);
 	// 	} 
-	// }
+	}
 };
 
 // const convertWaypoint = (commuteContext, waypoint) => {
