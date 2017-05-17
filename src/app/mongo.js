@@ -85,7 +85,7 @@ const addUserCommute = (db, commuteContext, closeDb) => {
     }, (err, result) => {
         assert.equal(err, null);
         console.log('Inserted a users default commute into the commutes collection.');
-        closeDb();
+        closeDb(); 
     });
 };
 
