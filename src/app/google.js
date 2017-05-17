@@ -33,20 +33,24 @@ const latLng = (commuteContext) => {
 		// console.log(`1: ${prop}`); // field
 		// console.log(`2: ${props[prop]}`); // value
 
-	if (prop === 'origin' || prop === 'destination') {
-		console.log(props[prop]);
+		if (prop === 'origin' || prop === 'destination') {
+			geocoder.geocode(props[prop]).then((response) => {
+				
+				//Convert street address to Lat / Lng coordinates
+				prop = `${response[0].latitude},${response[0].longitude}`;
+				console.log(prop);
+
+				// Object.defineProperty(properties, waypoint, {
+				// 	value: 
+				// })
+			})
+			.catch((err) => {
+			    console.log(err);
+			});
+		} 
 	}
 
-		// geocoder.geocode(prop).then((response) => {
-		// 	//Convert street address to Lat / Lng coordinates
-		// 	Object.defineProperty(properties, waypoint, {
-		// 		value: `${response[0].latitude},${response[0].longitude}`
-		// 	})
-		// })
-		// .catch((err) => {
-		//     console.log(err);
-		// });
-	}
+	console.log(commuteContext);
 };
 
 exports.latLng = latLng;
