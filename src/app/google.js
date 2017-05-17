@@ -27,13 +27,15 @@ const geocoder = nodeGeocoder({
 // Logic
 const latLng = (commuteContext) => {
 	
-	console.log(commuteContext);
-	
 	let props = commuteContext.parameters;
 
 	for (let prop in props) {
-		console.log(`1: ${prop}`);
-		console.log(`2: ${props[prop]}`);
+		console.log(`1: ${prop}`); // field
+		console.log(`2: ${props[prop]}`); // value
+
+	if (props === 'origin' || 'destination') {
+		console.log(props[prop]);
+	}
 
 		// geocoder.geocode(prop).then((response) => {
 		// 	//Convert street address to Lat / Lng coordinates
