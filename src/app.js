@@ -51,15 +51,14 @@ app.post('/webhook/', (req, res) => {
             if (data.result.action === 'arrivapi.default.submit') {
 
                 // Add user to db
-                let foo = new Promise((resolve, reject) => {
-                    google.latLng(commuteContext);
-                    resolve(commuteContext);
-                });
-
-                foo.then((commuteContext) => {
-                    mongo.addCommute(commuteContext);
-                })
-
+                google.latLng(commuteContext)
+                    .then((response) => {
+                        console.log('adding commute to db');
+                        mongo.addCommute(response);
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
             }
         }
 
