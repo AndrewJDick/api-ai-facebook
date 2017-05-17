@@ -39,8 +39,8 @@ const latLng = (commuteContext) => {
 	
 };
 
-const convertWaypoint = (property) => {
-	geocoder.geocode(`commuteContext.parameters.${property}`).then((response) => {
+const convertWaypoint = (waypoint) => {
+	geocoder.geocode(`commuteContext.parameters.${waypoint}`).then((response) => {
 
 		console.log(response);
 
@@ -52,7 +52,6 @@ const convertWaypoint = (property) => {
 	.catch((err) => {
 	    console.log(err);
 	});
-	}
 };
 
 exports.latLng = latLng;
