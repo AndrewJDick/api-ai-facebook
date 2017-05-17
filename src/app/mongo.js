@@ -102,7 +102,6 @@ const seed = function() {
 
 seed();
 
-
 // Exports 
 exports.addCommute = addCommute;
 exports.userCommute = userCommute;
