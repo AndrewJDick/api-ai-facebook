@@ -48,6 +48,7 @@ const seedDb = function(db, callback) {
 
 // Store commute context fields in the heroku mongodb commute collection
 const userCommute = function(db, commuteContext, callback) {
+    console.log('userCommute()');
     db.collection('commutes').insertOne({
         psid: commuteContext.parameters.facebook_sender_id,
         origin: commuteContext.parameters.origin,
@@ -65,6 +66,7 @@ const userCommute = function(db, commuteContext, callback) {
 
 // Add a default commute to the db
 const addCommute = function(commuteContext) {
+    console.log('addCommute()');
     mongodb.connect(uri, function(err, db) {
         assert.equal(null, err);
         
