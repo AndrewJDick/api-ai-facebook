@@ -29,20 +29,17 @@ const latLng = (commuteContext) => {
 	
 	console.log(commuteContext);
 	
+	let properties = commuteContext.parameters;
 
-	let props = [commuteContext.parameters.origin, commuteContext.parameters.destination];
-
-	for (let prop of props) {
-		console.log(`2: ${prop}`);
-		console.log(`1: ${props[prop]}`);
-
+	for (let prop in props) {
+		console.log(prop);
+		console.log(props[prop]);
+		
 		// geocoder.geocode(prop).then((response) => {
-
-		// 	console.log(response);
-		// 	// //Convert street address to Lat / Lng coordinates
-		// 	// Object.defineProperty(commuteContext.parameters, waypoint, {
-		// 	// 	value: `${response[0].latitude},${response[0].longitude}`
-		// 	// })
+		// 	//Convert street address to Lat / Lng coordinates
+		// 	Object.defineProperty(properties, waypoint, {
+		// 		value: `${response[0].latitude},${response[0].longitude}`
+		// 	})
 		// })
 		// .catch((err) => {
 		//     console.log(err);
