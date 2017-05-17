@@ -34,28 +34,25 @@ const latLng = (commuteContext) => {
 		console.log(property);
 		if (property === 'origin' || 'destination') convertWaypoint(property); 
 	}
+
+
 	
-	// for (let waypoint of waypoints) {
-
-	// 	console.log(waypoint);
-
-	// 	geocoder.geocode(`commuteContext.parameters.${waypoints[waypoint]}`).then((response) => {
-
-	// 		console.log(response);
-
-	// 		// // Convert street address to Lat / Lng coordinates
-	// 		// Object.defineProperty(commuteContext.parameters, waypoint, {
-	// 		// 	value: `${response[0].latitude},${response[0].longitude}`
-	// 		// })
-	// 	})
-	// 	.catch((err) => {
-	// 	    console.log(err);
-	// 	});
-	// }
 };
 
 const convertWaypoint = (property) => {
-	console.log(`${property} evaluated`);
+	geocoder.geocode(`commuteContext.parameters.${property}`).then((response) => {
+
+		console.log(response);
+
+		// Convert street address to Lat / Lng coordinates
+		// Object.defineProperty(commuteContext.parameters, waypoint, {
+		// 	value: `${response[0].latitude},${response[0].longitude}`
+		// })
+	})
+	.catch((err) => {
+	    console.log(err);
+	});
+	}
 };
 
 exports.latLng = latLng;
