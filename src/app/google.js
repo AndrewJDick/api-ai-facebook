@@ -54,8 +54,8 @@ const latLng = (commuteContext) => {
 	// }
 };
 
-const converyWaypoint = (property) {
+const convertWaypoint = (property) => {
 	console.log(`${property} evaluated`);
-}
+};
 
 exports.latLng = latLng;
