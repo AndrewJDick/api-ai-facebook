@@ -50,7 +50,7 @@ const seedDb = (db, closeDb) => {
 
 
 // DB Seed
-const isSeeded = () => {
+const isSeeded = (() => {
     mongodb.connect(uri, (err, db) => {
   
         assert.equal(err, null);
@@ -70,7 +70,7 @@ const isSeeded = () => {
             });
         });
     });
-}();
+})();
 
 
 // Store commute context fields in the heroku mongodb commute collection
