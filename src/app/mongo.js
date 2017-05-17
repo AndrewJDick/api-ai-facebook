@@ -12,7 +12,8 @@ const mongodb = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 const assert = require('assert');
 
-
+// App 
+const google = require('./app/google');
 const uri = 'mongodb://admin:root@ds137441.mlab.com:37441/heroku_sxrcs6jm';
 
 
@@ -77,8 +78,8 @@ const isSeeded = (() => {
 const addUserCommute = (db, commuteContext, closeDb) => {
     db.collection('commutes').insertOne({
         psid: commuteContext.parameters.facebook_sender_id,
-        origin: commuteContext.parameters.origin,
-        destination: commuteContext.parameters.destination,
+        origin: google.latLng(commuteContext.parameters.origin),
+        destination: google.latLng(commuteContext.parameters.destination),
         arrival: commuteContext.parameters.time,
         mode: commuteContext.parameters.travel_mode,
         preference: commuteContext.parameters.transit_mode
