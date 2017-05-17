@@ -30,7 +30,7 @@ const latLng = (commuteContext) => {
 
 	for (let property in commuteContext.parameters) {
 
-		console.log(property);
+		console.log(property); 
 
 		if (property === 'origin' || 'destination') {
 			console.log(foobar);
