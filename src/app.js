@@ -10,7 +10,7 @@ const app = express();
 const mongo = require('./app/mongo');
 const google = require('./app/google');
 const facebook = require('./app/facebook');
-let facebookBot = new facebook.FacebookBot();
+
 
 // Environment Variables
 const REST_PORT = (process.env.PORT || 5000);
@@ -18,6 +18,8 @@ const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 
 
 // Logic
+let facebookBot = new facebook.FacebookBot();
+
 app.use(bodyParser.text({type: 'application/json'}));
 
 app.get('/webhook/', (req, res) => {
@@ -48,16 +50,13 @@ app.post('/webhook/', (req, res) => {
             }
         }
 
-        if (data.result) {
-
-            if (data.result.action === 'arrivapi.default.submit') {
+        if (data.result.action === 'arrivapi.default.submit') {
                 
                 // Convert address coords to Lat,Lng
                 // google.latLng(commuteContext);
 
                 // Add user to db
                 mongo.addCommute(userCommute);
-            }
         }
 
         if (data.entry) {
