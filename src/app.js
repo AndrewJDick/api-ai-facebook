@@ -9,8 +9,8 @@ const app = express();
 // App
 const mongo = require('./app/mongo');
 const google = require('./app/google');
-const Facebook = require('./app/Facebook');
-let facebookBot = new Facebook.FacebookBot();
+const Facebook = require('./app/facebook');
+let facebookBot = new facebook.FacebookBot();
 
 // Environment Variables
 const REST_PORT = (process.env.PORT || 5000);
@@ -41,7 +41,7 @@ app.post('/webhook/', (req, res) => {
         var commuteContext = {};
         var speech = '';
 
-        // Store the Default Commute object built from the API.ai bot.
+        // Store the Default Commute object built §§from the API.ai bot.
         for (let context of contexts) {
             if (context.name === 'generic') {
                 commuteContext = context;
