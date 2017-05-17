@@ -38,7 +38,7 @@ const latLng = (commuteContext) => {
 				
 				//Convert street address to Lat / Lng coordinates
 				Object.defineProperty(props, prop, {
-					value: `${response[0].latitude},${response[0].longitude}`;
+					value: `${response[0].latitude},${response[0].longitude}`
 				})
 			})
 			.catch((err) => {
