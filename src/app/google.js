@@ -25,7 +25,7 @@ const geocoder = nodeGeocoder({
 
 
 // Logic
-var latLng = (commuteContext) => {
+const latLng = (commuteContext) => {
 
     let props = commuteContext.parameters;
 
@@ -44,25 +44,19 @@ var latLng = (commuteContext) => {
                         value: `${response[0].latitude},${response[0].longitude}`
                     });
 
-                    console.log('geocode');
-                    console.log(bar);
-
-                    resolve(bar)
+                    resolve(bar);
 
                 }).catch((err) => {
                     console.log(err);
-
-                    reject(err)
+                    reject(err);
                 });
             }
         }
 
     }).then((value) => {
         console.log(value);
-        console.log(value.bar);
-        console.log(bar.value);
     }).catch((error) => {
-        console.log(reason);
+        console.log(error);
     });  
 };
 
