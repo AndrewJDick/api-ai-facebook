@@ -54,6 +54,8 @@ const latLng = (commuteContext) => {
 
     }).then((value) => {
         console.log(value);
+        console.log(value.bar);
+        console.log(bar);
     }).catch((error) => {
         console.log(error);
     });  
