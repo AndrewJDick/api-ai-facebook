@@ -44,7 +44,7 @@ var latLng = (commuteContext) => {
 					});
 
 					console.log('geocode');
-					console.log(this.foo);
+					console.log(this.foo); 
 				})
 				.catch((err) => {
 				    console.log(err);
