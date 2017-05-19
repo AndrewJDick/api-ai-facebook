@@ -54,7 +54,7 @@ app.post('/webhook/', (req, res) => {
                 google.latLng(commuteContext);
 
                 // Add the user's commute to the db
-                //mongo.addCommute(commuteContext);
+                mongo.addCommute(commuteContext);
             }
         }
 
