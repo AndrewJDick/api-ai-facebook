@@ -57,6 +57,8 @@ var latLng = (commuteContext) => {
 					});
 				}
 			}
+
+			return this.foo
 		});
 	});
 
