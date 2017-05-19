@@ -58,8 +58,6 @@ var latLng = (commuteContext) => {
 
     }).then((value) => {
         console.log(value);
-        console.log(value.bar);
-        console.log(bar.value);
     }).catch((error) => {
         console.log(error);
     });  
