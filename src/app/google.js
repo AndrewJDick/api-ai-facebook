@@ -44,18 +44,15 @@ var latLng = (commuteContext) => {
                         value: `${response[0].latitude},${response[0].longitude}`
                     });
 
-                    console.log('geocode');
-                    console.log(bar);
-
-                    resolve(bar)
-
                 }).catch((err) => {
                     console.log(err);
 
-                    reject(err)
+                    reject(err);
                 });
             }
         }
+
+        resolve(bar);
 
     }).then((value) => {
         console.log(value);
