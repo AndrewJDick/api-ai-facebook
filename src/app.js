@@ -52,12 +52,9 @@ app.post('/webhook/', (req, res) => {
 
                 // ToDo: Convert street address to Lat Lng cords
                 google.latLng(commuteContext);
-                
-                console.log('app');
-                console.log(google.latLng.foo);
 
                 // Add the user's commute to the db
-                mongo.addCommute(commuteContext);
+                //mongo.addCommute(commuteContext);
             }
         }
 
