@@ -46,14 +46,16 @@ const latLng = (commuteContext) => {
 				});
 
 				console.log('latLng');
-				console.log(this.foo);
-
 			})
 			.catch((err) => {
 			    console.log(err);
 			});
 		} 
 	}
+
+	console.log(this.foo);
+
+
 };
 
 exports.latLng = latLng;
