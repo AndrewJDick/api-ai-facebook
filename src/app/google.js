@@ -29,7 +29,7 @@ var latLng = (commuteContext) => {
 
 	let props = commuteContext.parameters;
 
-	this.foo = Promise.resolve( var foo = () => { 
+	this.foo = Promise.resolve( () => { 
 		var bar = {};
 
 		for (let prop in props) {
