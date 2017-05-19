@@ -51,9 +51,11 @@ const latLng = (commuteContext) => {
 				    console.log(err);
 				});
 			}
-
-			return this.foo;
 		}
+
+		console.log('outside for');
+		console.log (this.foo);
+		return this.foo;
 	};
 
 	bar().then((response) => {
