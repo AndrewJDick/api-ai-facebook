@@ -27,14 +27,14 @@ const geocoder = nodeGeocoder({
 // Logic
 const latLng = (commuteContext) => {
 	
-	console.log(commuteContext);
+	console.log(this);
 
 	let props = commuteContext.parameters;
 	this.foo = {};
 
 	for (let prop in props) {
-		console.log(`1: ${prop}`); // field
-		console.log(`2: ${props[prop]}`); // value
+		// console.log(`1: ${prop}`); // field
+		// console.log(`2: ${props[prop]}`); // value
 
 		if (prop === 'origin' || prop === 'destination') {
 			console.log('geocoding');
