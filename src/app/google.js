@@ -30,11 +30,10 @@ const latLng = (commuteContext) => {
     let props = commuteContext.parameters;
 
     this.foo = new Promise( (resolve, reject) => { 
+        
         let bar = {};
 
         for (let prop in props) {
-            // console.log(`1: ${prop}`); // field
-            // console.log(`2: ${props[prop]}`); // value
 
             if (prop === 'origin' || prop === 'destination') {
 
