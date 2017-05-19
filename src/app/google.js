@@ -29,7 +29,7 @@ var latLng = (commuteContext) => {
 	
 	let props = commuteContext.parameters;
 	
-	this.foo = () => {
+	this.foo = ( return () => {
 
 		for (let prop in props) {
 			// console.log(`1: ${prop}`); // field
@@ -40,7 +40,7 @@ var latLng = (commuteContext) => {
 				geocoder.geocode(props[prop]).then((response) => {
 					
 					this.foo = (() => {
-						return Object.defineProperty(props, prop, {
+						Object.defineProperty(props, prop, {
 							value: `${response[0].latitude},${response[0].longitude}`
 						});
 					})();
@@ -53,7 +53,7 @@ var latLng = (commuteContext) => {
 				});
 			} 
 		}
-	};
+	})();
 
 	console.log('final');
 	console.log(this.foo);
