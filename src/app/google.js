@@ -60,9 +60,7 @@ var latLng = (commuteContext) => {
 
 			return this.foo;
 		})());
-	});
-
-	bar.then((value) => {
+	}).then((value) => {
 		console.log('value');
 		console.log(value);
 	}, (reason) => {
