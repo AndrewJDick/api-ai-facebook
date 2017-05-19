@@ -45,7 +45,7 @@ const latLng = (commuteContext) => {
 					});
 
 					console.log('geocode');
-					console.log(this.foo);
+					// console.log(this.foo);
 
 				})
 				.catch((err) => {
@@ -55,10 +55,10 @@ const latLng = (commuteContext) => {
 		}
 	})();
 
-	// bar.then((response) => {
-	// 	console.log('bot');
-	// 	console.log(this.foo);
-	// });
+	bar.then((response) => {
+		console.log('bot');
+		console.log(this.foo);
+	});
 };
 
 exports.latLng = latLng;
