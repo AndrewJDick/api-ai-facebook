@@ -31,7 +31,7 @@ var latLng = (commuteContext) => {
 	this.foo = {};
 
 	const bar = new Promise( (resolve, reject) => {
-		resolve( () => {
+		resolve( return () => {
 			for (let prop in props) {
 				// console.log(`1: ${prop}`); // field
 				// console.log(`2: ${props[prop]}`); // value
