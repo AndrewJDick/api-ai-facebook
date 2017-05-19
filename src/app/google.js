@@ -55,12 +55,10 @@ const latLng = (commuteContext) => {
 		}
 	};
 
-	bar.then((response) => {
-		console.log('bot');
-		console.log(this.foo);
-	});
-
-	
+	// bar.then((response) => {
+	// 	console.log('bot');
+	// 	console.log(this.foo);
+	// });
 };
 
 exports.latLng = latLng;
