@@ -59,6 +59,7 @@ const latLng = (commuteContext) => {
 	bar().then((response) => {
 		console.log('bot');
 		console.log(this.foo);
+		console.log(bar);
 	});
 };
 
