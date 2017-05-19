@@ -52,7 +52,7 @@ const latLng = (commuteContext) => {
 				});
 			}
 		}
-	});
+	};
 
 	bar().then((response) => {
 		console.log('bot');
