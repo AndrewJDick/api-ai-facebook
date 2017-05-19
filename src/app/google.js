@@ -42,9 +42,7 @@ const latLng = (commuteContext) => {
 			geocoder.geocode(props[prop]).then((response) => {
 				
 				this.foo = Object.defineProperty(props, prop, {
-					value: () => { 
-						return `${response[0].latitude},${response[0].longitude}`
-					}
+					value: `${response[0].latitude},${response[0].longitude}`
 				});
 
 				console.log('latLng');
