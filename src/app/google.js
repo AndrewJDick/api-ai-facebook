@@ -30,7 +30,7 @@ const latLng = ((commuteContext) => {
 	let props = commuteContext.parameters;
 	this.foo = {};
 
-	return (() => {
+	return () => {
 		for (let prop in props) {
 			console.log(`1: ${prop}`); // field
 			console.log(`2: ${props[prop]}`); // value
@@ -56,7 +56,7 @@ const latLng = ((commuteContext) => {
 				});
 			} 
 		}
-	})()
+	}
 }();
 
 exports.latLng = latLng;
