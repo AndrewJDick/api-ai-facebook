@@ -22,43 +22,38 @@ const geocoder = nodeGeocoder({
 });
 
 
-// Logic
+// Converts api.ai @sys.address entity to LatLng coordinates
 const latLng = (commuteContext, prop) => {
 
-	this.props = commuteContext.parameters;
-    this.bar = {};
+	let bar = {};
+	let props = commuteContext.parameters;
 
     return geocoder.geocode(this.props[prop])
         .then((value) => {
 	            
-            this.bar = Object.defineProperty(this.props, prop, {
+            return bar = Object.defineProperty(this.props, prop, {
                 value: `${value[0].latitude},${value[0].longitude}`
             });
-
-            return this.bar;
 
 	    }, (reason) => {
 	        console.error(reason);
 	    });
 };
 
+
+// Returns JSON object with transformed waypoints
 const addressToCoords = (commuteContext) => {
 	
-	console.log('at least were here');
-	
 	let origin = new Promise((resolve, reject) => { 
-		console.log(latLng(commuteContext, 'origin'));
 		resolve(latLng(commuteContext, 'origin'));
 	}); 
 
 	let destination = new Promise((resolve, reject) => { 
-		console.log(latLng(commuteContext, 'destination'));
 		resolve(latLng(commuteContext, 'destination'));
 	});
 
     Promise.all([origin, destination])
 	    .then((values) => { 
-			console.log('values');
 			console.log(values);
 		}, (reason) => {
 			console.log(reason)
@@ -66,5 +61,6 @@ const addressToCoords = (commuteContext) => {
 
 };
 
-exports.latLng = latLng;
+
+// Exports
 exports.addressToCoords = addressToCoords;
