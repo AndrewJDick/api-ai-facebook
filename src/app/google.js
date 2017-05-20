@@ -26,19 +26,18 @@ const geocoder = nodeGeocoder({
 // Logic
 var latLng = (commuteContext, prop) => {
 
-	let props = commuteContext.parameters;
+	this.props = commuteContext.parameters;
+    this.bar = {};
 
-    let bar = {};
-
-    geocoder.geocode(props[prop])
+    geocoder.geocode(this.props[prop])
         .then((value) => {
 	            
-            bar = Object.defineProperty(props, prop, {
+            this.bar = Object.defineProperty(props, prop, {
                 value: `${value[0].latitude},${value[0].longitude}`
             });
 
-            console.log(this);
-            return latLng.bar;
+            console.log(this.bar);
+            return this.bar;
 
 	    }, (reason) => {
 	        console.error(reason);
