@@ -28,14 +28,6 @@ var latLng = (commuteContext) => {
 
 	let props = commuteContext.parameters;
 
-	var origin = new Promise((resolve, reject) => { 
-		var one = resolve(fooBar(props, 'origin'));
-	}); 
-
-	var destination = new Promise((resolve, reject) => { 
-		var two = resolve(foobar(props, 'destination'));
-	});
-
     const fooBar = (props, prop) => {
 
         let bar = {};
@@ -55,6 +47,14 @@ var latLng = (commuteContext) => {
             reject(err);
         });
     };
+
+    var origin = new Promise((resolve, reject) => { 
+		var one = resolve(fooBar(props, 'origin'));
+	}); 
+
+	var destination = new Promise((resolve, reject) => { 
+		var two = resolve(foobar(props, 'destination'));
+	});
 
     Promise.all([origin, destination]).then(values => { 
 		console.log('values');
