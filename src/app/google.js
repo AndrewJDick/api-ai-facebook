@@ -36,24 +36,23 @@ var latLng = (commuteContext) => {
         // console.log(`2: ${props[prop]}`); // value
         geocoder.geocode(props[prop]).then((response) => {
             
-            bar = Object.defineProperty(props, prop, {
+            return bar = Object.defineProperty(props, prop, {
                 value: `${response[0].latitude},${response[0].longitude}`
             });
 
-            resolve(bar);
-
         }).catch((err) => {
             console.log(err);
-            reject(err);
         });
     };
 
     var origin = new Promise((resolve, reject) => { 
 		var one = resolve(fooBar(props, 'origin'));
+		resolve(one);
 	}); 
 
 	var destination = new Promise((resolve, reject) => { 
-		var two = resolve(foobar(props, 'destination'));
+		var two = resolve(fooBar(props, 'destination'));
+		resolve(two);
 	});
 
     Promise.all([origin, destination]).then(values => { 
