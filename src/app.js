@@ -59,8 +59,8 @@ app.post('/webhook/', (req, res) => {
                         }, (reason) => {
                             console.error(reason);
                         });
-                }
-                
+                });
+
                 // Add the user's commute to the db
                 //mongo.addCommute(commute);
             }
