@@ -31,9 +31,11 @@ const latLng = (commuteContext, prop) => {
     return geocoder.geocode(this.props[prop])
         .then((value) => {
 	            
-            return this.bar = Object.defineProperty(this.props, prop, {
+            this.bar = Object.defineProperty(this.props, prop, {
                 value: `${value[0].latitude},${value[0].longitude}`
             });
+
+            return this.bar;
 
 	    }, (reason) => {
 	        console.error(reason);
@@ -41,7 +43,7 @@ const latLng = (commuteContext, prop) => {
 };
 
 const addressToCoords = (commuteContext) => {
-	
+	console.log('at least were here');
 	let origin = new Promise((resolve, reject) => { 
 		console.log(latLng(commuteContext, 'origin'));
 		resolve(latLng(commuteContext, 'origin'));
