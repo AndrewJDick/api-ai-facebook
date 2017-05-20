@@ -24,35 +24,30 @@ const geocoder = nodeGeocoder({
 });
 
 // Logic
-var latLng = (commuteContext) => {
+var latLng = (commuteContext, prop) => {
 
 	let props = commuteContext.parameters;
 
-    const fooBar = (props, prop) => {
+    let bar = {};
 
-        let bar = {};
+    geocoder.geocode(props[prop])
+        .then((value) => {
+	            
+            bar = Object.defineProperty(props, prop, {
+                value: `${value[0].latitude},${value[0].longitude}`
+            });
 
-        // console.log(`1: ${prop}`); // field
-        // console.log(`2: ${props[prop]}`); // value
-        
-        console.log(props[prop]);
-        geocoder.geocode(props[prop])
-	        .then((value) => {
-		            
-	            bar = Object.defineProperty(props, prop, {
-	                value: `${value[0].latitude},${value[0].longitude}`
-	            });
+            console.log(this);
+            return latLng.bar;
 
-	            console.log(this);
-	            return fooBar.bar;
-
-		    }, (reason) => {
-		        console.error(reason);
-		    });
+	    }, (reason) => {
+	        console.error(reason);
+	    });
     };
+};
 
-    console.log(fooBar(props, 'origin'));
-    console.log(fooBar(props, 'destination'));
+// console.log(latLng(commuteContext, 'origin'));
+// console.log(latLng(commuteContext, 'destination'));
 
  //    var origin = new Promise((resolve, reject) => { 
 	// 	resolve(fooBar(props, 'origin'));
@@ -70,6 +65,6 @@ var latLng = (commuteContext) => {
 	// 		console.log(reason)
 	// 	});
     
-};
+// };
 
 exports.latLng = latLng;
