@@ -43,10 +43,12 @@ const latLng = (commuteContext, prop) => {
 const addressToCoords = (commuteContext) => {
 	
 	let origin = new Promise((resolve, reject) => { 
+		console.log(latLng(commuteContext, 'origin'));
 		resolve(latLng(commuteContext, 'origin'));
 	}); 
 
 	let destination = new Promise((resolve, reject) => { 
+		console.log(latLng(commuteContext, 'destination'));
 		resolve(fooBar(commuteContext, 'destination'));
 	});
 
