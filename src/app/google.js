@@ -24,19 +24,21 @@ const geocoder = nodeGeocoder({
 });
 
 // Logic
-var latLng = (commuteContext, prop) => {
+const latLng = (commuteContext, prop) => {
 
 	this.props = commuteContext.parameters;
     this.bar = {};
 
-    geocoder.geocode(this.props[prop])
+    return geocoder.geocode(this.props[prop])
         .then((value) => {
 	            
             this.bar = Object.defineProperty(this.props, prop, {
                 value: `${value[0].latitude},${value[0].longitude}`
             });
 
+            //returns correct object
             console.log(this.bar);
+
             return this.bar;
 
 	    }, (reason) => {
@@ -44,7 +46,8 @@ var latLng = (commuteContext, prop) => {
 	    });
 };
 
-// console.log(latLng(commuteContext, 'origin'));
+// returns undefined
+// console.log(latLng(commuteContext, 'origin').then());
 // console.log(latLng(commuteContext, 'destination'));
 
  //    var origin = new Promise((resolve, reject) => { 
