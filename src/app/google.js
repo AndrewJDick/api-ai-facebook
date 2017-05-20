@@ -56,7 +56,7 @@ const addressToCoords = (commuteContext) => {
 	    .then((values) => { 
 			console.log(values);
 		}, (reason) => {
-			console.log(reason)
+			console.error(reason)
 		});
 
 };
