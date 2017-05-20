@@ -53,7 +53,7 @@ const addressToCoords = (commuteContext) => {
 
 	let destination = new Promise((resolve, reject) => { 
 		console.log(latLng(commuteContext, 'destination'));
-		resolve(fooBar(commuteContext, 'destination'));
+		resolve(latLng(commuteContext, 'destination'));
 	});
 
     Promise.all([origin, destination])
