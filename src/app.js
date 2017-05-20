@@ -55,7 +55,7 @@ app.post('/webhook/', (req, res) => {
                     return value;
                 }, (reason) => {
                     console.error(reason);
-                };
+                });
 
                 console.log(commute);
 
