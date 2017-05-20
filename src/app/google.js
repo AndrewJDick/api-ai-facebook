@@ -41,9 +41,9 @@ var latLng = (commuteContext) => {
 	                value: `${value[0].latitude},${value[0].longitude}`
 	            });
 
-	            return fooBar.bar;
 	            console.log(this);
-
+	            return fooBar.bar;
+	            
 		    }, (reason) => {
 		        console.error(reason);
 		    });
