@@ -16,12 +16,11 @@ https://maps.googleapis.com/maps/api/directions/json
 const nodeGeocoder = require('node-geocoder');
 const geocoder = nodeGeocoder({
   provider: 'google',
- 
-  // Optional depending on the providers 
   httpAdapter: 'https',
   apiKey: 'AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE', // TODO: Create env var
   formatter: null
 });
+
 
 // Logic
 const latLng = (commuteContext, prop) => {
@@ -32,37 +31,33 @@ const latLng = (commuteContext, prop) => {
     return geocoder.geocode(this.props[prop])
         .then((value) => {
 	            
-            this.bar = Object.defineProperty(this.props, prop, {
+            return this.bar = Object.defineProperty(this.props, prop, {
                 value: `${value[0].latitude},${value[0].longitude}`
             });
-            
-            return this.bar;
 
 	    }, (reason) => {
 	        console.error(reason);
 	    });
 };
 
-// returns undefined
-// console.log(latLng(commuteContext, 'origin').then());
-// console.log(latLng(commuteContext, 'destination'));
+const addressToCoords = (commuteContext) => {
+	
+	let origin = new Promise((resolve, reject) => { 
+		resolve(latLng(commuteContext, 'origin'));
+	}); 
 
- //    var origin = new Promise((resolve, reject) => { 
-	// 	resolve(fooBar(props, 'origin'));
-	// }); 
+	let destination = new Promise((resolve, reject) => { 
+		resolve(fooBar(commuteContext, 'destination'));
+	});
 
-	// var destination = new Promise((resolve, reject) => { 
-	// 	resolve(fooBar(props, 'destination'));
-	// });
+    Promise.all([origin, destination])
+	    .then((values) => { 
+			console.log('values');
+			console.log(values);
+		}, (reason) => {
+			console.log(reason)
+		});
 
- //    Promise.all([origin, destination])
-	//     .then((values) => { 
-	// 		console.log('values');
-	// 		console.log(values);
-	// 	}, (reason) => {
-	// 		console.log(reason)
-	// 	});
-    
-// };
+};
 
 exports.latLng = latLng;
