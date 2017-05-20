@@ -35,10 +35,7 @@ const latLng = (commuteContext, prop) => {
             this.bar = Object.defineProperty(this.props, prop, {
                 value: `${value[0].latitude},${value[0].longitude}`
             });
-
-            //returns correct object
-            console.log(this.bar);
-
+            
             return this.bar;
 
 	    }, (reason) => {
