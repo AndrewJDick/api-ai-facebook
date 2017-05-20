@@ -42,7 +42,6 @@ var latLng = (commuteContext, prop) => {
 	    }, (reason) => {
 	        console.error(reason);
 	    });
-    };
 };
 
 // console.log(latLng(commuteContext, 'origin'));
