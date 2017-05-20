@@ -52,9 +52,9 @@ const addressToCoords = (commuteContext) => {
 		resolve(latLng(commuteContext, 'destination'));
 	});
 
-    Promise.all([origin, destination])
+    return Promise.all([origin, destination])
 	    .then((values) => { 
-			console.log(values);
+			return values[0];
 		}, (reason) => {
 			console.error(reason)
 		});
