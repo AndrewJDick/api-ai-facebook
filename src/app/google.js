@@ -34,6 +34,8 @@ var latLng = (commuteContext) => {
 
         // console.log(`1: ${prop}`); // field
         // console.log(`2: ${props[prop]}`); // value
+        
+        console.log(props[prop]);
         geocoder.geocode(props[prop])
 	        .then((value) => {
 		            
@@ -43,7 +45,7 @@ var latLng = (commuteContext) => {
 
 	            console.log(this);
 	            return fooBar.bar;
-	            
+
 		    }, (reason) => {
 		        console.error(reason);
 		    });
