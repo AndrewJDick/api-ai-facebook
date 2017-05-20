@@ -51,7 +51,7 @@ app.post('/webhook/', (req, res) => {
             if (data.result.action === 'arrivapi.default.submit') {
 
                 // Convert address to LatLng cords
-                let commute = google.addressToCoords(commuteContext).then((value) => {
+                let commute = return google.addressToCoords(commuteContext).then((value) => {
                     return value;
                 }, (reason) => {
                     console.error(reason);
