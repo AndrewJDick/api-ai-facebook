@@ -43,7 +43,7 @@ const latLng = (commuteContext, prop) => {
 
 // Returns JSON object with transformed waypoints
 const addressToCoords = (commuteContext) => {
-	
+
 	let origin = new Promise((resolve, reject) => { 
 		resolve(latLng(commuteContext, 'origin'));
 	}); 
@@ -54,6 +54,7 @@ const addressToCoords = (commuteContext) => {
 
     return Promise.all([origin, destination])
 	    .then((values) => { 
+			console.log(values[0]);
 			return values[0];
 		}, (reason) => {
 			console.error(reason);
