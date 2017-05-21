@@ -95,7 +95,7 @@ const addUserCommute = (db, commute, callback) => {
     }, (err, result) => {
         assert.equal(err, null);
         
-        let isUpdated = (result.lastErrorObject.updatedExisting) ? 'Updated users commute.' : 'Added new user and commute.' ;
+        let isUpdated = (result.lastErrorObject.updatedExisting) ? 'Updated users commute.' : 'Added new user and commute...' ;
 
         console.log(isUpdated);
         console.log(result);
