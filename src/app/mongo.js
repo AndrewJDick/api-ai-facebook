@@ -79,10 +79,8 @@ const addUserCommute = (db, commute, callback) => {
             psid : commute.facebook_sender_id 
         },
         {   
-            $setOnInsert: {
-                psid: commute.facebook_sender_id,
-            },
             $set: {
+                psid: commute.facebook_sender_id,
                 origin: commute.origin,
                 destination: commute.destination,
                 arrival: commute.time,
