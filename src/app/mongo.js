@@ -112,7 +112,7 @@ const dbConnect = (method, commute = {}) => {
     });
 };
 
-
+// Check for empty DB on deploy
 const onDeploy = (() => {
     dbConnect('seedDb');
 })();
