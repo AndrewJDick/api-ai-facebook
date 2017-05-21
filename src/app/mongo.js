@@ -75,9 +75,9 @@ const isSeeded = (() => {
 const addUserCommute = (db, commute, callback) => {
     
     db.collection('commutes').findAndModify({
-        query: { psid : commute.facebook_sender_id },
-        sort: [],
-        update: {   
+        { psid : commute.facebook_sender_id },
+        [],
+        {   
             $setOnInsert: { 
                 psid: commute.facebook_sender_id
             }, 
@@ -89,9 +89,9 @@ const addUserCommute = (db, commute, callback) => {
                 preference: commute.transit_mode
             }
         },
-        {
-            new: true,
-            upsert : true
+        {   
+            upsert : true,
+            new: true
         }
     }, (err, result) => {
         assert.equal(err, null);
