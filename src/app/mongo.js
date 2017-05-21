@@ -72,7 +72,7 @@ const isSeeded = (() => {
 
 
 // Add or update a user's commute in the mongoDB commutes collection
-const addUserCommute = (db, commute, callback) => {
+const addCommute = (db, commute, callback) => {
     
     db.collection('commutes').updateOne(
         {
@@ -96,9 +96,7 @@ const addUserCommute = (db, commute, callback) => {
 
             let addOrUpdate = (result.modifiedCount === 0 && result.upsertedCount === 1) 
                 ? 'New user commute added to the commutes collection' 
-                : (result.modifiedCount === 1 && result.upsertedCount === 0)
-                ? 'Existing user commute updated to the commutes collection'
-                : 'Something updated, but I have no idea what...';
+                : 'Existing user commute updated to the commutes collection';
 
             console.log(addOrUpdate);
             callback();
@@ -107,16 +105,23 @@ const addUserCommute = (db, commute, callback) => {
 };
 
 
-const addCommute = (commute) => {
+const dbConnect = (commute, method) => {
     mongodb.connect(uri, (err, db) => {
+        
         assert.equal(null, err);
         
-        addUserCommute(db, commute, () => {
-            db.close();
-        })
+        switch(method) {
+            case 'addCommute':
+                addCommute(db, commute, () => {
+                    db.close();
+                })
+                break;
+            default:
+                break;
+        }
     });
 };
 
 
 // Exports 
-exports.addCommute = addCommute;
+exports.dbConnect = dbConnect;

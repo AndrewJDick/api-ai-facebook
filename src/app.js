@@ -54,8 +54,8 @@ app.post('/webhook/', (req, res) => {
                 let addressConversion = Promise.resolve(google.addressToCoords(commuteContext));
                     
                 // Store commute in the db
-                addressConversion.then((value) => { 
-                    mongo.addCommute(value);  
+                addressConversion.then((commute) => { 
+                    mongo.dbConnect(commute, 'addCommute');  
                 });
             }
         }
