@@ -46,7 +46,7 @@ const addressToCoords = (commuteContext) => {
 
 	let origin = new Promise((resolve, reject) => { 
 		resolve(latLng(commuteContext, 'origin'));
-	}); 
+	});
 
 	let destination = new Promise((resolve, reject) => { 
 		resolve(latLng(commuteContext, 'destination'));
@@ -54,12 +54,10 @@ const addressToCoords = (commuteContext) => {
 
     return Promise.all([origin, destination])
 	    .then((values) => { 
-			console.log(values[0]);
 			return values[0];
 		}, (reason) => {
 			console.error(reason);
 		});
-
 };
 
 
