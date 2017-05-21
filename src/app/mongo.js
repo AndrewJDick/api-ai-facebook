@@ -80,7 +80,7 @@ const addUserCommute = (db, commute, callback) => {
         remove: false,
         update : {   
             $set: {
-                psid: commute.facebook_sender_id
+                psid: commute.facebook_sender_id,
                 origin: commute.origin,
                 destination: commute.destination,
                 arrival: commute.time,
