@@ -85,6 +85,11 @@ const addUserCommute = (db, commute, callback) => {
         console.log('Inserted a users commute into the commutes collection.');
         callback(); 
     });
+
+    let foo = db.collection('commutes').findAndModify({ psid : commute.facebook_sender_id });
+
+    console.log(foo);
+
 };
 
 
