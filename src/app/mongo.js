@@ -75,27 +75,42 @@ const isSeeded = (() => {
 const addUserCommute = (db, commute, callback) => {
     
     db.collection('commutes').findAndModify({ 
-        psid : commute.facebook_sender_id 
+        query: { 
+            psid : commute.facebook_sender_id 
+        },
+        update: { 
+            $setOnInsert: {
+                psid: commute.facebook_sender_id
+            }, 
+            $set: {
+                origin: commute.origin,
+                destination: commute.destination,
+                arrival: commute.time,
+                mode: commute.travel_mode,
+                preference: commute.transit_mode
+            }
+        },
+        upsert: true
+
     }, (err, result) => {
         assert.equal(err, null);
+        console.log('Results:');
         console.log(result);
+        callback();
     });
 
-    db.collection('commutes').insertOne({
-        psid: commute.facebook_sender_id,
-        origin: commute.origin,
-        destination: commute.destination,
-        arrival: commute.time,
-        mode: commute.travel_mode,
-        preference: commute.transit_mode
-    }, (err, result) => {
-        assert.equal(err, null);
-        console.log('Inserted a users commute into the commutes collection.');
-        callback(); 
-    });
-
-    
-
+    // db.collection('commutes').insertOne({
+    //     psid: commute.facebook_sender_id,
+    //     origin: commute.origin,
+    //     destination: commute.destination,
+    //     arrival: commute.time,
+    //     mode: commute.travel_mode,
+    //     preference: commute.transit_mode
+    // }, (err, result) => {
+    //     assert.equal(err, null);
+    //     console.log('Inserted a users commute into the commutes collection.');
+    //     callback(); 
+    // });
 };
 
 
