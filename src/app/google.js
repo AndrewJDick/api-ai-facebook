@@ -25,10 +25,10 @@ const geocoder = nodeGeocoder({
 // Converts api.ai @sys.address entity to LatLng coordinates
 const latLng = (commuteContext, prop) => {
 
-    return geocoder.geocode(props[prop])
+    return geocoder.geocode(commuteContext[prop])
         .then((value) => {
 	            
-            return commuteContext = Object.defineProperty(props, prop, {
+            return commuteContext = Object.defineProperty(commuteContext, prop, {
                 value: `${value[0].latitude},${value[0].longitude}`
             });
 
