@@ -1,19 +1,6 @@
-/*
-Sample Google Directions Query
-==============================
-https://maps.googleapis.com/maps/api/directions/json
-?origin=51.6564890,-0.3903200
-&destination=51.5238910,-0.0968820
-&key=AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE
-&mode=transit
-&units=imperial
-&arrival_time=1494579600
-&alternatives=true
-*/
-
+'use strict';
 
 // Packages
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 const nodeGeocoder = require('node-geocoder');
 const geocoder = nodeGeocoder({
   provider: 'google',
@@ -21,6 +8,10 @@ const geocoder = nodeGeocoder({
   apiKey: GOOGLE_API_KEY,
   formatter: null
 });
+
+
+// Environment Variables
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 
 // Converts api.ai @sys.address entity to LatLng coordinates
@@ -61,3 +52,17 @@ const addressToCoords = (commuteContext) => {
 
 // Exports
 exports.addressToCoords = addressToCoords;
+
+
+/*
+Sample Google Directions Query
+==============================
+https://maps.googleapis.com/maps/api/directions/json
+?origin=51.6564890,-0.3903200
+&destination=51.5238910,-0.0968820
+&key=AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE
+&mode=transit
+&units=imperial
+&arrival_time=1494579600
+&alternatives=true
+*/

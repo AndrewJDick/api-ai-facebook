@@ -1,3 +1,5 @@
+'use strict';
+
 // Packages
 const apiai = require('apiai');
 const uuid = require('uuid');

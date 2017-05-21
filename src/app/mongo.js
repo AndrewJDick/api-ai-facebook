@@ -1,11 +1,4 @@
-/*
- * Copyright (c) 2017 ObjectLabs Corporation
- * Distributed under the MIT license - http://opensource.org/licenses/MIT
- *
- * Written with: mongodb@2.2.21
- * Documentation: http://docs.mongodb.org/ecosystem/drivers/node-js/
- * A Node script connecting to a MongoDB database given a MongoDB Connection URI.
-*/
+'use strict';
 
 // Packages
 const mongodb = require('mongodb').MongoClient;
@@ -15,7 +8,7 @@ const uri = process.env.MONGODB_URI;
 
 
 // Dummy data
-const seedDb = (db, closeDb) => {
+const insertSeed = (db, closeDb) => {
     db.collection('commutes').insert([{
         psid: '9999999999999999',
         origin: '51.6564890,-0.3903200',
@@ -63,7 +56,7 @@ const isSeeded = (() => {
                 }
             }
 
-            if (!seeded) seedDb(db, () => {
+            if (!seeded) insertSeed(db, () => {
                 db.close();
             });
         });
