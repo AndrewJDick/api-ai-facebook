@@ -78,7 +78,6 @@ const addUserCommute = (db, commute, callback) => {
         { 
             psid : commute.facebook_sender_id       // query
         },
-        [],                                         // sort
         {
             $setOnInsert: {                         
                 psid: commute.facebook_sender_id    // set psid on insert
@@ -91,32 +90,20 @@ const addUserCommute = (db, commute, callback) => {
                 preference: commute.transit_mode
             }
         },
-        {
-            new: true                               // returns the modified document
-        }, 
-        {
-            upsert: true                            // inserts if psid does not exist
-        }, 
+        { new: true }, 
+        { upsert: true },
+
         (err, result) => {
             assert.equal(err, null);
-            console.log('Results:');
+            
+            let isUpdated = (result.lastErrorObject.updatedExisting) ? 'Updated users commute.' : 'Added new user and commute' ;
+
+            console.log(isUpdated);
             console.log(result);
             callback();
         }
     );
 
-    // db.collection('commutes').insertOne({
-    //     psid: commute.facebook_sender_id,
-    //     origin: commute.origin,
-    //     destination: commute.destination,
-    //     arrival: commute.time,
-    //     mode: commute.travel_mode,
-    //     preference: commute.transit_mode
-    // }, (err, result) => {
-    //     assert.equal(err, null);
-    //     console.log('Inserted a users commute into the commutes collection.');
-    //     callback(); 
-    // });
 };
 
 
