@@ -1,5 +1,9 @@
 'use strict';
 
+// Environment Variables
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
+
+
 // Packages
 const nodeGeocoder = require('node-geocoder');
 const geocoder = nodeGeocoder({
@@ -8,10 +12,6 @@ const geocoder = nodeGeocoder({
   apiKey: GOOGLE_API_KEY,
   formatter: null
 });
-
-
-// Environment Variables
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 
 // Converts api.ai @sys.address entity to LatLng coordinates
