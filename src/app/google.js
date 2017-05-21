@@ -13,11 +13,12 @@ https://maps.googleapis.com/maps/api/directions/json
 
 
 // Packages
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 const nodeGeocoder = require('node-geocoder');
 const geocoder = nodeGeocoder({
   provider: 'google',
   httpAdapter: 'https',
-  apiKey: 'AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE', // TODO: Create env var
+  apiKey: GOOGLE_API_KEY,
   formatter: null
 });
 

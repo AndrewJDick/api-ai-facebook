@@ -11,9 +11,7 @@
 const mongodb = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 const assert = require('assert');
-
-
-const uri = 'mongodb://admin:root@ds137441.mlab.com:37441/heroku_sxrcs6jm';
+const uri = process.env.MONGODB_URI;
 
 
 // Dummy data
@@ -74,7 +72,7 @@ const isSeeded = (() => {
 
 
 // Store commute context fields in the heroku mongodb commute collection
-const addUserCommute = (db, commute, closeDb) => {
+const addUserCommute = (db, commute, callback) => {
     db.collection('commutes').insertOne({
         psid: commute.facebook_sender_id,
         origin: commute.origin,
@@ -85,7 +83,7 @@ const addUserCommute = (db, commute, closeDb) => {
     }, (err, result) => {
         assert.equal(err, null);
         console.log('Inserted a users default commute into the commutes collection.');
-        closeDb(); 
+        callback(); 
     });
 };
 

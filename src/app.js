@@ -51,15 +51,12 @@ app.post('/webhook/', (req, res) => {
             if (data.result.action === 'arrivapi.default.submit') {
 
                 // Convert address to LatLng cords
-                Promise.resolve(google.addressToCoords(commuteContext))
-                    .then((value) => { 
-                        console.log(value);
-                        mongo.addCommute(value);  
-                    });
-
-
-                // Add the user's commute to the db
-                //mongo.addCommute(commute);
+                let addressConversion = Promise.resolve(google.addressToCoords(commuteContext));
+                    
+                // Store commute in the db
+                addressConversion.then((value) => { 
+                    mongo.addCommute(value);  
+                });
             }
         }
 

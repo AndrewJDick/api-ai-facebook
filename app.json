@@ -21,6 +21,10 @@
       "description": "Agent language",
       "value": "en",
       "required": false
+    },
+    "GOOGLE_API_KEY": {
+      "description": "Google Project API key",
+      "value": "",
     }
   },
   "engines": {
