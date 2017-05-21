@@ -78,6 +78,7 @@ const addUserCommute = (db, commute, callback) => {
         { 
             psid : commute.facebook_sender_id       // query
         },
+        [],
         {
             $setOnInsert: {                         
                 psid: commute.facebook_sender_id    // set psid on insert
