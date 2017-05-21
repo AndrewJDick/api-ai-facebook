@@ -77,21 +77,22 @@ const addUserCommute = (db, commute, callback) => {
     db.collection('commutes').findAndModify({
         query: { psid : commute.facebook_sender_id },
         sort: [],
-        remove: false,
         update: {   
             $setOnInsert: { 
-                psid: commute.facebook_sender_id 
+                psid: commute.facebook_sender_id
             }, 
             $set: {
-                origin: commute.origin,             // update commute on update
+                origin: commute.origin,
                 destination: commute.destination,
                 arrival: commute.time,
                 mode: commute.travel_mode,
                 preference: commute.transit_mode
             }
         },
-        { new: true },
-        { upsert : true}
+        {
+            new: true,
+            upsert : true
+        }
     }, (err, result) => {
         assert.equal(err, null);
         
