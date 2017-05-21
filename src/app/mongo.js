@@ -122,7 +122,3 @@ const addCommute = (commute) => {
 
 // Exports 
 exports.addCommute = addCommute;
-
-
-"origin": "51.47557870000001,-0.0643705",
-"destination": "51.56238949999999,-0.1004634",
