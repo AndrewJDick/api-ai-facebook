@@ -47,9 +47,9 @@ const isSeeded = (() => {
         assert.equal(err, null);
 
         db.listCollections().toArray((err, collections) => {
-            var seeded = false;
+            let seeded = false;
 
-            for (collection in collections) {
+            for (let collection in collections) {
                 if (collections[collection].name === 'commutes') {
                     seeded = true;
                     break;
