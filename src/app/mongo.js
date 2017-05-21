@@ -1,12 +1,3 @@
-/*
- * Copyright (c) 2017 ObjectLabs Corporation
- * Distributed under the MIT license - http://opensource.org/licenses/MIT
- *
- * Written with: mongodb@2.2.21
- * Documentation: http://docs.mongodb.org/ecosystem/drivers/node-js/
- * A Node script connecting to a MongoDB database given a MongoDB Connection URI.
-*/
-
 // Packages
 const mongodb = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
@@ -54,7 +45,7 @@ const seedDb = (() => {
         assert.equal(err, null);
 
         db.listCollections().toArray((err, collections) => {
-            var seeded = false;
+            let seeded = false;
 
             for (collection in collections) {
                 if (collections[collection].name === 'commutes') {
@@ -79,8 +70,10 @@ const addCommute = (db, commute, callback) => {
             psid : commute.facebook_sender_id 
         },
         {   
+            $setOnInsert: {
+                psid: commute.facebook_sender_id
+            },
             $set: {
-                psid: commute.facebook_sender_id,
                 origin: commute.origin,
                 destination: commute.destination,
                 arrival: commute.time,
