@@ -71,15 +71,18 @@ const isSeeded = (() => {
 })();
 
 
-// Store commute context fields in the heroku mongodb commute collection
+// Add or update a user's commute in the mongoDB commutes collection
 const addUserCommute = (db, commute, callback) => {
     
     db.collection('commutes').updateOne(
         {
             psid : commute.facebook_sender_id 
         },
-        {   $set: {
+        {   
+            $setOnInsert: {
                 psid: commute.facebook_sender_id,
+            },
+            $set: {
                 origin: commute.origin,
                 destination: commute.destination,
                 arrival: commute.time,
@@ -92,15 +95,20 @@ const addUserCommute = (db, commute, callback) => {
         },
         (err, result) => {
             assert.equal(err, null);
-            console.log(result);
+
+            let addOrUpdate = (result.modifiedCount === 0 && result.upsertedCount === 1) 
+                ? 'New user commute added to the commutes collection' 
+                : (result.modifiedCount === 1 && result.upsertedCount === 0)
+                ? 'Existing user commute updated to the commutes collection'
+                : 'Something updated, but I have no idea what...';
+
+            console.log(addOrUpdate);
             callback();
         }
     );
-
 };
 
 
-// Add a default commute to the db
 const addCommute = (commute) => {
     mongodb.connect(uri, (err, db) => {
         assert.equal(null, err);
@@ -114,3 +122,7 @@ const addCommute = (commute) => {
 
 // Exports 
 exports.addCommute = addCommute;
+
+
+"origin": "51.47557870000001,-0.0643705",
+"destination": "51.56238949999999,-0.1004634",
