@@ -77,6 +77,7 @@ const addUserCommute = (db, commute, callback) => {
     db.collection('commutes').findAndModify({
         query: { psid : commute.facebook_sender_id },
         sort : {},
+        remove: false,
         update : {   
             $set: {
                 psid: commute.facebook_sender_id,
