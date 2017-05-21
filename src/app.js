@@ -55,7 +55,7 @@ app.post('/webhook/', (req, res) => {
                     
                 // Store commute in the db
                 addressConversion.then((commute) => { 
-                    mongo.dbConnect(commute, 'addCommute');  
+                    mongo.dbConnect('addCommute', commute);  
                 });
             }
         }
