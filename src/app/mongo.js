@@ -82,7 +82,7 @@ const addUserCommute = (db, commute, callback) => {
         preference: commute.transit_mode
     }, (err, result) => {
         assert.equal(err, null);
-        console.log('Inserted a users default commute into the commutes collection.');
+        console.log('Inserted a users commute into the commutes collection.');
         callback(); 
     });
 };
