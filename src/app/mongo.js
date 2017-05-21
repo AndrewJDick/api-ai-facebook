@@ -79,7 +79,7 @@ const addUserCommute = (db, commute, callback) => {
     }, (err, result) => {
         assert.equal(err, null);
         console.log(result);
-    }));
+    });
 
     db.collection('commutes').insertOne({
         psid: commute.facebook_sender_id,
