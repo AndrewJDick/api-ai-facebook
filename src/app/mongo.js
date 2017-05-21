@@ -90,8 +90,8 @@ const addUserCommute = (db, commute, callback) => {
                 preference: commute.transit_mode
             }
         },
-        new: true,
-        upsert: true
+        { new: true },
+        { upsert : true}
     }, (err, result) => {
         assert.equal(err, null);
         
