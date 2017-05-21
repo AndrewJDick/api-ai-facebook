@@ -74,7 +74,12 @@ const isSeeded = (() => {
 // Store commute context fields in the heroku mongodb commute collection
 const addUserCommute = (db, commute, callback) => {
     
-    console.log(db.collection('commutes').findAndModify({ psid : commute.facebook_sender_id }));
+    db.collection('commutes').findAndModify({ 
+        psid : commute.facebook_sender_id 
+    }, (err, result) => {
+        assert.equal(err, null);
+        console.log(result);
+    }));
 
     db.collection('commutes').insertOne({
         psid: commute.facebook_sender_id,
