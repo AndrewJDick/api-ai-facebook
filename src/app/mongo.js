@@ -75,27 +75,23 @@ const isSeeded = (() => {
 const addUserCommute = (db, commute, callback) => {
     
     db.collection('commutes').findAndModify({
-        'query': { 'psid' : commute.facebook_sender_id },
-        'sort' : [],
-        'update' : {   
+        query: { psid : commute.facebook_sender_id },
+        sort : [],
+        update : {   
             $setOnInsert: { 
-                'psid': commute.facebook_sender_id
+                psid: commute.facebook_sender_id
             }, 
             $set: {
-                'origin': commute.origin,
-                'destination': commute.destination,
-                'arrival': commute.time,
-                'mode': commute.travel_mode,
-                'preference': commute.transit_mode
+                origin: commute.origin,
+                destination: commute.destination,
+                arrival: commute.time,
+                mode: commute.travel_mode,
+                preference: commute.transit_mode
             }
         },
-        'upsert' : true
+        upsert : true
     }, (err, result) => {
         assert.equal(err, null);
-        
-        let isUpdated = (result.lastErrorObject.updatedExisting) ? 'Updated users commute.' : 'Added new user and commute...' ;
-
-        console.log(isUpdated);
         console.log(result);
         callback();
     });
