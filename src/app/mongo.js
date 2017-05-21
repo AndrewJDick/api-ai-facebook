@@ -15,7 +15,7 @@ const uri = process.env.MONGODB_URI;
 
 
 // Dummy data
-const seedDb = (db, closeDb) => {
+const seedData = (db, closeDb) => {
     db.collection('commutes').insert([{
         psid: '9999999999999999',
         origin: '51.6564890,-0.3903200',
@@ -48,7 +48,7 @@ const seedDb = (db, closeDb) => {
 
 
 // DB Seed
-const isSeeded = (() => {
+const seedDb = (() => {
     mongodb.connect(uri, (err, db) => {
   
         assert.equal(err, null);
@@ -63,7 +63,7 @@ const isSeeded = (() => {
                 }
             }
 
-            if (!seeded) seedDb(db, () => {
+            if (!seeded) seedData(db, () => {
                 db.close();
             });
         });
@@ -117,6 +117,7 @@ const dbConnect = (commute, method) => {
                 })
                 break;
             default:
+                db.close();
                 break;
         }
     });
