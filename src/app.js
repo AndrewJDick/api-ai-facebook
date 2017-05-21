@@ -42,7 +42,7 @@ app.post('/webhook/', (req, res) => {
         // Store the Default Commute object built from the API.ai bot.
         for (let context of contexts) {
             if (context.name === 'generic') {
-                commuteContext = context;
+                commuteContext = context.parameters;
             }
         }
 

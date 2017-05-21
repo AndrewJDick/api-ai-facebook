@@ -74,14 +74,14 @@ const isSeeded = (() => {
 
 
 // Store commute context fields in the heroku mongodb commute collection
-const addUserCommute = (db, commuteContext, closeDb) => {
+const addUserCommute = (db, commute, closeDb) => {
     db.collection('commutes').insertOne({
-        psid: commuteContext.parameters.facebook_sender_id,
-        origin: commuteContext.parameters.origin,
-        destination: commuteContext.parameters.destination,
-        arrival: commuteContext.parameters.time,
-        mode: commuteContext.parameters.travel_mode,
-        preference: commuteContext.parameters.transit_mode
+        psid: commute.facebook_sender_id,
+        origin: commute.origin,
+        destination: commute.destination,
+        arrival: commute.time,
+        mode: commute.travel_mode,
+        preference: commute.transit_mode
     }, (err, result) => {
         assert.equal(err, null);
         console.log('Inserted a users default commute into the commutes collection.');
@@ -91,11 +91,11 @@ const addUserCommute = (db, commuteContext, closeDb) => {
 
 
 // Add a default commute to the db
-const addCommute = (commuteContext) => {
+const addCommute = (commute) => {
     mongodb.connect(uri, (err, db) => {
         assert.equal(null, err);
         
-        addUserCommute(db, commuteContext, () => {
+        addUserCommute(db, commute, () => {
             db.close();
         })
     });
