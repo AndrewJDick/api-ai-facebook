@@ -1,5 +1,9 @@
 'use strict';
 
+// Environment Variables
+const REST_PORT = (process.env.PORT || 5000);
+const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
+
 // Packages
 const app = require('express')();
 const bodyParser = require('body-parser');
@@ -10,13 +14,10 @@ const moment = require('moment');
 const mongo = require('./app/mongo');
 const google = require('./app/google');
 const facebook = require('./app/facebook');
-
-// Environment Variables
-const REST_PORT = (process.env.PORT || 5000);
-const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
-
 let facebookBot = new facebook.FacebookBot();
 
+
+// Logic
 app.use(bodyParser.text({type: 'application/json'}));
 
 app.get('/webhook/', (req, res) => {
@@ -55,16 +56,22 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'arrivapi.default.submit') {
 
-                // Convert addresses to LatLng cords
-                let addressConversion = Promise.resolve(google.addressToCoords(commuteContext));
+                // // Convert addresses to LatLng cords
+                // let addressConversion = new Promise((resolve, reject) => {
+                //     resolve(google.addressToCoords(commuteContext));
+                // });
 
-                // Covert arrival time to Unix tinestamp
-                addressConversion.
+                // // Covert arrival time to Unix tinestamp
+                // let timeConversion = new Promise((resolve, reject) => {
+                //     resolve(google.timeToUnix(commuteContext));
+                // });
                     
-                // Store commute in the db
-                addressConversion.then((commute) => { 
-                    mongo.dbConnect('addCommute', commute);  
-                });
+                // // Store default commute in the db
+                // let commute = Promise.all([addressConversion, timeConversion]).then((values) => {  
+                //     mongo.dbConnect('addCommute', values[0]);
+                // });
+
+                console.log(moment().format());
             }
         }
 

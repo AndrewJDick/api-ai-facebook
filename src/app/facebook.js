@@ -1,11 +1,5 @@
 'use strict';
 
-// Packages
-const apiai = require('apiai');
-const uuid = require('uuid');
-const request = require('request');
-const async = require('async');
-
 // Environment Variables
 const FB_TEXT_LIMIT = 640;
 const FACEBOOK_LOCATION = "FACEBOOK_LOCATION";
@@ -13,6 +7,12 @@ const FACEBOOK_WELCOME = "FACEBOOK_WELCOME";
 const FB_PAGE_ACCESS_TOKEN = process.env.FB_PAGE_ACCESS_TOKEN;
 const APIAI_ACCESS_TOKEN = process.env.APIAI_ACCESS_TOKEN;
 const APIAI_LANG = process.env.APIAI_LANG || 'en';
+
+// Packages
+const apiai = require('apiai');
+const uuid = require('uuid');
+const request = require('request');
+const async = require('async');
 
 
 // Logic

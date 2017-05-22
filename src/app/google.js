@@ -3,7 +3,6 @@
 // Environment Variables
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
-
 // Packages
 const nodeGeocoder = require('node-geocoder');
 const geocoder = nodeGeocoder({
@@ -49,9 +48,18 @@ const addressToCoords = (commuteContext) => {
 		});
 };
 
+const timeToUnix = (commuteContext) => {
+	
+	let arrivalDate;
+	let arrivalTime = commuteContext.arrival;
+
+	let timestamp = moment(`2009-07-15 ${arrivalTime}`).unix()
+};
+
 
 // Exports
 exports.addressToCoords = addressToCoords;
+exports.dateToUnix = timeToUnix;
 
 
 /*
