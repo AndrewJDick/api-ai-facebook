@@ -52,20 +52,20 @@ app.post('/webhook/', (req, res) => {
             if (data.result.action === 'arrivapi.default.submit') {
 
                 // // Convert addresses to LatLng cords
-                // let addressConversion = new Promise((resolve, reject) => {
-                //     resolve(google.addressToCoords(commuteContext));
-                // });
+                let waypointConversion = new Promise((resolve, reject) => {
+                    resolve(google.addressToCoords(commuteContext));
+                });
 
                 // Covert arrival time to Unix tinestamp
-                let datetimeConversion = new Promise((resolve, reject) => {
-                    resolve(google.datetimeToUnix(commuteContext));
+                let arrivalConversion = new Promise((resolve, reject) => {
+                    resolve(google.datetimeToUnix(commuteContext, 'arrival'));
                 });
                     
-                // // Store default commute in the db
-                // let commute = Promise.all([addressConversion, datetimeConversion]).then((values) => {  
-                //     console.log(values);
-                //     //mongo.dbConnect('addCommute', values);
-                // });
+                // Store default commute in the db
+                let commute = Promise.all([waypointConversion, arrivalConversion]).then((values) => {  
+                    console.log(values);
+                    //mongo.dbConnect('addCommute', values);
+                });
             }
         }
 

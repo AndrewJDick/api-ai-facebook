@@ -20,7 +20,7 @@ const latLng = (commuteContext, prop) => {
     return geocoder.geocode(commuteContext[prop])
         .then((value) => {
                 
-            return commuteContext = Object.defineProperty(commuteContext, prop, {
+            return commuteContext = Object.defineProperty(commuteContext, `${prop}.converted`, {
                 value: `${value[0].latitude},${value[0].longitude}`
             });
 
@@ -43,9 +43,6 @@ const addressToCoords = (commuteContext) => {
 
     return Promise.all([origin, destination])
         .then((values) => { 
-            console.log('address values');
-            console.log(values);
-            
             return values[0];
         }, (reason) => {
             console.error(reason);
@@ -54,20 +51,17 @@ const addressToCoords = (commuteContext) => {
 
 
 // Converts the user's arrival time to a unix timestamp
-const datetimeToUnix = (commuteContext) => {
+const datetimeToUnix = (commuteContext, prop, customDate = false) => {
     
-    let dateToday = new Date().toISOString().split('T')[0];             // YYYY-MM-DD
-    let arrivalTime = commuteContext.arrival;
+    let timestampDate = (!customDate)
+        ? new Date().toISOString().split('T')[0]    // Defaults to 'today'
+        : commuteContext.arrivalDate;               // YYYY-MM-DD
+
+    let timestampTime = commuteContext.arrival;                
     
-    let arrivalDate = moment(`${dateToday} ${arrivalTime}`, moment.ISO_8601).format();
-    let foo = moment(`${dateToday} ${arrivalTime}`, moment.ISO_8601).unix();   
-
-    console.log(arrivalDate);
-    console.log(foo);
-                    
-    //console.log(moment(arrivalTimestamp).unix());
-
-    //return moment(`${arrivalDate} ${arrivalTime}`).unix();      // Unix Timestamp
+    return timestamp = Object.defineProperty(commuteContext, `${prop}.converted`, {
+        value: moment(`${timestampDate} ${timestampTime}`, moment.ISO_8601).unix();     // 1495443600
+    });
 };
 
 
