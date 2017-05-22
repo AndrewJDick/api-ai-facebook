@@ -63,7 +63,7 @@ const datetimeToUnix = (commuteContext, prop, customDate = false) => {
 
     let timestampTime = commuteContext.arrival;                
     
-    let timestamp = Object.defineProperty(commuteContext, `${prop}.converted`, {
+    let timestamp = Object.defineProperty(commuteContext, prop, {
         value: moment(`${timestampDate} ${timestampTime}`, moment.ISO_8601).unix()      // 1495443600
     });
 
