@@ -52,12 +52,14 @@ const addressToCoords = (commuteContext) => {
         });
 };
 
+
+// Converts the user's arrival time to a unix timestamp
 const datetimeToUnix = (commuteContext) => {
     
     let dateToday = new Date().toISOString().split('T')[0];             // YYYY-MM-DD
     let arrivalTime = commuteContext.arrival;
     
-    let arrivalDate = moment(`${dateToday} ${arrivalTime}`, moment.ISO_8601);   
+    let arrivalDate = moment(`${dateToday} ${arrivalTime}`, moment.ISO_8601).format();   
 
     console.log(arrivalDate);
                     
