@@ -18,48 +18,48 @@ const latLng = (commuteContext, prop) => {
 
     return geocoder.geocode(commuteContext[prop])
         .then((value) => {
-	            
+                
             return commuteContext = Object.defineProperty(commuteContext, prop, {
                 value: `${value[0].latitude},${value[0].longitude}`
             });
 
-	    }, (reason) => {
-	        console.error(reason);
-	    });
+        }, (reason) => {
+            console.error(reason);
+        });
 };
 
 
 // Returns JSON object with transformed waypoints
 const addressToCoords = (commuteContext) => {
 
-	let origin = new Promise((resolve, reject) => { 
-		resolve(latLng(commuteContext, 'origin'));
-	});
+    let origin = new Promise((resolve, reject) => { 
+        resolve(latLng(commuteContext, 'origin'));
+    });
 
-	let destination = new Promise((resolve, reject) => { 
-		resolve(latLng(commuteContext, 'destination'));
-	});
+    let destination = new Promise((resolve, reject) => { 
+        resolve(latLng(commuteContext, 'destination'));
+    });
 
     return Promise.all([origin, destination])
-	    .then((values) => { 
-			return values[0];
-		}, (reason) => {
-			console.error(reason);
-		});
+        .then((values) => { 
+            return values[0];
+        }, (reason) => {
+            console.error(reason);
+        });
 };
 
-const timeToUnix = (commuteContext) => {
-	
-	let arrivalDate;
-	let arrivalTime = commuteContext.arrival;
+const datetimeToUnix = (commuteContext) => {
+    
+    let arrivalDate = new Date().toISOString().split('T')[0];   // YYYY-MM-DD
+    let arrivalTime = commuteContext.arrival;                   // HH:MM:SS
 
-	let timestamp = moment(`2009-07-15 ${arrivalTime}`).unix()
+    return moment(`${arrivalDate} ${arrivalTime}`).unix();      // Unix Timestamp
 };
 
 
 // Exports
 exports.addressToCoords = addressToCoords;
-exports.dateToUnix = timeToUnix;
+exports.dateToUnix = datetimeToUnix;
 
 
 /*

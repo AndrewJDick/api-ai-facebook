@@ -52,23 +52,21 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'arrivapi.default.submit') {
 
-                // // Convert addresses to LatLng cords
-                // let addressConversion = new Promise((resolve, reject) => {
-                //     resolve(google.addressToCoords(commuteContext));
-                // });
+                // Convert addresses to LatLng cords
+                let addressConversion = new Promise((resolve, reject) => {
+                    resolve(google.addressToCoords(commuteContext));
+                });
 
-                // // Covert arrival time to Unix tinestamp
-                // let timeConversion = new Promise((resolve, reject) => {
-                //     resolve(google.timeToUnix(commuteContext));
-                // });
+                Covert arrival time to Unix tinestamp
+                let timeConversion = new Promise((resolve, reject) => {
+                    resolve(google.datetimeToUnix(commuteContext));
+                });
                     
-                // // Store default commute in the db
-                // let commute = Promise.all([addressConversion, timeConversion]).then((values) => {  
-                //     mongo.dbConnect('addCommute', values[0]);
-                // });
-
-                const time = commuteContext.arrival.split(':');
-                console.log(new Date().setHours(time[0],time[1],time[2],0));
+                // Store default commute in the db
+                let commute = Promise.all([addressConversion, timeConversion]).then((values) => {  
+                    console.log(values);
+                    //mongo.dbConnect('addCommute', values);
+                });
             }
         }
 
