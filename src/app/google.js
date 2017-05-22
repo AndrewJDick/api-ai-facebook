@@ -53,13 +53,14 @@ const addressToCoords = (commuteContext) => {
 
 const datetimeToUnix = (commuteContext) => {
     
-    let arrivalDate = new Date().toISOString().split('T')[0];   // YYYY-MM-DD
+    let arrivalDate = moment(new Date().toISOString().split('T')[0], 'YYYY/MM/DD', true);   // YYYY-MM-DD
     let arrivalTime = commuteContext.arrival;                   // HH:MM:SS
+    let arrivalTimestamp = `${arrivalDate} ${arrivalTime}`;
 
-    console.log(`${arrivalDate} ${arrivalTime}`);
-    console.log(moment(`${arrivalDate} ${arrivalTime}`).unix());
+    console.log(arrivalDate);
+    //console.log(moment(arrivalTimestamp).unix());
 
-    return moment(`${arrivalDate} ${arrivalTime}`).unix();      // Unix Timestamp
+    //return moment(`${arrivalDate} ${arrivalTime}`).unix();      // Unix Timestamp
 };
 
 
