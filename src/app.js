@@ -57,13 +57,13 @@ app.post('/webhook/', (req, res) => {
                     resolve(google.addressToCoords(commuteContext));
                 });
 
-                Covert arrival time to Unix tinestamp
-                let timeConversion = new Promise((resolve, reject) => {
+                // Covert arrival time to Unix tinestamp
+                let datetimeConversion = new Promise((resolve, reject) => {
                     resolve(google.datetimeToUnix(commuteContext));
                 });
                     
                 // Store default commute in the db
-                let commute = Promise.all([addressConversion, timeConversion]).then((values) => {  
+                let commute = Promise.all([addressConversion, datetimeConversion]).then((values) => {  
                     console.log(values);
                     //mongo.dbConnect('addCommute', values);
                 });
