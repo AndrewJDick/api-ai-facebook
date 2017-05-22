@@ -71,8 +71,6 @@ const isSeeded = (() => {
 
 // Add or update a user's commute in the mongoDB commutes collection
 const addCommute = (db, commute, callback) => {
-    
-    console.log('adding commute'); 
 
     db.collection('commutes').updateOne(
         {
@@ -126,11 +124,7 @@ const addCommute = (db, commute, callback) => {
 
 
 const dbConnect = (obj, method) => {
-    console.log('connecting to db');
-
     mongodb.connect(uri, (err, db) => {
-        
-        console.log('connected to db');
 
         assert.equal(null, err);
         
