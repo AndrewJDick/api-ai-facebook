@@ -54,7 +54,7 @@ const addressToCoords = (commuteContext) => {
 
 const datetimeToUnix = (commuteContext) => {
     
-    let arrivalDate = moment(new Date().toISOString().split('T')[0], 'YYYY-MM-DD', true);   // YYYY-MM-DD
+    let arrivalDate = moment(new Date().toISOString().split('T')[0], 'YYYY-MM-DD', true).format();   // YYYY-MM-DD
     let arrivalTime = commuteContext.arrival;                   // HH:MM:SS
     let arrivalTimestamp = `${arrivalDate} ${arrivalTime}`;
 
