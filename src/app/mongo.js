@@ -73,7 +73,7 @@ const isSeeded = (() => {
 const addCommute = (db, commute, callback) => {
     
     console.log('adding commute'); 
-    
+
     db.collection('commutes').updateOne(
         {
             psid : commute.facebook_sender_id 
@@ -124,7 +124,11 @@ const addCommute = (db, commute, callback) => {
 
 
 const dbConnect = (obj, method) => {
+    console.log('connecting to db');
+
     mongodb.connect(uri, (err, db) => {
+        
+        console.log('connected to db');
         
         assert.equal(null, err);
         
