@@ -77,6 +77,7 @@ const addCommute = (db, commute, callback) => {
         {   
             $set: {
                 origin: commute.origin,
+
                 destination: commute.destination,
                 arrival: commute.time,
                 mode: commute.travel_mode,
