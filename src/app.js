@@ -67,7 +67,8 @@ app.post('/webhook/', (req, res) => {
                 //     mongo.dbConnect('addCommute', values[0]);
                 // });
 
-                let time = commuteContext.arrival.split(':');
+                console.log(commuteContext);
+                const time = commuteContext.arrival.split(':');
                 console.log(time);
                 console.log(new Date().setHours(0,0,0,0));
             }
