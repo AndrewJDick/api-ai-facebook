@@ -41,10 +41,6 @@ app.post('/webhook/', (req, res) => {
         let commuteContext = {};
         let speech = '';
 
-        var foo = moment('MMMM Do YYYY 15:30:00').unix();
-
-        console.log(foo);
-
         // Store the Default Commute object built from the API.ai bot.
         for (let context of contexts) {
             if (context.name === 'generic') {
@@ -71,6 +67,8 @@ app.post('/webhook/', (req, res) => {
                 //     mongo.dbConnect('addCommute', values[0]);
                 // });
 
+                let time = commuteContext.arrival.split(':');
+                console.log(time);
                 console.log(new Date().setHours(0,0,0,0));
             }
         }
