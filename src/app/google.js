@@ -21,7 +21,8 @@ const latLng = (commuteContext, prop) => {
         .then((value) => {
                 
             return commuteContext = Object.defineProperty(commuteContext, `${prop}.converted`, {
-                value: `${value[0].latitude},${value[0].longitude}`
+                value: `${value[0].latitude},${value[0].longitude}`,
+                writable: true
             });
 
         }, (reason) => {
@@ -64,11 +65,12 @@ const datetimeToUnix = (commuteContext, prop, customDate = false) => {
     let timestampTime = commuteContext.arrival;                
     
     let timestamp = Object.defineProperty(commuteContext, prop, {
-        value: moment(`${timestampDate} ${timestampTime}`, moment.ISO_8601).unix()      // 1495443600
+        value: moment(`${timestampDate} ${timestampTime}`, moment.ISO_8601).unix(),      // 1495443600
+        writable: true,
     });
 
-    console.log(timestamp);
-    return timestamp;
+    console.log(commuteContext);
+    return commuteContext;
 
 };
 
