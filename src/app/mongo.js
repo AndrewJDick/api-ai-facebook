@@ -14,27 +14,29 @@ const uri = process.env.MONGODB_URI;
 const insertSeed = (db, callback) => {
     db.collection('commutes').insert([{
         psid: '9999999999999999',
-        origin: '51.6564890,-0.3903200',
-        destination: '51.5238910,-0.0968820',
-        arrival: '09:00:00',
-        mode: 'transit',
-        preference: 'rail'
-    },
-    {
-        psid: '5555555555555555',
-        origin: '51.475579,-0.064370',
-        destination: '51.5238910,-0.0968820',
-        arrival: '11:00:00',
-        mode: 'driving',
-        preference: ''
-    },
-    {
-        psid: '4444444444444444',
-        origin: '51.059771,-1.310142',
-        destination: '51.5238910,-0.0968820',
-        arrival: '17:03:40',
-        mode: 'transit',
-        preference: 'bus'
+        origin: {
+            parsed: 'EC1 9HX',
+            original: 'my origin is EC1 9HX',
+            converted: '51.5239871,-0.0971759'
+        },
+        destination: {
+            parsed: 'KA22 7PN',
+            original: 'My destination is KA22 7PN',
+            converted: '55.6571562,-4.8180135'
+        },
+        arrival: {
+            parsed: '09:00:00',
+            original: 'I wish to arrive at 9am',
+            converted: '1495443600'
+        },
+        mode: {
+            parsed: 'transit',
+            original: 'I take public transport'
+        },
+        preference: {
+            parsed: 'rail',
+            original: 'I prefer the train'
+        }
     }], (err, result) => {
         assert.equal(err, null);
         console.log("Inserted seed data into the commutes collection.");
@@ -76,12 +78,29 @@ const addCommute = (db, commute, callback) => {
         },
         {   
             $set: {
-                origin: commute.origin,
-
-                destination: commute.destination,
-                arrival: commute.time,
-                mode: commute.travel_mode,
-                preference: commute.transit_mode
+                origin: {
+                    parsed: commute.origin,
+                    original: commute.origin.original,
+                    converted: commute.origin.converted
+                },
+                destination: {
+                    parsed: commute.destination,
+                    original: commute.destination.original,
+                    converted: commute.destination.converted
+                },
+                arrival: {
+                    parsed: commute.arrival,
+                    original: commute.arrival.original,
+                    converted: commute.arrival.converted
+                },
+                mode: {
+                    parsed: commute.travel_mode,
+                    original: commute.travel_mode.original
+                },
+                preference: {
+                    parsed: commute.transit_mode,
+                    original: commute.transit_mode.original
+                }
             },
             $setOnInsert: { 
                 psid: commute.facebook_sender_id
