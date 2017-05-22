@@ -8,7 +8,6 @@ const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 const app = require('express')();
 const bodyParser = require('body-parser');
 const JSONbig = require('json-bigint');
-const moment = require('moment');
 
 // App
 const mongo = require('./app/mongo');
@@ -52,21 +51,21 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'arrivapi.default.submit') {
 
-                // Convert addresses to LatLng cords
-                let addressConversion = new Promise((resolve, reject) => {
-                    resolve(google.addressToCoords(commuteContext));
-                });
+                // // Convert addresses to LatLng cords
+                // let addressConversion = new Promise((resolve, reject) => {
+                //     resolve(google.addressToCoords(commuteContext));
+                // });
 
                 // Covert arrival time to Unix tinestamp
                 let datetimeConversion = new Promise((resolve, reject) => {
                     resolve(google.datetimeToUnix(commuteContext));
                 });
                     
-                // Store default commute in the db
-                let commute = Promise.all([addressConversion, datetimeConversion]).then((values) => {  
-                    console.log(values);
-                    //mongo.dbConnect('addCommute', values);
-                });
+                // // Store default commute in the db
+                // let commute = Promise.all([addressConversion, datetimeConversion]).then((values) => {  
+                //     console.log(values);
+                //     //mongo.dbConnect('addCommute', values);
+                // });
             }
         }
 

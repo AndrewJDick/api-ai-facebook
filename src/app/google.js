@@ -4,6 +4,7 @@
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 // Packages
+const moment = require('moment');
 const nodeGeocoder = require('node-geocoder');
 const geocoder = nodeGeocoder({
   provider: 'google',
@@ -53,7 +54,7 @@ const addressToCoords = (commuteContext) => {
 
 const datetimeToUnix = (commuteContext) => {
     
-    let arrivalDate = moment(new Date().toISOString().split('T')[0], 'YYYY/MM/DD', true);   // YYYY-MM-DD
+    let arrivalDate = moment(new Date().toISOString().split('T')[0], 'YYYY-MM-DD', true);   // YYYY-MM-DD
     let arrivalTime = commuteContext.arrival;                   // HH:MM:SS
     let arrivalTimestamp = `${arrivalDate} ${arrivalTime}`;
 
