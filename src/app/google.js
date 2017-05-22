@@ -65,7 +65,7 @@ const datetimeToUnix = (commuteContext, prop, customDate = false) => {
 };
 
 
-const addConversionProp = (obj, prop, value) {
+const addConversionProp = (obj, prop, value) => {
 
     return Object.defineProperty(obj, `${prop}.converted`, {
         value: value,
