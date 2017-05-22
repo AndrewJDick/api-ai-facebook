@@ -11,7 +11,7 @@ const uri = process.env.MONGODB_URI;
 
 
 // Dummy data
-const insertSeed = (db, closeDb) => {
+const insertSeed = (db, callback) => {
     db.collection('commutes').insert([{
         psid: '9999999999999999',
         origin: '51.6564890,-0.3903200',
@@ -38,12 +38,12 @@ const insertSeed = (db, closeDb) => {
     }], (err, result) => {
         assert.equal(err, null);
         console.log("Inserted seed data into the commutes collection.");
-        closeDb();
+        callback();
     });
 };
 
 
-// DB Seed
+// DB seed on deploy
 const isSeeded = (() => {
     mongodb.connect(uri, (err, db) => {
   
@@ -103,14 +103,14 @@ const addCommute = (db, commute, callback) => {
 };
 
 
-const dbConnect = (commute, method) => {
+const dbConnect = (obj, method) => {
     mongodb.connect(uri, (err, db) => {
         
         assert.equal(null, err);
         
         switch(method) {
             case 'addCommute':
-                addCommute(db, commute, () => {
+                addCommute(db, obj, () => {
                     db.close();
                 })
                 break;

@@ -28,9 +28,7 @@ const latLng = (commuteContext, prop) => {
 
 
 // Returns JSON object with transformed waypoints
-const addressToCoords = (commuteContext) => {
-
-    console.log('addresstocoords');    
+const addressToCoords = (commuteContext) => {  
 
     let origin = new Promise((resolve, reject) => { 
         resolve(latLng(commuteContext, 'origin'));
@@ -65,6 +63,7 @@ const datetimeToUnix = (commuteContext, prop, customDate = false) => {
 };
 
 
+// Adds a new property to an object with the .converted suffix
 const addConversionProp = (obj, prop, value) => {
 
     return Object.defineProperty(obj, `${prop}.converted`, {
