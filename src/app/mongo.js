@@ -93,7 +93,7 @@ const addCommute = (db, commute, callback) => {
                 },
                 arrival: {
                     parsed: commute.arrival,
-                    original: commute.['arrival.original'],
+                    original: commute['arrival.original'],
                     converted: commute['arrival.converted']
                 },
                 mode: {
