@@ -56,7 +56,7 @@ const datetimeToUnix = (commuteContext) => {
     let arrivalDate = new Date().toISOString().split('T')[0];   // YYYY-MM-DD
     let arrivalTime = commuteContext.arrival;                   // HH:MM:SS
 
-    console.log('moment');
+    console.log(`${arrivalDate} ${arrivalTime}`);
     console.log(moment(`${arrivalDate} ${arrivalTime}`).unix());
 
     return moment(`${arrivalDate} ${arrivalTime}`).unix();      // Unix Timestamp
