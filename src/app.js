@@ -64,7 +64,7 @@ app.post('/webhook/', (req, res) => {
                 // Store default commute in the db
                 let commute = Promise.all([waypointConversion, arrivalConversion]).then((value) => {  
                     console.log(value[0]);
-                    mongo.dbConnect('addCommute', value[0]);
+                    mongo.dbConnect(value[0], 'addCommute');
                 });
             }
         }
