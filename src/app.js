@@ -53,16 +53,18 @@ app.post('/webhook/', (req, res) => {
 
                 // // Convert addresses to LatLng cords
                 let waypointConversion = new Promise((resolve, reject) => {
-                    console.log('resolving waypoint');
-                    resolve(google.addressToCoords(commuteContext));
-                    console.log('waypoint resolved');
+                    resolve(google.addressToCoords(commuteContext)).then((value) => {
+                        console.log('waypoint');
+                        console.log(commuteContext);
+                    });;
                 });
 
                 // Covert arrival time to Unix tinestamp
                 let datetimeConversion = new Promise((resolve, reject) => {
-                    console.log('resolving datetime');
-                    resolve(google.datetimeToUnix(commuteContext, 'arrival'));
-                    console.log('waypoint resolved');
+                    resolve(google.datetimeToUnix(commuteContext, 'arrival')).then((value) => {
+                        console.log('datetime');
+                        console.log(commuteContext);
+                    });
                 });
                     
                 // Store default commute in the db
