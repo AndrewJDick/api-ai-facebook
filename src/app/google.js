@@ -73,7 +73,7 @@ const addConversionProp = (obj, prop, value) => {
         enumerable: true,
         configurable: true
     });
-})
+};
 
 
 // Exports
