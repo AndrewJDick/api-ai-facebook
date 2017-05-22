@@ -72,12 +72,15 @@ const isSeeded = (() => {
 // Add or update a user's commute in the mongoDB commutes collection
 const addCommute = (db, commute, callback) => {
     
+    console.log('adding commute'); 
+    
     db.collection('commutes').updateOne(
         {
             psid : commute.facebook_sender_id 
         },
         {   
             $set: {
+                psid: commute.facebook_sender_id,
                 origin: {
                     parsed: commute.origin,
                     original: commute.origin.original,
@@ -102,9 +105,6 @@ const addCommute = (db, commute, callback) => {
                     original: commute.transit_mode.original
                 }
             },
-            $setOnInsert: { 
-                psid: commute.facebook_sender_id
-            }
         },
         {   
             upsert : true 
