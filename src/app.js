@@ -57,13 +57,12 @@ app.post('/webhook/', (req, res) => {
                 });
 
                 // Covert arrival time to Unix tinestamp
-                let arrivalConversion = new Promise((resolve, reject) => {
+                let datetimeConversion = new Promise((resolve, reject) => {
                     resolve(google.datetimeToUnix(commuteContext, 'arrival'));
                 });
                     
                 // Store default commute in the db
-                let commute = Promise.all([waypointConversion, arrivalConversion]).then((value) => {  
-                    console.log(value[0]);
+                let userCommute = Promise.all([waypointConversion, dateTimeConversion]).then((value) => {  
                     mongo.dbConnect(value[0], 'addCommute');
                 });
             }

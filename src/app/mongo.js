@@ -103,7 +103,7 @@ const addCommute = (db, commute, callback) => {
                 }
             },
             $setOnInsert: {
-                psid: commute.facebook_sender_id,
+                psid: commute.facebook_sender_id
             }
         },
         {   
