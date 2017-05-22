@@ -39,7 +39,7 @@ const insertSeed = (db, callback) => {
         }
     }], (err, result) => {
         assert.equal(err, null);
-        console.log("Inserted seed data into the commutes collection.");
+        console.log("Inserted seed data into commutes collection.");
         callback();
     });
 };
