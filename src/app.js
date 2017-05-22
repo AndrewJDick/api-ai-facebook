@@ -58,7 +58,7 @@ app.post('/webhook/', (req, res) => {
 
                 // Covert arrival time to Unix tinestamp
                 let datetimeConversion = new Promise((resolve, reject) => {
-                    resolve(google.datetimeToUnix(commuteContext, 'arrival');
+                    resolve(google.datetimeToUnix(commuteContext, 'arrival'));
                 });
                     
                 // Store default commute in the db
