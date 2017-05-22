@@ -39,8 +39,7 @@ const addressToCoords = (commuteContext) => {
     });
 
     return Promise.all([origin, destination])
-        .then((values) => { 
-            console.log('address coords resolved');
+        .then((values) => {
             return values;
         }, (reason) => {
             console.error(reason);
@@ -58,7 +57,11 @@ const datetimeToUnix = (commuteContext, prop, customDate = false) => {
     let timestampTime = commuteContext.arrival;                
     
     let timestampUnix = moment(`${timestampDate} ${timestampTime}`, moment.ISO_8601).unix();
-    
+
+    console.log(prop);
+    console.log(timestampUnix);
+    console.log(commuteContext)
+
     return addConversionProp(commuteContext, prop, timestampUnix);
 };
 
