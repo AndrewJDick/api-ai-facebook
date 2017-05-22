@@ -65,7 +65,7 @@ const datetimeToUnix = (commuteContext) => {
 
 // Exports
 exports.addressToCoords = addressToCoords;
-exports.dateToUnix = datetimeToUnix;
+exports.datetimeToUnix = datetimeToUnix;
 
 
 /*
