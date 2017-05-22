@@ -72,6 +72,7 @@ const isSeeded = (() => {
 // Add or update a user's commute in the mongoDB commutes collection
 const addCommute = (db, commute, callback) => {
 
+    console.log('proof of change');
     console.log(commute);
 
     db.collection('commutes').updateOne(
