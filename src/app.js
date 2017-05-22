@@ -42,7 +42,7 @@ app.post('/webhook/', (req, res) => {
 
         var foo = moment('2009-07-15 00:00:00').unix();
 
-        console.log('foo');
+        console.log(foo);
 
         // Store the Default Commute object built from the API.ai bot.
         for (let context of contexts) {
