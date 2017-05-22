@@ -42,6 +42,9 @@ const addressToCoords = (commuteContext) => {
 
     return Promise.all([origin, destination])
         .then((values) => { 
+            console.log('address values');
+            console.log(values);
+            
             return values[0];
         }, (reason) => {
             console.error(reason);
@@ -52,6 +55,9 @@ const datetimeToUnix = (commuteContext) => {
     
     let arrivalDate = new Date().toISOString().split('T')[0];   // YYYY-MM-DD
     let arrivalTime = commuteContext.arrival;                   // HH:MM:SS
+
+    console.log('moment');
+    console.log(moment(`${arrivalDate} ${arrivalTime}`).unix());
 
     return moment(`${arrivalDate} ${arrivalTime}`).unix();      // Unix Timestamp
 };
