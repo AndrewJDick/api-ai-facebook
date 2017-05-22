@@ -78,6 +78,7 @@ const addCommute = (db, commute, callback) => {
         },
         {   
             $set: {
+                psid: commute.facebook_sender_id,
                 origin: {
                     parsed: commute.origin,
                     original: commute['origin.original'],
@@ -101,9 +102,6 @@ const addCommute = (db, commute, callback) => {
                     parsed: commute.transit_mode,
                     original: commute['transit_mode.original']
                 }
-            },
-            $setOnInsert: {
-                psid: commute.facebook_sender_id
             }
         },
         {   
