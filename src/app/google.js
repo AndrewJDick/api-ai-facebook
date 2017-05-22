@@ -33,6 +33,8 @@ const latLng = (commuteContext, prop) => {
 // Returns JSON object with transformed waypoints
 const addressToCoords = (commuteContext) => {
 
+    console.log('addresstocoords');    
+
     let origin = new Promise((resolve, reject) => { 
         resolve(latLng(commuteContext, 'origin'));
     });
@@ -53,6 +55,8 @@ const addressToCoords = (commuteContext) => {
 // Converts the user's arrival time to a unix timestamp
 const datetimeToUnix = (commuteContext, prop, customDate = false) => {
     
+    console.log('datetimetounix');
+
     let timestampDate = (!customDate)
         ? new Date().toISOString().split('T')[0]    // Defaults to 'today'
         : commuteContext.arrivalDate;               // YYYY-MM-DD
