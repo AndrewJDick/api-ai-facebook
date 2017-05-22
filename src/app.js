@@ -40,7 +40,7 @@ app.post('/webhook/', (req, res) => {
         let commuteContext = {};
         let speech = '';
 
-        var foo = moment('2009-07-15 00:00:00').unix();
+        var foo = moment('MMMM Do YYYY 15:30:00').unix();
 
         console.log(foo);
 
