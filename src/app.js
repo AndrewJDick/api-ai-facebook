@@ -21,10 +21,6 @@ app.use(bodyParser.text({type: 'application/json'}));
 
 app.get('/webhook/', (req, res) => {
 
-    var foo = moment('2009-07-15 00:00:00').unix();
-
-    console.log('foo');
-
     if (req.query['hub.verify_token'] === FB_VERIFY_TOKEN) {
         res.send(req.query['hub.challenge']);
 
@@ -43,6 +39,10 @@ app.post('/webhook/', (req, res) => {
         let contexts = data.result.contexts; 
         let commuteContext = {};
         let speech = '';
+
+        var foo = moment('2009-07-15 00:00:00').unix();
+
+        console.log('foo');
 
         // Store the Default Commute object built from the API.ai bot.
         for (let context of contexts) {
