@@ -4,6 +4,7 @@
 const app = require('express')();
 const bodyParser = require('body-parser');
 const JSONbig = require('json-bigint');
+const moment = require('moment');
 
 // App
 const mongo = require('./app/mongo');
@@ -19,6 +20,10 @@ let facebookBot = new facebook.FacebookBot();
 app.use(bodyParser.text({type: 'application/json'}));
 
 app.get('/webhook/', (req, res) => {
+
+    var foo = moment('2009-07-15 00:00:00').unix();
+
+    console.log('foo');
 
     if (req.query['hub.verify_token'] === FB_VERIFY_TOKEN) {
         res.send(req.query['hub.challenge']);
@@ -50,8 +55,11 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'arrivapi.default.submit') {
 
-                // Convert address to LatLng cords
+                // Convert addresses to LatLng cords
                 let addressConversion = Promise.resolve(google.addressToCoords(commuteContext));
+
+                // Covert arrival time to Unix tinestamp
+                addressConversion.
                     
                 // Store commute in the db
                 addressConversion.then((commute) => { 

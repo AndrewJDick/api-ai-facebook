@@ -4,6 +4,9 @@
 const mongodb = require('mongodb').MongoClient;
 const ObjectId = require('mongodb').ObjectID;
 const assert = require('assert');
+
+
+// Environment Variables
 const uri = process.env.MONGODB_URI;
 
 
