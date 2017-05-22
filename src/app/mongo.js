@@ -83,26 +83,26 @@ const addCommute = (db, commute, callback) => {
                 psid: commute.facebook_sender_id,
                 origin: {
                     parsed: commute.origin,
-                    original: commute.origin.original,
-                    converted: commute.origin.converted
+                    original: commute.'origin.original',
+                    converted: commute.'origin.converted'
                 },
                 destination: {
                     parsed: commute.destination,
-                    original: commute.destination.original,
-                    converted: commute.destination.converted
+                    original: commute.'destination.original',
+                    converted: commute.'destination.converted'
                 },
                 arrival: {
                     parsed: commute.arrival,
-                    original: commute.arrival.original,
-                    converted: commute.arrival.converted
+                    original: commute.'arrival.original',
+                    converted: commute.'arrival.converted'
                 },
                 mode: {
                     parsed: commute.travel_mode,
-                    original: commute.travel_mode.original
+                    original: commute.'travel_mode.original'
                 },
                 preference: {
                     parsed: commute.transit_mode,
-                    original: commute.transit_mode.original
+                    original: commute.'transit_mode.original'
                 }
             },
         },
@@ -129,7 +129,7 @@ const dbConnect = (obj, method) => {
     mongodb.connect(uri, (err, db) => {
         
         console.log('connected to db');
-        
+
         assert.equal(null, err);
         
         switch(method) {
