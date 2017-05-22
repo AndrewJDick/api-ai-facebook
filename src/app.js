@@ -66,7 +66,7 @@ app.post('/webhook/', (req, res) => {
                     console.log('commute');
                     console.log(commuteContext);
 
-                    mongo.dbConnect(value[0], 'addCommute');
+                    mongo.dbConnect(commuteContext, 'addCommute');
                 });
             }
         }
