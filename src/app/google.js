@@ -154,13 +154,12 @@ exports.datetimeToUnix = datetimeToUnix;
 exports.commuteDirections = commuteDirections;
 
 
-/*
-Sample Google Directions Query
-==============================
-https://maps.googleapis.com/maps/api/directions/json
-?origin=51.6564890,-0.3903200
-&destination=51.5238910,-0.0968820
-&key=AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE
-&mode=transit
-&units=imperial
-&ar
+
+// Sample Google Directions Query
+// ==============================
+// https://maps.googleapis.com/maps/api/directions/json
+// ?origin=51.6564890,-0.3903200
+// &destination=51.5238910,-0.0968820
+// &key=AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE
+// &mode=transit
+// &units=imperial
