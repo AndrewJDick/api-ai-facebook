@@ -87,9 +87,9 @@ const commuteDirections = (commute) => {
         destination: commute['destination.converted'],
         arrival_time: commute['arrival.converted'],
         alternatives: true,
-        mode: 'transit'
-        // region: 'uk',
-        // units: 'imperial'
+        mode: 'transit',
+        region: 'uk',
+        units: 'imperial'
         // preference: commute.transit_mode
         // traffic_model: 'pessimistic', // #British
     };
