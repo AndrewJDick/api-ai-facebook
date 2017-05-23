@@ -83,6 +83,9 @@ const addConversionProp = (obj, prop, value) => {
 // Create a journey from supplied arguments
 const commuteDirections = (commuteContext) => {
 
+    console.log('At least were here');
+    console.log(commuteContext);
+
     let commute = {
         origin: commuteContext.origin.coverted,
         destination: commuteContext.destination.coverted,
@@ -95,7 +98,7 @@ const commuteDirections = (commuteContext) => {
         units: 'imperial'
     };
 
-    googleMapsClient.directions(commute, (err, response) => {
+    return googleMapsClient.directions(commute, (err, response) => {
         if (err) {
             console.error(err);
         } else {
