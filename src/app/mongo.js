@@ -116,10 +116,6 @@ const addCommute = (db, commute, isDefault, callback) => {
                         original: commute['arrival.original'],
                         converted: commute['arrival.converted']
                     },
-                    mode: {
-                        parsed: commute.travel_mode,
-                        original: commute['travel_mode.original']
-                    },
                     preference: {
                         parsed: commute.transit_mode,
                         original: commute['transit_mode.original']
