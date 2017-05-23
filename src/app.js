@@ -63,7 +63,7 @@ app.post('/webhook/', (req, res) => {
                     
                 // Store default commute in the db
                 let userCommute = Promise.all([waypointConversion, datetimeConversion]).then(() => {  
-                    google.commuteJourney(commuteContext);
+                    google.commuteDirections(commuteContext);
                     //mongo.dbConnect(commuteContext, 'addCommute');
                 });
             }

@@ -81,7 +81,7 @@ const addConversionProp = (obj, prop, value) => {
 
 
 // Create a journey from supplied arguments
-const commuteJourney = (commuteContext) => {
+const commuteDirections = (commuteContext) => {
 
     let commute = {
         origin: commuteContext.origin.coverted,
@@ -111,6 +111,7 @@ const commuteJourney = (commuteContext) => {
 // Exports
 exports.addressToCoords = addressToCoords;
 exports.datetimeToUnix = datetimeToUnix;
+exports.commuteDirections = commuteDirections;
 
 
 /*
