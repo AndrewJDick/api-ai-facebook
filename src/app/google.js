@@ -22,14 +22,6 @@ const googleMapsClient = require('@google/maps').createClient({
 // Returns JSON object with transformed waypoints
 const addressToCoords = (commuteContext) => {  
 
-    let origin = new Promise((resolve, reject) => { 
-        resolve(latLng(commuteContext, 'origin'));
-    });
-
-    let destination = new Promise((resolve, reject) => { 
-        resolve(latLng(commuteContext, 'destination'));
-    });
-
     // Converts api.ai @sys.address entity to LatLng coordinates
     const latLng = (commuteContext, prop) => {
 
@@ -42,6 +34,14 @@ const addressToCoords = (commuteContext) => {
                 console.error(reason);
             });
     };
+
+    let origin = new Promise((resolve, reject) => { 
+        resolve(latLng(commuteContext, 'origin'));
+    });
+
+    let destination = new Promise((resolve, reject) => { 
+        resolve(latLng(commuteContext, 'destination'));
+    });
 
     return Promise.all([origin, destination])
         .then((values) => {
