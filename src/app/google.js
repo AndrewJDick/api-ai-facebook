@@ -83,22 +83,17 @@ const addConversionProp = (obj, prop, value) => {
 // Create a journey from supplied arguments
 const commuteDirections = (commute) => {
 
-    console.log('At least were here');
-    console.log(commute);
-
     let journey = {
         origin: commute['origin.converted'],
-        destination: commute['destination.converted'],
-        arrival_time: commute['arrival.converted'],
-        preference: commute.transit_mode,
-        alternatives: true,
-        traffic_model: 'pessimistic', // #British
-        mode: 'transit',
-        region: 'uk',
-        units: 'imperial'
+        destination: commute['destination.converted']
+        // arrival_time: commute['arrival.converted'],
+        // preference: commute.transit_mode,
+        // alternatives: true,
+        // traffic_model: 'pessimistic', // #British
+        // mode: 'transit',
+        // region: 'uk',
+        // units: 'imperial'
     };
-
-    console.log(journey);
 
     googleMapsClient.directions(journey, (err, response) => {
         if (err) {
@@ -107,6 +102,9 @@ const commuteDirections = (commute) => {
             console.log('something worked');
             console.log(response);
         }
+    }).then((value) => {
+        console.log('then');
+        console.log(value);
     });
 
 }
