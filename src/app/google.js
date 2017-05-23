@@ -46,7 +46,7 @@ const addressToCoords = (commuteContext) => {
 
     return Promise.all([origin, destination])
         .then((values) => {
-            return vaxlues;
+            return values;
         }, (reason) => {
             console.error(reason);
         });
