@@ -100,7 +100,7 @@ const commuteDirections = (commute) => {
             console.error(err);
         } else {
             console.log('something worked');
-            console.log(response.json.routes);
+            console.log(response.json.routes[0].legs);
         }
     }).then((value) => {
         console.log('then');
