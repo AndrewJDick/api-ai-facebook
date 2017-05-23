@@ -89,8 +89,8 @@ const commuteDirections = (commute) => {
         alternatives: true,
         mode: 'transit',
         region: 'uk',
-        units: 'imperial'
-        // preference: commute.transit_mode
+        units: 'imperial',
+        preference: commute.transit_mode
         // traffic_model: 'pessimistic', // #British
     };
 
