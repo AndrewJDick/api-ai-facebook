@@ -108,43 +108,43 @@ const commuteDirections = (commute) => {
     });
 };
 
-/* SAMPLE RESPONSE 
-{ 
-    status: 200,
+// SAMPLE RESPONSE 
+// { 
+//     status: 200,
     
-    headers: { 
-        'content-type': 'application/json; charset=UTF-8',
-        date: 'Tue, 23 May 2017 10:46:31 GMT',
-        expires: 'Wed, 24 May 2017 10:46:31 GMT',
-        'cache-control': 'public, max-age=86400',
-        server: 'mafe',
-        'x-xss-protection': '1; mode=block',
-        'x-frame-options': 'SAMEORIGIN',
-        'alt-svc': 'quic=":443"; ma=2592000; v="37,36,35"',
-        'accept-ranges': 'none',
-        vary: 'Accept-Language,Accept-Encoding',
-        connection: 'close' 
-    },
-    json: { 
-        geocoded_waypoints: [ [Object], [Object] ],
-        routes: [ [Object] ],
-        status: 'OK' } 
-    }
-    server: 'mafe',
-        'x-xss-protection': '1; mode=block',
-        'x-frame-options': 'SAMEORIGIN',
-        'alt-svc': 'quic=":443"; ma=2592000; v="37,36,35"',
-        'accept-ranges': 'none',
-        vary: 'Accept-Language,Accept-Encoding',
-        connection: 'close' 
-    },
-    json: { 
-        geocoded_waypoints: [ [Object], [Object] ],
-        routes: [ [Object] ],
-        status: 'OK' 
-    }
-}
-*/
+//     headers: { 
+//         'content-type': 'application/json; charset=UTF-8',
+//         date: 'Tue, 23 May 2017 10:46:31 GMT',
+//         expires: 'Wed, 24 May 2017 10:46:31 GMT',
+//         'cache-control': 'public, max-age=86400',
+//         server: 'mafe',
+//         'x-xss-protection': '1; mode=block',
+//         'x-frame-options': 'SAMEORIGIN',
+//         'alt-svc': 'quic=":443"; ma=2592000; v="37,36,35"',
+//         'accept-ranges': 'none',
+//         vary: 'Accept-Language,Accept-Encoding',
+//         connection: 'close' 
+//     },
+//     json: { 
+//         geocoded_waypoints: [ [Object], [Object] ],
+//         routes: [ [Object] ],
+//         status: 'OK' } 
+//     }
+//     server: 'mafe',
+//         'x-xss-protection': '1; mode=block',
+//         'x-frame-options': 'SAMEORIGIN',
+//         'alt-svc': 'quic=":443"; ma=2592000; v="37,36,35"',
+//         'accept-ranges': 'none',
+//         vary: 'Accept-Language,Accept-Encoding',
+//         connection: 'close' 
+//     },
+//     json: { 
+//         geocoded_waypoints: [ [Object], [Object] ],
+//         routes: [ [Object] ],
+//         status: 'OK' 
+//     }
+// }
+
 
 
 
