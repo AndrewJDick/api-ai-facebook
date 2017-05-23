@@ -14,6 +14,7 @@
   "author": "Danil Skachkov <danil.skachkov@speaktoit.com> (https://api.ai)",
   "license": "ISC",
   "dependencies": {
+    "@google/maps": "^0.3.1",
     "apiai": "^3.0.3",
     "assert": "^1.4.1",
     "async": "^2.0.0",

@@ -6,6 +6,7 @@ const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 // Packages
 const moment = require('moment');
 const nodeGeocoder = require('node-geocoder');
+
 const geocoder = nodeGeocoder({
   provider: 'google',
   httpAdapter: 'https',
@@ -13,17 +14,30 @@ const geocoder = nodeGeocoder({
   formatter: null
 });
 
+const googleMapsClient = require('@google/maps').createClient({
+  key: GOOGLE_API_KEY
+});
+
 
 // Converts api.ai @sys.address entity to LatLng coordinates
 const latLng = (commuteContext, prop) => {
 
-    return geocoder.geocode(commuteContext[prop])
-        .then((value) => {
-            let coords = `${value[0].latitude},${value[0].longitude}`;
-            return addConversionProp(commuteContext, prop, coords);
-        }, (reason) => {
-            console.error(reason);
-        });
+    // return geocoder.geocode(commuteContext[prop])
+    //     .then((value) => {
+    //         let coords = `${value[0].latitude},${value[0].longitude}`;
+    //         return addConversionProp(commuteContext, prop, coords);
+    //     }, (reason) => {
+    //         console.error(reason);
+    //     });
+
+    // Geocode an address.
+    return googleMapsClient.geocode({
+      address: commuteContext[prop]
+    }, (err, response) => {
+      if (!err) {
+        console.log(response.json.results);
+      }
+    });
 };
 
 
@@ -40,7 +54,7 @@ const addressToCoords = (commuteContext) => {
 
     return Promise.all([origin, destination])
         .then((values) => {
-            return values;
+            return vaxlues;
         }, (reason) => {
             console.error(reason);
         });
