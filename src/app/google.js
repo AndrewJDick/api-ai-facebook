@@ -22,22 +22,14 @@ const googleMapsClient = require('@google/maps').createClient({
 // Converts api.ai @sys.address entity to LatLng coordinates
 const latLng = (commuteContext, prop) => {
 
-    // return geocoder.geocode(commuteContext[prop])
-    //     .then((value) => {
-    //         let coords = `${value[0].latitude},${value[0].longitude}`;
-    //         return addConversionProp(commuteContext, prop, coords);
-    //     }, (reason) => {
-    //         console.error(reason);
-    //     });
-
-    // Geocode an address.
-    return googleMapsClient.geocode({
-      address: commuteContext[prop]
-    }, (err, response) => {
-      if (!err) {
-        console.log(response.json.results);
-      }
-    });
+    // TODO: Refactor to use @google/maps 
+    return geocoder.geocode(commuteContext[prop])
+        .then((value) => {
+            let coords = `${value[0].latitude},${value[0].longitude}`;
+            return addConversionProp(commuteContext, prop, coords);
+        }, (reason) => {
+            console.error(reason);
+        });
 };
 
 
@@ -86,6 +78,34 @@ const addConversionProp = (obj, prop, value) => {
         configurable: true
     });
 };
+
+
+// Create a journey from supplied arguments
+const commuteJourney = (commuteContext) => {
+
+    let commute = {
+        origin: commuteContext.origin.coverted,
+        destination: commuteContext.destination.coverted,
+        arrival_time: commuteContext.arrival.converted,
+        preference: commuteContext.transit_mode,
+        alternatives: true,
+        traffic_model: 'pessimistic' // #British
+        mode: 'transit',
+        region: 'uk',
+        units: 'imperial',
+    };
+
+    googleMapsClient.directions(commute, (err, response) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log(response);
+        }
+    });
+
+}
+
+
 
 
 // Exports
