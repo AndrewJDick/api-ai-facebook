@@ -89,9 +89,9 @@ const isSeeded = (() => {
 
 
 // Add or update a user's commute in the mongoDB commutes collection
-const addCommute = (db, commute, default, callback) => {
+const addCommute = (db, commute, isDefault, callback) => {
 
-    let journey = (default) ? 'default' : 'previous';
+    let journey = (isDefault) ? 'default' : 'previous';
 
     db.collection('commutes').updateOne(
         {
