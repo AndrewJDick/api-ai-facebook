@@ -58,7 +58,7 @@ const datetimeToUnix = (commuteContext, prop, customDate = false) => {
 
     let timestampDate = (!customDate)
         ? new Date().toISOString().split('T')[0]    // Defaults to 'today'
-        : commuteContext.arrivalDate;               // YYYY-MM-DD
+        : commuteContext.arrivalDate;               // YYYY-MM-DD (TODO: Add field to CommuteContext)
 
     let timestampTime = commuteContext.arrival;                
     
