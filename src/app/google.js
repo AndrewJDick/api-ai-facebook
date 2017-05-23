@@ -100,15 +100,51 @@ const commuteDirections = (commute) => {
             console.error(err);
         } else {
             console.log('something worked');
-            console.log(response);
+            console.log(response.json.routes);
         }
     }).then((value) => {
         console.log('then');
         console.log(value);
     });
+};
 
+/* SAMPLE RESPONSE 
+{ 
+    status: 200,
+    
+    headers: { 
+        'content-type': 'application/json; charset=UTF-8',
+        date: 'Tue, 23 May 2017 10:46:31 GMT',
+        expires: 'Wed, 24 May 2017 10:46:31 GMT',
+        'cache-control': 'public, max-age=86400',
+        server: 'mafe',
+        'x-xss-protection': '1; mode=block',
+        'x-frame-options': 'SAMEORIGIN',
+        'alt-svc': 'quic=":443"; ma=2592000; v="37,36,35"',
+        'accept-ranges': 'none',
+        vary: 'Accept-Language,Accept-Encoding',
+        connection: 'close' 
+    },
+    json: { 
+        geocoded_waypoints: [ [Object], [Object] ],
+        routes: [ [Object] ],
+        status: 'OK' } 
+    }
+    server: 'mafe',
+        'x-xss-protection': '1; mode=block',
+        'x-frame-options': 'SAMEORIGIN',
+        'alt-svc': 'quic=":443"; ma=2592000; v="37,36,35"',
+        'accept-ranges': 'none',
+        vary: 'Accept-Language,Accept-Encoding',
+        connection: 'close' 
+    },
+    json: { 
+        geocoded_waypoints: [ [Object], [Object] ],
+        routes: [ [Object] ],
+        status: 'OK' 
+    }
 }
-
+*/
 
 
 
@@ -127,6 +163,4 @@ https://maps.googleapis.com/maps/api/directions/json
 &key=AIzaSyDodAp8X1I7gbRdnvuv_0Pu-l6HQuGBJWE
 &mode=transit
 &units=imperial
-&arrival_time=1494579600
-&alternatives=true
-*/
+&ar
