@@ -85,8 +85,8 @@ const commuteDirections = (commute) => {
     let journey = {
         origin: commute['origin.converted'],
         destination: commute['destination.converted'],
-        arrival_time: commute['arrival.converted']
-        // alternatives: true
+        arrival_time: commute['arrival.converted'],
+        alternatives: true
         // traffic_model: 'pessimistic', // #British
         // mode: 'transit',
         // region: 'uk',
