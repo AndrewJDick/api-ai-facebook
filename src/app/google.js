@@ -98,10 +98,13 @@ const commuteDirections = (commuteContext) => {
         units: 'imperial'
     };
 
+    console.log(commute);
+
     googleMapsClient.directions(commute, (err, response) => {
         if (err) {
             console.error(err);
         } else {
+            console.log('something worked');
             console.log(response);
         }
     });
