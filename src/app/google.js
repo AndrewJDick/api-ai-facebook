@@ -90,7 +90,7 @@ const commuteDirections = (commute) => {
         mode: 'transit',
         region: 'uk',
         units: 'imperial',
-        traffic_model: 'pessimistic'
+        traffic_model: 'pessimistic' 
         //preference: commute.transit_mode 
     };
 
