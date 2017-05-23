@@ -90,8 +90,8 @@ const commuteDirections = (commute) => {
         mode: 'transit',
         region: 'uk',
         units: 'imperial',
-        preference: commute.transit_mode
-        // traffic_model: 'pessimistic', // #British
+        traffic_model: 'pessimistic'
+        //preference: commute.transit_mode 
     };
 
     // ToDo: This needs to be a promise
