@@ -19,20 +19,6 @@ const googleMapsClient = require('@google/maps').createClient({
 });
 
 
-// Converts api.ai @sys.address entity to LatLng coordinates
-const latLng = (commuteContext, prop) => {
-
-    // TODO: Refactor to use @google/maps 
-    return geocoder.geocode(commuteContext[prop])
-        .then((value) => {
-            let coords = `${value[0].latitude},${value[0].longitude}`;
-            return addConversionProp(commuteContext, prop, coords);
-        }, (reason) => {
-            console.error(reason);
-        });
-};
-
-
 // Returns JSON object with transformed waypoints
 const addressToCoords = (commuteContext) => {  
 
@@ -43,6 +29,19 @@ const addressToCoords = (commuteContext) => {
     let destination = new Promise((resolve, reject) => { 
         resolve(latLng(commuteContext, 'destination'));
     });
+
+    // Converts api.ai @sys.address entity to LatLng coordinates
+    const latLng = (commuteContext, prop) => {
+
+        // TODO: Refactor to use @google/maps 
+        return geocoder.geocode(commuteContext[prop])
+            .then((value) => {
+                let coords = `${value[0].latitude},${value[0].longitude}`;
+                return addConversionProp(commuteContext, prop, coords);
+            }, (reason) => {
+                console.error(reason);
+            });
+    };
 
     return Promise.all([origin, destination])
         .then((values) => {
@@ -87,12 +86,12 @@ const commuteDirections = (commute) => {
         origin: commute['origin.converted'],
         destination: commute['destination.converted'],
         arrival_time: commute['arrival.converted'],
+        alternatives: true
+        // traffic_model: 'pessimistic', // #British
+        // mode: 'transit',
+        // region: 'uk',
+        // units: 'imperial'
         // preference: commute.transit_mode
-        alternatives: true,
-        traffic_model: 'pessimistic', // #British
-        mode: 'transit',
-        region: 'uk',
-        units: 'imperial'
     };
 
     // ToDo: This needs to be a promise
