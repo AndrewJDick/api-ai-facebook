@@ -89,10 +89,10 @@ const commuteJourney = (commuteContext) => {
         arrival_time: commuteContext.arrival.converted,
         preference: commuteContext.transit_mode,
         alternatives: true,
-        traffic_model: 'pessimistic' // #British
+        traffic_model: 'pessimistic', // #British
         mode: 'transit',
         region: 'uk',
-        units: 'imperial',
+        units: 'imperial'
     };
 
     googleMapsClient.directions(commute, (err, response) => {
