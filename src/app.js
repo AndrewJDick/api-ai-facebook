@@ -36,7 +36,7 @@ app.post('/webhook/', (req, res) => {
 
     try {
         let data = JSONbig.parse(req.body);
-        let contexts = data.result.contexts; 
+        let contexts = data.result.contexts;
         let commuteContext = {};
         let speech = '';
 
@@ -51,20 +51,24 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'arrivapi.default.submit') {
 
-                // // Convert addresses to LatLng cords
+                // Convert addresses to LatLng cords
                 let waypointConversion = new Promise((resolve, reject) => {
                     resolve(google.addressToCoords(commuteContext));
                 });
 
-                // Covert arrival time to Unix tinestamp
+                // Covert arrival time to Unix timestamp
                 let datetimeConversion = new Promise((resolve, reject) => {
                     resolve(google.datetimeToUnix(commuteContext, 'arrival'));
                 });
                     
-                // Store default commute in the db
+                // Generate Journey Directions
                 let userCommute = Promise.all([waypointConversion, datetimeConversion]).then(() => {  
+                    
+                    // Generate journey directions
                     google.commuteDirections(commuteContext);
-                    //mongo.dbConnect(commuteContext, 'addCommute');
+                    
+                    // Store the latest journey & directions in MongoDB
+                    mongo.dbConnect(commuteContext, 'addCommute');
                 });
             }
         }
