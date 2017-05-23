@@ -87,12 +87,12 @@ const commuteDirections = (commute) => {
         origin: commute['origin.converted'],
         destination: commute['destination.converted'],
         arrival_time: commute['arrival.converted'],
-        preference: commute.transit_mode
-        // alternatives: true,
-        // traffic_model: 'pessimistic', // #British
-        // mode: 'transit',
-        // region: 'uk',
-        // units: 'imperial'
+        // preference: commute.transit_mode
+        alternatives: true,
+        traffic_model: 'pessimistic', // #British
+        mode: 'transit',
+        region: 'uk',
+        units: 'imperial'
     };
 
     // ToDo: This needs to be a promise
