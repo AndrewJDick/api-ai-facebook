@@ -88,7 +88,7 @@ const commuteDirections = (commute) => {
 
     let journey = {
         origin: commute['origin.converted'],
-        destination: commute['destination.coverted'],
+        destination: commute['destination.converted'],
         arrival_time: commute['arrival.converted'],
         preference: commute.transit_mode,
         alternatives: true,
