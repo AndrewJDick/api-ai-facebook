@@ -52,22 +52,20 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'trainbot.journey.platform') {
 
-                let fbSender = data.originalRequest.data.sender.id;
+                let user = commuteContext.facebook_sender_id;
 
-                function delay(t) {
-                   return new Promise(function(resolve) { 
-                       setTimeout(resolve, t)
+                let delay = (t) => {
+                   return new Promise((resolve) => { 
+                       setTimeout(resolve, t);
                    });
-                }
+                };
 
                 // Announces platform after a 30 second delay
-                facebookBot.sendFBMessage(fbSender, { text: `Great! We'll let you know when your platform is announced.` }).then( () => { 
+                facebookBot.sendFBMessage(user, { text: `Great! We'll let you know when your platform is announced.` }).then(() => { 
                     return delay(30000).then(() => { 
-                        return facebookBot.sendFBMessage(fbSender, { text: `Your train to Aylesbury will depart from platform 15` });
+                        return facebookBot.sendFBMessage(user, { text: `Your train to Aylesbury will depart from platform 15` });
                     })
                 });
-                
-
                 
             }
 
