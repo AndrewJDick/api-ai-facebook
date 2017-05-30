@@ -50,25 +50,22 @@ app.post('/webhook/', (req, res) => {
         if (data.result) {
 
             if (data.result.action === 'trainbot.journey.platform') {
-
-                function platformAnnouncmenet() {
                     
-                    let platform = (min, max) => {
-                      min = Math.ceil(min);
-                      max = Math.floor(max);
-                      return Math.floor(Math.random() * (max - min)) + min;
-                    };
+                let platform = (min, max) => {
+                  min = Math.ceil(min);
+                  max = Math.floor(max);
+                  return Math.floor(Math.random() * (max - min)) + min;
+                };
 
-                    speech = 'The train will leave from platform 12';
+                speech = 'The train will leave from platform 12';
 
-                    //speech = `The 16:18 to Marylebone will depart from platform ${platform(1,15)}`;
+                //speech = `The 16:18 to Marylebone will depart from platform ${platform(1,15)}`;
 
-                    return res.json({
-                        speech: speech,
-                        source: 'arrivapi-webhook-platform',
-                        displayText: speech
-                    });
-                }
+                return res.json({
+                    speech: speech,
+                    source: 'arrivapi-webhook-platform',
+                    displayText: speech
+                });
             }
 
 
