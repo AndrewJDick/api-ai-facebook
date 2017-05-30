@@ -57,17 +57,16 @@ app.post('/webhook/', (req, res) => {
                   return Math.floor(Math.random() * (max - min)) + min;
                 };
 
-                setTimeout(output, 200, `Cool. We'll let you know when your platform is announced.`);
-                setTimeout(output, 1500, 'The train will leave from platform 12');
+                // setTimeout(output, 200, `Cool. We'll let you know when your platform is announced.`);
+                // setTimeout(output, 1500, 'The train will leave from platform 12');
                 
-                //speech = `The 16:18 to Marylebone will depart from platform ${platform(1,15)}`;
+                speech = `The 16:18 to Marylebone will depart from platform 10`;
 
-                function output(arg) {
-                    return res.json({
-                        speech: arg,
-                        source: 'arrivapi-webhook-platform',
-                        displayText: arg
-                    });
+                return res.json({
+                    speech: speech,
+                    source: 'arrivapi-webhook-platform',
+                    displayText: speech
+                });
                 };
             }
 
