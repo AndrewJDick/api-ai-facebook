@@ -49,6 +49,10 @@ app.post('/webhook/', (req, res) => {
 
         if (data.result) {
 
+            if (data.result.action === 'foo') {
+                console.log(data);
+            }
+
             if (data.result.action === 'trainbot.journey.platform') {
 
                 var p1 = new Promise( (resolve, reject) => {
