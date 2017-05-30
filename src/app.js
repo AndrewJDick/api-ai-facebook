@@ -60,8 +60,9 @@ app.post('/webhook/', (req, res) => {
                    });
                 }
 
+                // Announces platform after a 30 second delay
                 facebookBot.sendFBMessage(fbSender, { text: `Great! We'll let you know when your platform is announced.` }).then( () => { 
-                    return delay(5000).then(() => { 
+                    return delay(30000).then(() => { 
                         return facebookBot.sendFBMessage(fbSender, { text: `Your train to Aylesbury will depart from platform 15` });
                     })
                 });
