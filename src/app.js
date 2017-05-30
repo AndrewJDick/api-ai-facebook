@@ -60,9 +60,7 @@ app.post('/webhook/', (req, res) => {
                         },
                         {
                             "type": 0,
-                            "speech": setTimeout(function() {
-                                "Your train will depart from platform 15";
-                            }, 4000)
+                            "speech": "Your train will depart from platform 15"
                         }
                     ],
                     "source": "sourcename"
