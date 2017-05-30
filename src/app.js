@@ -54,11 +54,20 @@ app.post('/webhook/', (req, res) => {
 
                 let fbSender = data.originalRequest.data.sender.id;
 
-                let platform = new Promise((resolve, reject) => { 
-                    resolve(facebookBot.sendFBMessage(fbSender, { text: `Great! We'll let you know when your platform is announced.` }));
-                });
+                function delay(t) {
+                   return new Promise(function(resolve) { 
+                       setTimeout(resolve, t)
+                   });
+                }
 
-                platform.then(setTimeout(facebookBot.sendFBMessage(fbSender, { text: `Your train to Aylesbury will depart from platform 15` }), 10000));
+                facebookBot.sendFBMessage(fbSender, { text: `Great! We'll let you know when your platform is announced.` }).then( () => { 
+                    return delay(5000).then(() => { 
+                        return facebookBot.sendFBMessage(fbSender, { text: `Your train to Aylesbury will depart from platform 15` });
+                    })
+                });
+                
+
+                
             }
 
 
