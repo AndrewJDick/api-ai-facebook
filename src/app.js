@@ -52,6 +52,18 @@ app.post('/webhook/', (req, res) => {
             if (data.result.action === 'trainbot.journey.platform') {
 
                 return res.json({
+                    "speech": "",
+                    "messages": [
+                        {
+                            "type": 0,
+                            "speech": "Great! We'll let you know when the platform is announced."
+                        },
+                        {
+                            "type": 0,
+                            "speech": "Your train will depart from platform 15"
+                        }
+                    ],
+                    "source": "sourcename",
                     "followupEvent": {
                         "name": "custom_event",
                         "data": {
