@@ -62,7 +62,7 @@ app.post('/webhook/', (req, res) => {
                 
                 //speech = `The 16:18 to Marylebone will depart from platform ${platform(1,15)}`;
 
-                let output = (arg) => {
+                function output (arg) => {
                     return res.json({
                         speech: arg,
                         source: 'arrivapi-webhook-platform',
