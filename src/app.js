@@ -50,7 +50,20 @@ app.post('/webhook/', (req, res) => {
         if (data.result) {
 
             if (data.result.action === 'foo') {
-                console.log(data);
+                return res.json({
+                    "speech": "",
+                    "messages": [
+                        {
+                            "type": 0,
+                            "speech": "my first response"
+                        },
+                        {
+                            "type": 0,
+                            "speech": "my second response"
+                        }
+                    ],
+                    "source": "sourcename"
+                });
             }
 
             // if (data.result.action === 'trainbot.journey.platform') {
