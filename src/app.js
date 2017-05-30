@@ -51,23 +51,31 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'trainbot.journey.platform') {
 
-                return res.json({
-                    "followupEvent": [
-                        {
-                            "name": "custom_event",
-                            "data": {
-                                "foo": "bar"
-                            }
-                        }, 
-                        {
-                            "name": "custom_event2",
-                            "data": {
-                                "bar": "foo"
-                            }
-                        }
-                    ]
-                });
+                console.log(data)
+
+                // facebookBot.sendFBMessage(sender, 'testing');
+                // facebookBot.sendFBMessage(sender, '123');
             }
+
+            // if (data.result.action === 'trainbot.journey.platform') {
+
+            //     return res.json({
+            //         "followupEvent": [
+            //             {
+            //                 "name": "custom_event",
+            //                 "data": {
+            //                     "foo": "bar"
+            //                 }
+            //             }, 
+            //             {
+            //                 "name": "custom_event2",
+            //                 "data": {
+            //                     "bar": "foo"
+            //                 }
+            //             }
+            //         ]
+            //     });
+            // }
 
             // if (data.result.action === 'trainbot.journey.platform') {
 
