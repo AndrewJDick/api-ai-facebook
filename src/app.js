@@ -49,6 +49,27 @@ app.post('/webhook/', (req, res) => {
 
         if (data.result) {
 
+            if (data.result.action === 'trainbot.journey.platform') {
+
+                function platformAnnouncmenet() {
+                    
+                    let platform = getRandomInt(min, max) {
+                      min = Math.ceil(min);
+                      max = Math.floor(max);
+                      return Math.floor(Math.random() * (max - min)) + min;
+                    }
+
+                    speech = `The 16:18 to Marylebone will depart from platform ${platform(1,15)}`;
+
+                    return res.json({
+                        speech: speech,
+                        source: 'arrivapi-webhook-platform',
+                        displayText: speech
+                    });
+                }
+            }
+
+
             if (data.result.action === 'arrivapi.default.submit') {
 
                 // Convert addresses to LatLng cords
