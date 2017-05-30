@@ -61,7 +61,7 @@ app.post('/webhook/', (req, res) => {
                         {
                             "type": 0,
                             "speech": setTimeout(function() {
-                                return "second";
+                                "second";
                             }, 4000)
                         }
                     ],
