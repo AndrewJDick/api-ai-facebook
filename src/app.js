@@ -49,17 +49,29 @@ app.post('/webhook/', (req, res) => {
 
         if (data.result) {
 
-            if (data.result.action === 'foo') {
+            if (data.result.action === 'trainbot.journey.platform') {
+                
+                function foo(arg) {
+                    switch(arg) {
+                        case "initialResponse":
+                            return "first";
+                        case "platformAnnouncement";
+                            return "second";
+                    }
+                }
+
                 return res.json({
                     "speech": "",
                     "messages": [
                         {
                             "type": 0,
-                            "speech": "my first response"
+                            "speech": "initialResponse"
                         },
                         {
                             "type": 0,
-                            "speech": "my second response"
+                            "speech": setTimeout(function() {
+                                return "second";
+                            }, 4000)
                         }
                     ],
                     "source": "sourcename"
