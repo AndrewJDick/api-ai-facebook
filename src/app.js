@@ -56,40 +56,18 @@ app.post('/webhook/', (req, res) => {
                     "messages": [
                         {
                             "type": 0,
-                            "speech": "initialResponse"
+                            "speech": "Great! We'll let you know when the platform is announced."
                         },
                         {
                             "type": 0,
                             "speech": setTimeout(function() {
-                                "second";
+                                "Your train will depart from platform 15";
                             }, 4000)
                         }
                     ],
                     "source": "sourcename"
                 });
             }
-
-            // if (data.result.action === 'trainbot.journey.platform') {
-
-            //     var p1 = new Promise( (resolve, reject) => {
-            //         resolve(
-            //             return res.json({
-            //                 speech: 'Train will depart from platform 10',
-            //                 source: 'arrivapi-webhook-platform',
-            //                 displayText: 'Train will depart from platform 10'
-            //             });
-            //         );
-            //     });
-
-            //     p1.then((value) => {
-            //         return res.json({
-            //             speech: 'Part 2',
-            //             source: 'arrivapi-webhook-platform',
-            //             displayText: 'Part 2'
-            //         });
-            //     });
-            // }
-
 
             if (data.result.action === 'arrivapi.default.submit') {
 
