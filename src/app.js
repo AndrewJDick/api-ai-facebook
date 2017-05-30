@@ -51,10 +51,10 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'trainbot.journey.platform') {
 
-                console.log(data.originalRequest.data.sender);
+                let fbSender = data.originalRequest.data.sender;
 
-                // facebookBot.sendFBMessage(sender, 'testing');
-                // facebookBot.sendFBMessage(sender, '123');
+                facebookBot.sendFBMessage(fbSender, 'testing');
+                facebookBot.sendFBMessage(fbSender, '123');
             }
 
             // if (data.result.action === 'trainbot.journey.platform') {
