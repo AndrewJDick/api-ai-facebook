@@ -67,7 +67,6 @@ app.post('/webhook/', (req, res) => {
                     source: 'arrivapi-webhook-platform',
                     displayText: speech
                 });
-                };
             }
 
 
