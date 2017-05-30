@@ -56,7 +56,7 @@ app.post('/webhook/', (req, res) => {
 
                 async.series([
                     facebookBot.sendFBMessage(fbSender, { text: `Great! We'll let you know when your platform is announced.` }),
-                    setTimeout(facebookBot.sendFBMessage(fbSender, { text: `123` }), 5000);
+                    setTimeout(facebookBot.sendFBMessage(fbSender, { text: `123` }), 5000)
                 ]);
             }
 
