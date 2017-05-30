@@ -51,19 +51,22 @@ app.post('/webhook/', (req, res) => {
 
             if (data.result.action === 'trainbot.journey.platform') {
 
-                return res.json({
-                    speech: 'Train will depart from platform 10',
-                    source: 'arrivapi-webhook-platform',
-                    displayText: 'Train will depart from platform 10'
+                var p1 = new Promise( (resolve, reject) => {
+                    resolve(
+                        return res.json({
+                            speech: 'Train will depart from platform 10',
+                            source: 'arrivapi-webhook-platform',
+                            displayText: 'Train will depart from platform 10'
+                        });
+                    );
                 });
-            }
 
-            if (data.result.action === 'trainbot.journey.platform') {
-
-                return res.json({
-                    speech: "Great! We'll let you know when your platfrom is ready.",
-                    source: 'arrivapi-webhook-platform',
-                    displayText: "Great! We'll let you know when your platfrom is ready."
+                p1.then((value) => {
+                    return res.json({
+                        speech: 'Part 2',
+                        source: 'arrivapi-webhook-platform',
+                        displayText: 'Part 2'
+                    });
                 });
             }
 
