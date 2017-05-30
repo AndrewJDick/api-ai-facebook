@@ -54,9 +54,11 @@ app.post('/webhook/', (req, res) => {
 
                 let fbSender = data.originalRequest.data.sender.id;
 
-                facebookBot.sendFBMessage(fbSender, { text: `Great! We'll let you know when your platform is announced.` });
+                let platform = new Promise((resolve, reject) => { 
+                    resolve(facebookBot.sendFBMessage(fbSender, { text: `Great! We'll let you know when your platform is announced.` }));
+                });
 
-                setTimeout(facebookBot.sendFBMessage(fbSender, { text: `Your train to Aylesbury will depart from platform 15` }), 10000);
+                platform.then(setTimeout(facebookBot.sendFBMessage(fbSender, { text: `Your train to Aylesbury will depart from platform 15` }), 10000));
             }
 
 
