@@ -53,7 +53,7 @@ app.post('/webhook/', (req, res) => {
 
                 function platformAnnouncmenet() {
                     
-                    let platform = getRandomInt(min, max) {
+                    let platform = (min, max) => {
                       min = Math.ceil(min);
                       max = Math.floor(max);
                       return Math.floor(Math.random() * (max - min)) + min;
