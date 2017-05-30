@@ -17,7 +17,7 @@
     "@google/maps": "^0.3.1",
     "apiai": "^3.0.3",
     "assert": "^1.4.1",
-    "async": "^2.0.0",
+    "async": "^2.4.1",
     "body-parser": "^1.15.2",
     "express": "^4.13.3",
     "html-entities": "^1.2.0",

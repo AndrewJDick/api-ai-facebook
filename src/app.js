@@ -8,6 +8,7 @@ const FB_VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN;
 const app = require('express')();
 const bodyParser = require('body-parser');
 const JSONbig = require('json-bigint');
+const async = require('async');
 
 // App
 const mongo = require('./app/mongo');
@@ -53,47 +54,12 @@ app.post('/webhook/', (req, res) => {
 
                 let fbSender = data.originalRequest.data.sender.id;
 
-                facebookBot.sendFBMessage(fbSender, { text: 'testing' });
-                facebookBot.sendFBMessage(fbSender, { text: '123' });
+                async.series([
+                    facebookBot.sendFBMessage(fbSender, { text: 'testing' }),
+                    facebookBot.sendFBMessage(fbSender, { text: '123' })
+                ]);
             }
 
-            // if (data.result.action === 'trainbot.journey.platform') {
-
-            //     return res.json({
-            //         "followupEvent": [
-            //             {
-            //                 "name": "custom_event",
-            //                 "data": {
-            //                     "foo": "bar"
-            //                 }
-            //             }, 
-            //             {
-            //                 "name": "custom_event2",
-            //                 "data": {
-            //                     "bar": "foo"
-            //                 }
-            //             }
-            //         ]
-            //     });
-            // }
-
-            // if (data.result.action === 'trainbot.journey.platform') {
-
-            //     return res.json({
-            //         "speech": "",
-            //         "messages": [
-            //             {
-            //                 "type": 0,
-            //                 "speech": "Great! We'll let you know when the platform is announced."
-            //             },
-            //             {
-            //                 "type": 0,
-            //                 "speech": "Your train will depart from platform 15"
-            //             }
-            //         ],
-            //         "source": "sourcename"
-            //     });
-            // }
 
             if (data.result.action === 'arrivapi.default.submit') {
 
