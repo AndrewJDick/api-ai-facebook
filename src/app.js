@@ -50,15 +50,6 @@ app.post('/webhook/', (req, res) => {
         if (data.result) {
 
             if (data.result.action === 'trainbot.journey.platform') {
-                
-                function foo(arg) {
-                    switch(arg) {
-                        case "initialResponse":
-                            return "first";
-                        case "platformAnnouncement";
-                            return "second";
-                    }
-                }
 
                 return res.json({
                     "speech": "",
