@@ -59,7 +59,9 @@ app.post('/webhook/', (req, res) => {
                       return Math.floor(Math.random() * (max - min)) + min;
                     };
 
-                    speech = `The 16:18 to Marylebone will depart from platform ${platform(1,15)}`;
+                    speech = 'The train will leave from platform 12';
+
+                    //speech = `The 16:18 to Marylebone will depart from platform ${platform(1,15)}`;
 
                     return res.json({
                         speech: speech,
