@@ -41,6 +41,14 @@ app.post('/webhook/', (req, res) => {
         let commuteContext = {};
         let speech = '';
 
+        let user = commuteContext.facebook_sender_id;
+
+        let delay = (t) => {
+           return new Promise((resolve) => { 
+               setTimeout(resolve, t);
+           });
+        };
+
         // Store the Default Commute object built from the API.ai bot.
         for (let context of contexts) {
             if (context.name === 'generic') {
@@ -51,14 +59,6 @@ app.post('/webhook/', (req, res) => {
         if (data.result) {
 
             if (data.result.action === 'trainbot.journey.platform') {
-
-                let user = commuteContext.facebook_sender_id;
-
-                let delay = (t) => {
-                   return new Promise((resolve) => { 
-                       setTimeout(resolve, t);
-                   });
-                };
 
                 // Announces platform after a 20 second delay
                 facebookBot.sendFBMessage(user, { 
@@ -82,6 +82,36 @@ app.post('/webhook/', (req, res) => {
                         });
                     })
                 }); 
+            }
+
+            if (data.result.action === 'trainbot.trust.trigger') {
+                // Announces platform after a 20 second delay
+                facebookBot.sendFBMessage(user, { 
+                    text: `Hey. Glad you made your train!` 
+                }).then(() => { 
+                    return delay(500).then(() => { 
+                        return facebookBot.sendFBMessage(user, { 
+                            text: `Would you like to hear about some other ways I can help you out? Won't take long, I promise.`,
+                            quick_replies: [
+                                {
+                                    "content_type": "text",
+                                    "title": "Sure! Why not",
+                                    "payload": "Sure! Why not"
+                                },
+                                {
+                                    "content_type": "text",
+                                    "title": "Not right now",
+                                    "payload": "Not right now"
+                                },
+                                {
+                                    "content_type": "text",
+                                    "title": "Who are you, exactly?",
+                                    "payload": "Who are you, exactly?"
+                                }
+                            ]
+                        });
+                    })
+                });   
             }
 
             if (data.result.action === 'arrivapi.default.submit') {
