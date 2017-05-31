@@ -91,7 +91,7 @@ app.post('/webhook/', (req, res) => {
                 facebookBot.sendFBMessage(user, { 
                     text: `Hey. Glad you made your train!` 
                 }).then(() => { 
-                    return delay(500).then(() => { 
+                    return delay(1500).then(() => { 
                         return facebookBot.sendFBMessage(user, { 
                             text: `Would you like to hear about some other ways I can help you out? Won't take long, I promise.`,
                             quick_replies: [
