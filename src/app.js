@@ -87,7 +87,7 @@ app.post('/webhook/', (req, res) => {
             }
 
             if (data.result.action === 'trainbot.trust.trigger') {
-                // Announces platform after a 20 second delay
+                // 
                 facebookBot.sendFBMessage(user, { 
                     text: `Hey. Glad you made your train!` 
                 }).then(() => { 
@@ -114,6 +114,61 @@ app.post('/webhook/', (req, res) => {
                         });
                     })
                 });   
+            }
+
+            if (data.result.action === 'trainbot.trust.whynot') {
+
+                // 
+                facebookBot.sendFBMessage(user, { 
+                    text: `OK. Tell you what. You tell me about your regular journeys, and I'll help you avoid disruption before it affects you.` 
+                }).then(() => { 
+                    return delay(1500).then(() => { 
+                        return facebookBot.sendFBMessage(user, { 
+                            text: `Because I can send you, at exactly the right moment, really useful stuff like:`
+                        });
+                    })
+                }).then(() => { 
+                    return delay(1500).then(() => { 
+                        return facebookBot.sendFBMessage(user, { 
+                            text: `The 06.57 is running 12 mins late. Relax. Give someone an extra kiss.`
+                        });
+                    }); 
+                }).then(() => { 
+                    return delay(500).then(() => { 
+                        return facebookBot.sendFBMessage(user, { 
+                            text: `Don't forget there's a tube strike tomorrow morning. Get an earlier train, maybe?`
+                        });
+                    }); 
+                }).then(() => { 
+                    return delay(500).then(() => { 
+                        return facebookBot.sendFBMessage(user, { 
+                            text: `Bank Station is rammed this morning. You'd be better off walking from Liverpool St.`
+                        });
+                    }); 
+                }).then(() => { 
+                    return delay(1500).then(() => { 
+                        return facebookBot.sendFBMessage(user, { 
+                            text: `Would you like to give it a try?`,
+                            quick_replies: [
+                                {
+                                    "content_type": "text",
+                                    "title": "Yeah, sounds good",
+                                    "payload": "Yeah, sounds good"
+                                },
+                                {
+                                    "content_type": "text",
+                                    "title": "Is that right?",
+                                    "payload": "Is that right?"
+                                },
+                                {
+                                    "content_type": "text",
+                                    "title": "I don't trust you yet.",
+                                    "payload": "I don't trust you yet."
+                                }
+                            ]
+                        });
+                    }); 
+                }); 
             }
 
             if (data.result.action === 'arrivapi.default.submit') {
