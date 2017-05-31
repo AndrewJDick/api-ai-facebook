@@ -60,15 +60,29 @@ app.post('/webhook/', (req, res) => {
                    });
                 };
 
-                // Announces platform after a 30 second delay
-                facebookBot.sendFBMessage(user, { text: `Great! We'll let you know when your platform is announced.` }).then(() => { 
-                    return delay(30000).then(() => { 
-                        return facebookBot.sendFBMessage(user, { text: `Your train to Aylesbury will depart from platform 15` });
+                // Announces platform after a 20 second delay
+                facebookBot.sendFBMessage(user, { 
+                    text: `Cool. Will tell you ASAP. ⏰` 
+                }).then(() => { 
+                    return delay(20000).then(() => { 
+                        return facebookBot.sendFBMessage(user, { 
+                            text: `The 19.18 will be leaving from platform 6, so you've got just over 12 minutes.`,
+                            "quick_replies": [
+                                {
+                                    "content_type": "text",
+                                    "title": "Thanks!",
+                                    "payload": "Thanks!"
+                                },
+                                {
+                                    "content_type": "text",
+                                    "title": "Buzz me five mins before it leaves",
+                                    "payload": "Buzz me five mins before it leaves"
+                                }
+                            ]
+                        });
                     })
-                });
-                
+                }); 
             }
-
 
             if (data.result.action === 'arrivapi.default.submit') {
 
