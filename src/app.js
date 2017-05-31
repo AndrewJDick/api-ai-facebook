@@ -41,20 +41,22 @@ app.post('/webhook/', (req, res) => {
         let commuteContext = {};
         let speech = '';
 
-        let user = commuteContext.facebook_sender_id;
-
-        let delay = (t) => {
-           return new Promise((resolve) => { 
-               setTimeout(resolve, t);
-           });
-        };
-
         // Store the Default Commute object built from the API.ai bot.
         for (let context of contexts) {
             if (context.name === 'generic') {
                 commuteContext = context.parameters;
             }
         }
+
+        // FB User
+        const user = commuteContext.facebook_sender_id;
+
+        // Delay between FB messages
+        const delay = (t) => {
+           return new Promise((resolve) => { 
+               setTimeout(resolve, t);
+           });
+        };
 
         if (data.result) {
 
