@@ -162,8 +162,8 @@ app.post('/webhook/', (req, res) => {
                                 },
                                 {
                                     "content_type": "text",
-                                    "title": "I don't trust you yet.",
-                                    "payload": "I don't trust you yet."
+                                    "title": "I don't trust you.",
+                                    "payload": "I don't trust you."
                                 }
                             ]
                         });
