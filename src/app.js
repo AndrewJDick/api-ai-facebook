@@ -67,7 +67,7 @@ app.post('/webhook/', (req, res) => {
                     return delay(20000).then(() => { 
                         return facebookBot.sendFBMessage(user, { 
                             text: `The 19.18 will be leaving from platform 6, so you've got just over 12 minutes.`,
-                            "quick_replies": [
+                            quick_replies: [
                                 {
                                     "content_type": "text",
                                     "title": "Thanks!",
