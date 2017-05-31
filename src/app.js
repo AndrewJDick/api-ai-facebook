@@ -122,31 +122,31 @@ app.post('/webhook/', (req, res) => {
                 facebookBot.sendFBMessage(user, { 
                     text: `OK. Tell you what. You tell me about your regular journeys, and I'll help you avoid disruption before it affects you.` 
                 }).then(() => { 
-                    return delay(3000).then(() => { 
+                    return delay(5000).then(() => { 
                         return facebookBot.sendFBMessage(user, { 
                             text: `Because I can send you, at exactly the right moment, really useful stuff like:`
                         });
                     })
                 }).then(() => { 
-                    return delay(3000).then(() => { 
+                    return delay(5000).then(() => { 
                         return facebookBot.sendFBMessage(user, { 
                             text: `The 06.57 is running 12 mins late. Relax. Give someone an extra kiss.`
                         });
                     }); 
                 }).then(() => { 
-                    return delay(1500).then(() => { 
+                    return delay(2000).then(() => { 
                         return facebookBot.sendFBMessage(user, { 
                             text: `Don't forget there's a tube strike tomorrow morning. Get an earlier train, maybe?`
                         });
                     }); 
                 }).then(() => { 
-                    return delay(1500).then(() => { 
+                    return delay(2000).then(() => { 
                         return facebookBot.sendFBMessage(user, { 
                             text: `Bank Station is rammed this morning. You'd be better off walking from Liverpool St.`
                         });
                     }); 
                 }).then(() => { 
-                    return delay(3000).then(() => { 
+                    return delay(5000).then(() => { 
                         return facebookBot.sendFBMessage(user, { 
                             text: `Would you like to give it a try?`,
                             quick_replies: [
@@ -154,11 +154,6 @@ app.post('/webhook/', (req, res) => {
                                     "content_type": "text",
                                     "title": "Yeah, sounds good",
                                     "payload": "Yeah, sounds good"
-                                },
-                                {
-                                    "content_type": "text",
-                                    "title": "Is that right?",
-                                    "payload": "Is that right?"
                                 },
                                 {
                                     "content_type": "text",
