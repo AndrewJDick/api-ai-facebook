@@ -166,6 +166,37 @@ app.post('/webhook/', (req, res) => {
                 }); 
             }
 
+            if (data.result.action === 'trainbot.profile.commute') {
+                facebookBot.sendFBMessage(user, { 
+                    text: `Awesome. We need to know some stuff.` 
+                }).then(() => { 
+                    return delay(2000).then(() => { 
+                        return facebookBot.sendFBMessage(user, { 
+                            text: `Do you commute to work everyday?`,
+                            quick_replies: [
+                                {
+                                    "content_type": "text",
+                                    "title": "Yes, usually",
+                                    "payload": "Yes, usually"
+                                },
+                                {
+                                    "content_type": "text",
+                                    "title": "Nope",
+                                    "payload": "Nope"
+                                },
+                                {
+                                    "content_type": "text",
+                                    "title": "Who wants to know?",
+                                    "payload": "Who wants to know?"
+                                }
+                            ]
+                        });
+                    })
+                });   
+            }
+
+            
+
             if (data.result.action === 'arrivapi.default.submit') {
 
                 // Convert addresses to LatLng cords
