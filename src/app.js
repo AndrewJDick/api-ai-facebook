@@ -91,7 +91,7 @@ app.post('/webhook/', (req, res) => {
                 facebookBot.sendFBMessage(user, { 
                     text: `Hey. Glad you made your train!` 
                 }).then(() => { 
-                    return delay(1500).then(() => { 
+                    return delay(2000).then(() => { 
                         return facebookBot.sendFBMessage(user, { 
                             text: `Would you like to hear about some other ways I can help you out? Won't take long, I promise.`,
                             quick_replies: [
@@ -122,13 +122,13 @@ app.post('/webhook/', (req, res) => {
                 facebookBot.sendFBMessage(user, { 
                     text: `OK. Tell you what. You tell me about your regular journeys, and I'll help you avoid disruption before it affects you.` 
                 }).then(() => { 
-                    return delay(5000).then(() => { 
+                    return delay(2000).then(() => { 
                         return facebookBot.sendFBMessage(user, { 
                             text: `Because I can send you, at exactly the right moment, really useful stuff like:`
                         });
                     })
                 }).then(() => { 
-                    return delay(5000).then(() => { 
+                    return delay(2000).then(() => { 
                         return facebookBot.sendFBMessage(user, { 
                             text: `The 06.57 is running 12 mins late. Relax. Give someone an extra kiss.`
                         });
@@ -146,7 +146,7 @@ app.post('/webhook/', (req, res) => {
                         });
                     }); 
                 }).then(() => { 
-                    return delay(5000).then(() => { 
+                    return delay(2000).then(() => { 
                         return facebookBot.sendFBMessage(user, { 
                             text: `Would you like to give it a try?`,
                             quick_replies: [
